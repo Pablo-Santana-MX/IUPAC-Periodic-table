@@ -49,7 +49,11 @@ La ficha técnica expandida cuenta con seis pestañas especializadas de análisi
 - **Filtro por Familias Químicas**: Resaltado y atenuación de celdas según las 10 familias IUPAC.
 - **Selector de Métrica en Celdas**: Alterna en vivo la propiedad visible en la esquina inferior de cada una de las 118 celdas (valencia, masa, radio, electronegatividad, etc.).
 
-### 6. 📱 PWA & Modo Offline (Service Worker v3)
+### 6. 📱 PWA, Modo Offline (Service Worker v3) & Optimización Móvil Completa
+- **Adaptabilidad Móvil Integral (Landscape & Portrait)**:
+  - **Modo Horizontal (*Landscape*)**: Cabecera compacta en una sola línea (`~38px`), barra de familias reducida y celdas atómicas con tipografía calculada para que los 118 elementos (incluyendo lantánidos y actínidos) quepan en pantalla sin cortes ni superposición del Hub Central.
+  - **Modo Vertical (*Portrait*)**: Desplazamiento horizontal táctil fluido (`-webkit-overflow-scrolling: touch`) a través de los 18 grupos, con indicador visual de deslizamiento.
+  - **Optimización Táctil**: Reglas `@media (hover: hover)` para evitar que las celdas queden atascadas en estado hover al pulsar en pantallas táctiles, soporte `touch-action: manipulation` para eliminación del retardo de 300ms.
 - Manifiesto Web App (`manifest.json`) e iconos vectoriales para instalación *standalone* en Android, iOS, Windows y macOS.
 - **Service Worker (v3)** con estrategia *Network-First* con *fallback* a caché local para garantizar funcionamiento autónomo sin conexión a internet.
 - Indicador visual flotante de estado sin conexión.

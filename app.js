@@ -53,6 +53,7 @@ const I18N = {
     offlineStatus: 'Modo sin conexión activo (Caché IUPAC)',
     fullSheetBtn: 'Ver Ficha Completa',
     closeBtn: 'Cerrar',
+    mobileScrollPrompt: 'Desliza para ver los 18 grupos',
     // Propiedades oficiales IUPAC
     atomicNumber: 'Número Atómico (Z)',
     mass: 'Masa Atómica (CIAAW)',
@@ -178,6 +179,7 @@ const I18N = {
     offlineStatus: 'Offline mode active (IUPAC Cache)',
     fullSheetBtn: 'View Full Dossier',
     closeBtn: 'Close',
+    mobileScrollPrompt: 'Swipe to explore all 18 groups',
     // IUPAC Properties
     atomicNumber: 'Atomic Number (Z)',
     mass: 'Atomic Weight (CIAAW)',
@@ -1279,83 +1281,84 @@ function renderCentralHub(elem) {
   const geo = getElementGeochemistryAndCompounds(elem);
 
   hub.innerHTML = `
-    <div class="h-full flex flex-col justify-between">
+    <div class="h-full flex flex-col justify-between overflow-hidden">
       <!-- Encabezado con Símbolo Glass, Z, Masa y Familia -->
-      <div class="flex items-center justify-between border-b border-white/10 pb-1.5">
-        <div class="flex items-center gap-2.5">
-          <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl glass-card border border-cyan-400/40 flex flex-col items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
-            <span class="text-[9px] text-cyan-300 font-mono font-bold leading-none">${elem.number}</span>
-            <span class="text-xl md:text-2xl font-black text-white tracking-tight leading-tight">${elem.symbol}</span>
+      <div class="flex items-center justify-between border-b border-white/10 pb-1 gap-1.5">
+        <div class="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
+          <div class="w-8 h-8 sm:w-11 sm:h-11 md:w-13 md:h-13 rounded-xl glass-card border border-cyan-400/40 flex flex-col items-center justify-center shadow-md shadow-cyan-500/20 shrink-0">
+            <span class="text-[8px] sm:text-[9px] text-cyan-300 font-mono font-bold leading-none">${elem.number}</span>
+            <span class="text-sm sm:text-lg md:text-xl font-black text-white tracking-tight leading-tight">${elem.symbol}</span>
           </div>
-          <div>
-            <div class="flex items-center gap-1.5">
-              <h2 class="text-base md:text-lg font-black text-white tracking-tight">${name}</h2>
-              <span class="text-[9px] font-bold px-2 py-0.5 rounded-full glass-button text-cyan-300">
+          <div class="min-w-0">
+            <div class="flex items-center gap-1 sm:gap-1.5 flex-wrap">
+              <h2 class="text-xs sm:text-sm md:text-base font-black text-white tracking-tight truncate">${name}</h2>
+              <span class="text-[8px] sm:text-[8.5px] font-bold px-1.5 py-0.2 rounded-full glass-button text-cyan-300 shrink-0">
                 ${categoryLabel}
               </span>
             </div>
-            <div class="text-[10px] text-slate-300 flex items-center gap-2.5 mt-0.5 font-mono">
-              <span><strong>${t.mass}:</strong> ${typeof elem.mass === 'number' ? elem.mass.toFixed(3) : elem.mass} u</span>
-              <span><strong>${t.group}:</strong> ${elem.group}</span>
-              <span><strong>${t.period}:</strong> ${elem.period}</span>
-              <span><strong>${t.block}:</strong> ${elem.block}</span>
+            <div class="text-[8.5px] sm:text-[9.5px] text-slate-300 flex items-center gap-1.5 sm:gap-2.5 mt-0.5 font-mono truncate">
+              <span><strong>${t.mass}:</strong> ${typeof elem.mass === 'number' ? elem.mass.toFixed(2) : elem.mass} u</span>
+              <span class="hidden xs:inline"><strong>${t.group}:</strong> ${elem.group}</span>
+              <span class="hidden xs:inline"><strong>${t.period}:</strong> ${elem.period}</span>
+              <span class="hidden sm:inline"><strong>${t.block}:</strong> ${elem.block}</span>
             </div>
           </div>
         </div>
 
-        <div class="flex items-center gap-2">
-          <button id="openModalBtn" class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold text-cyan-300 hover:text-white flex items-center gap-1.5 shadow-lg" aria-label="${t.fullSheetBtn}">
-            <i class="fa-solid fa-expand text-[10px]"></i>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button id="openModalBtn" class="glass-button px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-[10px] sm:text-xs font-semibold text-cyan-300 hover:text-white flex items-center gap-1 shadow-md cursor-pointer" aria-label="${t.fullSheetBtn}">
+            <i class="fa-solid fa-expand text-[9px]"></i>
             <span class="hidden sm:inline">${t.fullSheetBtn}</span>
+            <span class="sm:hidden">${t.detailsTitle || 'Ficha'}</span>
           </button>
         </div>
       </div>
 
-      <!-- Cuadrícula Rápida de Propiedades Oficiales IUPAC -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-1.5 my-1 text-xs">
-        <div class="glass-card px-2 py-1 rounded-lg">
-          <span class="text-[9px] text-slate-400 block">${t.valencia}</span>
-          <span class="font-bold text-white font-mono text-[11px]">${elem.valencia}</span>
+      <!-- Cuadrícula Rápida de Propiedades Oficiales IUPAC (Compacta) -->
+      <div class="grid grid-cols-4 gap-1 my-0.5 text-[9px] sm:text-xs">
+        <div class="glass-card px-1.5 py-0.5 sm:py-1 rounded-lg">
+          <span class="text-[7.5px] sm:text-[8.5px] text-slate-400 block truncate leading-tight">${t.valencia}</span>
+          <span class="font-bold text-white font-mono text-[9.5px] sm:text-[11px] truncate block leading-tight">${elem.valencia}</span>
         </div>
-        <div class="glass-card px-2 py-1 rounded-lg">
-          <span class="text-[9px] text-slate-400 block">${t.electronegativity}</span>
-          <span class="font-bold text-white text-[11px]">${elem.electronegativity !== null ? elem.electronegativity : '—'} Pauling</span>
+        <div class="glass-card px-1.5 py-0.5 sm:py-1 rounded-lg">
+          <span class="text-[7.5px] sm:text-[8.5px] text-slate-400 block truncate leading-tight">${t.electronegativity}</span>
+          <span class="font-bold text-white text-[9.5px] sm:text-[11px] truncate block leading-tight">${elem.electronegativity !== null ? elem.electronegativity : '—'}</span>
         </div>
-        <div class="glass-card px-2 py-1 rounded-lg">
-          <span class="text-[9px] text-slate-400 block">${t.atomicRadius}</span>
-          <span class="font-bold text-white text-[11px]">${elem.atomicRadius ? elem.atomicRadius + ' pm' : '—'}</span>
+        <div class="glass-card px-1.5 py-0.5 sm:py-1 rounded-lg">
+          <span class="text-[7.5px] sm:text-[8.5px] text-slate-400 block truncate leading-tight">${t.atomicRadius}</span>
+          <span class="font-bold text-white text-[9.5px] sm:text-[11px] truncate block leading-tight">${elem.atomicRadius ? elem.atomicRadius + ' pm' : '—'}</span>
         </div>
-        <div class="glass-card px-2 py-1 rounded-lg">
-          <span class="text-[9px] text-slate-400 block">${t.phase}</span>
-          <span class="font-bold text-cyan-300 text-[11px]">${phaseLabel}</span>
+        <div class="glass-card px-1.5 py-0.5 sm:py-1 rounded-lg">
+          <span class="text-[7.5px] sm:text-[8.5px] text-slate-400 block truncate leading-tight">${t.phase}</span>
+          <span class="font-bold text-cyan-300 text-[9.5px] sm:text-[11px] truncate block leading-tight">${phaseLabel}</span>
         </div>
       </div>
 
-      <!-- Abundancia en la Tierra y Compuestos Principales -->
-      <div class="grid grid-cols-2 gap-1.5 my-0.5 text-xs">
-        <div class="glass-card px-2 py-1 rounded-lg flex items-center gap-1.5 cursor-pointer hover:border-cyan-400/40 transition-colors" onclick="openIupacModalTab('abundance')" role="button" tabindex="0">
+      <!-- Abundancia en la Tierra y Compuestos (Oculto en móvil pequeño para evitar empujar Periodo 4) -->
+      <div class="hub-secondary-grid hidden md:grid grid-cols-2 gap-1 my-0.5 text-xs">
+        <div class="glass-card px-2 py-0.5 rounded-lg flex items-center gap-1.5 cursor-pointer hover:border-cyan-400/40 transition-colors" onclick="openIupacModalTab('abundance')" role="button" tabindex="0">
           <i class="fa-solid fa-earth-americas text-cyan-400 text-xs shrink-0"></i>
           <div class="truncate">
-            <span class="text-[8.5px] text-slate-400 block leading-tight">${t.tabAbundance}:</span>
-            <span class="font-bold text-white text-[10.5px] truncate block leading-tight">${geo.crustRank}</span>
+            <span class="text-[8px] text-slate-400 block leading-tight">${t.tabAbundance}:</span>
+            <span class="font-bold text-white text-[10px] truncate block leading-tight">${geo.crustRank}</span>
           </div>
         </div>
-        <div class="glass-card px-2 py-1 rounded-lg flex items-center gap-1.5 cursor-pointer hover:border-cyan-400/40 transition-colors" onclick="openIupacModalTab('compounds')" role="button" tabindex="0">
+        <div class="glass-card px-2 py-0.5 rounded-lg flex items-center gap-1.5 cursor-pointer hover:border-cyan-400/40 transition-colors" onclick="openIupacModalTab('compounds')" role="button" tabindex="0">
           <i class="fa-solid fa-vial-virus text-amber-400 text-xs shrink-0"></i>
           <div class="truncate">
-            <span class="text-[8.5px] text-slate-400 block leading-tight">${t.tabCompounds}:</span>
-            <span class="font-bold text-cyan-300 font-mono text-[10.5px] truncate block leading-tight">${geo.compounds.slice(0, 3).map(c => c.formula).join(', ')}</span>
+            <span class="text-[8px] text-slate-400 block leading-tight">${t.tabCompounds}:</span>
+            <span class="font-bold text-cyan-300 font-mono text-[10px] truncate block leading-tight">${geo.compounds.slice(0, 3).map(c => c.formula).join(', ')}</span>
           </div>
         </div>
       </div>
 
-      <!-- Configuración Electrónica y Descubrimiento -->
-      <div class="flex items-center justify-between text-[10px] text-slate-300 bg-white/5 px-2.5 py-1 rounded-xl border border-white/5 font-mono">
+      <!-- Configuración Electrónica y Descubrimiento (Oculto en móvil pequeño) -->
+      <div class="hub-tertiary-bar hidden lg:flex items-center justify-between text-[9px] text-slate-300 bg-white/5 px-2 py-0.5 rounded-lg border border-white/5 font-mono">
         <div class="truncate mr-2">
           <span class="text-slate-400">${t.electronConfig}:</span>
           <strong class="text-cyan-300 font-bold">${elem.electronConfig}</strong>
         </div>
-        <div class="shrink-0 text-slate-400 text-[9.5px]">
+        <div class="shrink-0 text-slate-400 text-[8.5px]">
           <span>${elem.discoveredBy} ${elem.year ? '(' + elem.year + ')' : ''}</span>
         </div>
       </div>
@@ -3283,6 +3286,27 @@ function initApp() {
         document.exitFullscreen().catch(() => {});
       }
     });
+  }
+
+  // Desvanecimiento suave del aviso de scroll horizontal en móviles
+  const scrollContainer = document.querySelector('.periodic-fullscreen-container');
+  const scrollHint = document.getElementById('mobileScrollHint');
+  if (scrollContainer && scrollHint) {
+    let fadeTimer = null;
+    scrollContainer.addEventListener('scroll', () => {
+      scrollHint.style.opacity = '0';
+      if (fadeTimer) clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(() => {
+        scrollHint.classList.add('hidden');
+      }, 400);
+    }, { passive: true });
+
+    setTimeout(() => {
+      if (scrollHint) {
+        scrollHint.style.opacity = '0';
+        setTimeout(() => scrollHint.classList.add('hidden'), 400);
+      }
+    }, 3800);
   }
 
   // Modales

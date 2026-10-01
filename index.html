@@ -54,65 +54,65 @@
     <span data-i18n="offlineStatus">Modo sin conexión activo (Caché IUPAC)</span>
   </div>
 
-  <!-- BARRA SUPERIOR GLASSMORFISMO (TOP NAVIGATION & CONTROLS) -->
-  <header class="glass-panel sticky top-0 z-40 px-3 py-1.5 md:px-5 md:py-2 flex flex-wrap items-center justify-between gap-2.5 border-b border-white/10 shrink-0">
+  <!-- BARRA SUPERIOR GLASSMORFISMO (TOP NAVIGATION & CONTROLS COMPACTO Y RESPONSIVO) -->
+  <header class="glass-panel sticky top-0 z-40 px-2 py-1 md:px-4 md:py-1.5 flex items-center justify-between gap-1.5 md:gap-3 border-b border-white/10 shrink-0 select-none">
     
     <!-- Zona 1: Marca & Verificación IUPAC -->
-    <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl glass-button flex items-center justify-center text-cyan-400 font-black text-sm shadow-lg shadow-cyan-500/20">
+    <div class="flex items-center gap-1.5 md:gap-2 shrink-0">
+      <div class="w-7 h-7 md:w-8 md:h-8 rounded-xl glass-button flex items-center justify-center text-cyan-400 font-black text-xs md:text-sm shadow-md shadow-cyan-500/20 shrink-0">
         <i class="fa-solid fa-atom"></i>
       </div>
       <div>
-        <div class="flex items-center gap-2">
-          <h1 class="text-xs md:text-sm font-extrabold tracking-tight text-white flex items-center gap-1.5" data-i18n="appTitle">
-            Tabla Periódica Actualizada
+        <div class="flex items-center gap-1 md:gap-1.5">
+          <h1 class="text-xs md:text-sm font-extrabold tracking-tight text-white flex items-center gap-1 truncate max-w-[105px] xs:max-w-[140px] sm:max-w-none" data-i18n="appTitle">
+            Tabla Periódica
           </h1>
-          <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 tracking-wider">
+          <span class="text-[8px] md:text-[9px] font-bold px-1 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 tracking-wider shrink-0">
             IUPAC 2026
           </span>
         </div>
-        <p class="text-[10px] text-slate-400 font-medium hidden sm:block" data-i18n="appSubtitle">
+        <p class="text-[9px] text-slate-400 font-medium hidden lg:block" data-i18n="appSubtitle">
           Estándar Oficial de los Elementos Químicos
         </p>
       </div>
     </div>
 
     <!-- Zona 2: Buscador en Tiempo Real & Selector de Propiedad -->
-    <div class="flex items-center gap-2 flex-1 max-w-xl min-w-[220px]">
-      <div class="relative flex-1">
-        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+    <div class="flex items-center gap-1 md:gap-2 flex-1 max-w-xs sm:max-w-sm md:max-w-lg min-w-0">
+      <div class="relative flex-1 min-w-[70px]">
+        <i class="fa-solid fa-magnifying-glass absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] md:text-xs"></i>
         <input 
           type="text" 
           id="elementSearch" 
-          placeholder="Buscar elemento (ej: Fe, Hierro, 26, valencia +3)..." 
-          class="glass-input w-full rounded-xl pl-8 pr-2.5 py-1 text-xs placeholder-slate-400"
+          placeholder="Buscar (ej: Fe, 26, +3)..." 
+          class="glass-input w-full rounded-xl pl-6 pr-2 py-0.5 md:py-1 text-[11px] md:text-xs placeholder-slate-400"
         />
       </div>
 
       <!-- Selector de Métrica a Visualizar en las Celdas -->
-      <select id="propertySelect" class="glass-input rounded-xl px-2 py-1 text-xs text-slate-200 cursor-pointer focus:border-cyan-400 shrink-0" aria-label="Seleccionar propiedad periódica">
+      <select id="propertySelect" class="glass-input rounded-xl px-1.5 py-0.5 md:py-1 text-[10.5px] md:text-xs text-slate-200 cursor-pointer focus:border-cyan-400 shrink-0 max-w-[105px] sm:max-w-[140px] md:max-w-none" aria-label="Seleccionar propiedad periódica">
         <option value="valencia" data-i18n="valencia">Valencia / Oxidación</option>
-        <option value="electronegativity" data-i18n="electronegativity">Electronegatividad (Pauling)</option>
-        <option value="mass" data-i18n="mass">Masa Atómica (CIAAW)</option>
-        <option value="atomicRadius" data-i18n="atomicRadius">Radio Atómico (pm)</option>
-        <option value="ionizationEnergy" data-i18n="ionizationEnergy">Energía Ionización (kJ/mol)</option>
+        <option value="electronegativity" data-i18n="electronegativity">Electronegatividad</option>
+        <option value="mass" data-i18n="mass">Masa Atómica</option>
+        <option value="atomicRadius" data-i18n="atomicRadius">Radio Atómico</option>
+        <option value="ionizationEnergy" data-i18n="ionizationEnergy">Energía Ionización</option>
         <option value="electronConfig" data-i18n="electronConfig">Config. Electrónica</option>
-        <option value="phase" data-i18n="phase">Estado a 298.15 K</option>
+        <option value="phase" data-i18n="phase">Estado (298 K)</option>
       </select>
     </div>
 
     <!-- Zona 3: Acciones Rápidas (Ajustar a Pantalla, Gráfico, Idioma, PWA & Visitas) -->
-    <div class="flex items-center gap-1.5">
+    <div class="flex items-center gap-1 shrink-0">
       <!-- Botón Ajustar Pantalla Completa -->
-      <button id="toggleFullscreenBtn" class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Ajustar / Pantalla completa" aria-label="Pantalla completa">
-        <i class="fa-solid fa-expand text-cyan-400"></i>
-        <span class="hidden xl:inline text-[11px]" data-i18n="btnFitScreen">Pantalla Completa</span>
+      <button id="toggleFullscreenBtn" class="glass-button px-2 py-1 rounded-xl text-xs font-semibold flex items-center gap-1" title="Ajustar / Pantalla completa" aria-label="Pantalla completa">
+        <i class="fa-solid fa-expand text-cyan-400 text-xs"></i>
+        <span class="hidden 2xl:inline text-[11px]" data-i18n="btnFitScreen">Pantalla Completa</span>
       </button>
 
       <!-- Botón para ver gráfico de tendencias -->
-      <button id="toggleTrendsBtn" class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Ver tendencias periódicas" aria-label="Ver tendencias periódicas">
-        <i class="fa-solid fa-chart-line text-cyan-400"></i>
-        <span class="hidden md:inline text-[11px]" data-i18n="navTrends">Tendencias</span>
+      <button id="toggleTrendsBtn" class="glass-button px-2 py-1 rounded-xl text-xs font-semibold flex items-center gap-1" title="Ver tendencias periódicas" aria-label="Ver tendencias periódicas">
+        <i class="fa-solid fa-chart-line text-cyan-400 text-xs"></i>
+        <span class="hidden xl:inline text-[11px]" data-i18n="navTrends">Tendencias</span>
       </button>
 
       <!-- Selector de Tema (Claro / Oscuro / Sistema) -->
@@ -120,7 +120,7 @@
         <!-- Botón principal: clic directo alterna Claro <-> Oscuro al instante -->
         <button 
           id="themeToggleBtn" 
-          class="px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 hover:bg-white/10 transition-colors cursor-pointer" 
+          class="px-1.5 py-0.5 md:px-2 md:py-1 rounded-lg text-xs font-semibold flex items-center gap-1 hover:bg-white/10 transition-colors cursor-pointer" 
           title="Alternar tema (Claro / Oscuro)" 
           aria-label="Alternar tema (Claro / Oscuro)"
         >
@@ -131,38 +131,38 @@
         <!-- Botón chevron: abre popover con las 3 opciones (Claro, Oscuro, Sistema) -->
         <button 
           id="themeMenuTriggerBtn" 
-          class="px-1.5 py-1 text-slate-400 hover:text-cyan-400 hover:bg-white/10 rounded-lg transition-colors border-l border-white/10 cursor-pointer" 
+          class="px-1 py-0.5 md:py-1 text-slate-400 hover:text-cyan-400 hover:bg-white/10 rounded-lg transition-colors border-l border-white/10 cursor-pointer" 
           title="Opciones de tema: Claro, Oscuro o Sistema" 
           aria-label="Menú desplegable de temas" 
           aria-haspopup="true" 
           aria-expanded="false"
         >
-          <i class="fa-solid fa-chevron-down text-[8.5px]"></i>
+          <i class="fa-solid fa-chevron-down text-[8px]"></i>
         </button>
 
         <!-- Popover / Menú Desplegable con 3 Opciones -->
         <div 
           id="themeDropdownMenu" 
-          class="hidden absolute right-0 top-full mt-1.5 w-40 glass-panel rounded-2xl p-1.5 shadow-2xl z-50 animate-glass-in space-y-1 text-xs" 
+          class="hidden absolute right-0 top-full mt-1 w-36 md:w-40 glass-panel rounded-2xl p-1.5 shadow-2xl z-50 animate-glass-in space-y-1 text-xs" 
           role="menu" 
           aria-orientation="vertical"
         >
-          <button class="theme-option-btn w-full text-left px-2.5 py-1.5 rounded-xl flex items-center justify-between transition-all cursor-pointer" data-theme-value="light" role="menuitem" tabindex="0">
-            <span class="flex items-center gap-2">
+          <button class="theme-option-btn w-full text-left px-2 py-1 rounded-xl flex items-center justify-between transition-all cursor-pointer text-xs" data-theme-value="light" role="menuitem" tabindex="0">
+            <span class="flex items-center gap-1.5">
               <i class="fa-solid fa-sun text-amber-400 text-xs"></i>
               <span data-i18n="themeLight">Claro</span>
             </span>
             <i class="fa-solid fa-check text-cyan-400 text-xs theme-check hidden"></i>
           </button>
-          <button class="theme-option-btn w-full text-left px-2.5 py-1.5 rounded-xl flex items-center justify-between transition-all cursor-pointer" data-theme-value="dark" role="menuitem" tabindex="0">
-            <span class="flex items-center gap-2">
+          <button class="theme-option-btn w-full text-left px-2 py-1 rounded-xl flex items-center justify-between transition-all cursor-pointer text-xs" data-theme-value="dark" role="menuitem" tabindex="0">
+            <span class="flex items-center gap-1.5">
               <i class="fa-solid fa-moon text-indigo-400 text-xs"></i>
               <span data-i18n="themeDark">Oscuro</span>
             </span>
             <i class="fa-solid fa-check text-cyan-400 text-xs theme-check hidden"></i>
           </button>
-          <button class="theme-option-btn w-full text-left px-2.5 py-1.5 rounded-xl flex items-center justify-between transition-all cursor-pointer" data-theme-value="system" role="menuitem" tabindex="0">
-            <span class="flex items-center gap-2">
+          <button class="theme-option-btn w-full text-left px-2 py-1 rounded-xl flex items-center justify-between transition-all cursor-pointer text-xs" data-theme-value="system" role="menuitem" tabindex="0">
+            <span class="flex items-center gap-1.5">
               <i class="fa-solid fa-desktop text-cyan-400 text-xs"></i>
               <span data-i18n="themeSystem">Sistema</span>
             </span>
@@ -172,59 +172,59 @@
       </div>
 
       <!-- Botón de Idioma (ES / EN) -->
-      <button id="langToggleBtn" class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Cambiar idioma / Switch language" aria-label="Cambiar idioma">
-        <i class="fa-solid fa-globe text-cyan-400"></i>
+      <button id="langToggleBtn" class="glass-button px-2 py-0.5 md:py-1 rounded-xl text-[11px] md:text-xs font-semibold flex items-center gap-1" title="Cambiar idioma / Switch language" aria-label="Cambiar idioma">
+        <i class="fa-solid fa-globe text-cyan-400 text-xs"></i>
         <span>EN</span>
       </button>
 
       <!-- Botón de Instalación PWA -->
-      <button id="pwaInstallBtn" class="hidden glass-button px-2.5 py-1 rounded-xl text-xs font-semibold text-emerald-400 border-emerald-500/30 flex items-center gap-1.5">
-        <i class="fa-solid fa-download"></i>
-        <span class="hidden sm:inline text-[11px]" data-i18n="installApp">Instalar</span>
+      <button id="pwaInstallBtn" class="hidden glass-button px-2 py-0.5 md:py-1 rounded-xl text-xs font-semibold text-emerald-400 border-emerald-500/30 flex items-center gap-1">
+        <i class="fa-solid fa-download text-xs"></i>
+        <span class="hidden md:inline text-[11px]" data-i18n="installApp">Instalar</span>
       </button>
 
-      <!-- Contador Discreto de Visitas (LocalStorage) -->
-      <div id="visitCounter" class="glass-card px-2.5 py-1 rounded-xl text-xs font-mono text-slate-400 border border-white/10 flex items-center gap-1.5">
+      <!-- Contador Discreto de Visitas (LocalStorage - Oculto en móviles para no saturar espacio) -->
+      <div id="visitCounter" class="hidden xl:flex glass-card px-2 py-1 rounded-xl text-xs font-mono text-slate-400 border border-white/10 items-center gap-1.5">
         <i class="fa-solid fa-signal text-cyan-400 text-[10px]"></i>
-        <span class="hidden lg:inline text-[10px]" data-i18n="visitsLabel">Visitas:</span>
+        <span class="text-[10px]" data-i18n="visitsLabel">Visitas:</span>
         <strong class="text-cyan-300 font-bold text-xs">1</strong>
       </div>
     </div>
   </header>
 
-  <!-- CINTA HORIZONTAL DE FILTROS POR FAMILIA QUÍMICA (GLASS TABS) -->
-  <div class="glass-panel px-3 py-1 flex items-center gap-1.5 overflow-x-auto text-[10.5px] border-b border-white/5 scrollbar-none shrink-0" role="toolbar" aria-label="Filtros de familias químicas">
-    <span class="text-slate-400 font-semibold px-1 shrink-0 uppercase tracking-wider text-[9.5px]" data-i18n="familiesLabel">Familias IUPAC:</span>
-    <button data-category-filter="all" class="filter-btn glass-button active px-2 py-0.5 rounded-lg shrink-0" data-i18n="filterAll">Todas</button>
-    <button data-category-filter="alkali" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-rose-500"></span><span data-i18n="alkali">Metales alcalinos</span>
+  <!-- CINTA HORIZONTAL DE FILTROS POR FAMILIA QUÍMICA (SLIM GLASS TABS) -->
+  <div class="glass-panel px-2 py-0.5 md:px-3 md:py-1 flex items-center gap-1 md:gap-1.5 overflow-x-auto text-[9.5px] md:text-[10.5px] border-b border-white/5 scrollbar-none shrink-0" role="toolbar" aria-label="Filtros de familias químicas">
+    <span class="text-slate-400 font-semibold px-1 shrink-0 uppercase tracking-wider text-[8.5px] md:text-[9.5px]" data-i18n="familiesLabel">Familias:</span>
+    <button data-category-filter="all" class="filter-btn glass-button active px-1.5 py-0.5 rounded-md shrink-0" data-i18n="filterAll">Todas</button>
+    <button data-category-filter="alkali" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span><span data-i18n="alkali">Alcalinos</span>
     </button>
-    <button data-category-filter="alkaline-earth" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-orange-400"></span><span data-i18n="alkaline-earth">Alcalinotérreos</span>
+    <button data-category-filter="alkaline-earth" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span><span data-i18n="alkaline-earth">Alcalinotérreos</span>
     </button>
-    <button data-category-filter="transition" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-sky-400"></span><span data-i18n="transition">Metales de transición</span>
+    <button data-category-filter="transition" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span><span data-i18n="transition">Transición</span>
     </button>
-    <button data-category-filter="post-transition" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-teal-400"></span><span data-i18n="post-transition">Post-transición</span>
+    <button data-category-filter="post-transition" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span><span data-i18n="post-transition">Post-transición</span>
     </button>
-    <button data-category-filter="metalloid" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-emerald-400"></span><span data-i18n="metalloid">Metaloides</span>
+    <button data-category-filter="metalloid" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span data-i18n="metalloid">Metaloides</span>
     </button>
-    <button data-category-filter="reactive-nonmetal" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-amber-300"></span><span data-i18n="reactive-nonmetal">No metales reactivos</span>
+    <button data-category-filter="reactive-nonmetal" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-300"></span><span data-i18n="reactive-nonmetal">No metales</span>
     </button>
-    <button data-category-filter="halogen" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-purple-400"></span><span data-i18n="halogen">Halógenos</span>
+    <button data-category-filter="halogen" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span><span data-i18n="halogen">Halógenos</span>
     </button>
-    <button data-category-filter="noble-gas" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-pink-400"></span><span data-i18n="noble-gas">Gases nobles</span>
+    <button data-category-filter="noble-gas" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span><span data-i18n="noble-gas">Gases nobles</span>
     </button>
-    <button data-category-filter="lanthanide" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-indigo-400"></span><span data-i18n="lanthanide">Lantánidos</span>
+    <button data-category-filter="lanthanide" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span><span data-i18n="lanthanide">Lantánidos</span>
     </button>
-    <button data-category-filter="actinide" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-cyan-400"></span><span data-i18n="actinide">Actínidos</span>
+    <button data-category-filter="actinide" class="filter-btn glass-button px-1.5 py-0.5 rounded-md shrink-0 flex items-center gap-1">
+      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span><span data-i18n="actinide">Actínidos</span>
     </button>
   </div>
 
@@ -237,12 +237,18 @@
       <div id="periodicGrid" class="periodic-grid">
         
         <!-- HUECO CENTRAL IUPAC (Periodos 1-3, Columnas 3-12): FICHA INTEGRADA SIN OCULTAR LA TABLA -->
-        <div id="iupacCentralHub" class="iupac-central-hub rounded-2xl p-2.5 md:p-3 flex flex-col justify-between shadow-2xl">
+        <div id="iupacCentralHub" class="iupac-central-hub rounded-xl md:rounded-2xl p-1.5 sm:p-2 md:p-3 flex flex-col justify-between shadow-2xl overflow-hidden">
           <!-- Inyectado dinámicamente: Ficha IUPAC del elemento activo -->
         </div>
 
       </div>
 
+    </div>
+
+    <!-- Indicador de desplazamiento horizontal para móviles en modo vertical -->
+    <div id="mobileScrollHint" class="md:hidden fixed bottom-2 left-1/2 -translate-x-1/2 glass-panel px-2.5 py-0.5 rounded-full text-[9px] text-cyan-300 shadow-lg border border-cyan-500/30 flex items-center gap-1.5 opacity-80 pointer-events-none transition-opacity duration-300">
+      <i class="fa-solid fa-arrows-left-right text-[9px] animate-pulse"></i>
+      <span data-i18n="mobileScrollPrompt">Desliza para ver los 18 grupos</span>
     </div>
 
   </main>

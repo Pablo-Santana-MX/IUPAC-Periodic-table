@@ -361,30 +361,38 @@ html[data-theme="light"] .theme-option-btn.active {
   min-height: 0;
   overflow: hidden;
   box-shadow: var(--cell-shadow);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s, border-color 0.16s, opacity 0.16s, background-color 0.2s ease;
 }
 
-.element-cell:hover,
+@media (hover: hover) {
+  .element-cell:hover {
+    transform: translateY(-2px) scale(1.16);
+    z-index: 35;
+    border-color: var(--cell-hover-border);
+    box-shadow: 0 12px 26px -4px rgba(0, 0, 0, 0.5), 0 0 18px var(--cell-glow, var(--accent-glow));
+    background: var(--glass-hover);
+    outline: none;
+  }
+}
+
 .element-cell:focus-visible {
-  transform: translateY(-2px) scale(1.18);
+  outline: 2px solid var(--accent-primary);
   z-index: 35;
-  border-color: var(--cell-hover-border);
-  box-shadow: 0 12px 26px -4px rgba(0, 0, 0, 0.5), 0 0 18px var(--cell-glow, var(--accent-glow));
-  background: var(--glass-hover);
-  outline: none;
 }
 
 .element-cell:active {
-  transform: scale(1.05);
+  transform: scale(0.96);
   background: var(--glass-hover);
 }
 
 .element-cell.selected {
-  transform: scale(1.08);
+  transform: scale(1.05);
   z-index: 30;
   border-color: var(--accent-primary);
   background: rgba(56, 189, 248, 0.22);
-  box-shadow: 0 0 0 2px var(--accent-primary), 0 0 22px var(--accent-glow);
+  box-shadow: 0 0 0 2px var(--accent-primary), 0 0 20px var(--accent-glow);
 }
 
 .element-cell.dimmed {
@@ -819,21 +827,170 @@ html[data-theme="light"] #iupacModal > div {
   box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.2);
 }
 
-/* Responsive adjustments */
-@media (max-width: 900px) {
+/* ==========================================================================
+   OPTIMIZACIONES MÓVILES (LANDSCAPE & PORTRAIT) & PANTALLAS TÁCTILES
+   ========================================================================== */
+
+/* 1. MÓVIL EN MODO HORIZONTAL (LANDSCAPE) - COMO EN SMARTPHONES ANDROID / IOS */
+@media (max-height: 540px) {
   body {
-    overflow-y: auto;
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
   }
+
+  .periodic-fullscreen-container {
+    padding: 2px 4px;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .periodic-grid-wrapper {
+    width: 100%;
+    height: 100%;
+    min-width: 680px;
+    max-height: calc(100vh - 66px);
+  }
+
+  .periodic-grid {
+    width: 100%;
+    min-width: 680px;
+    height: 100%;
+    max-height: calc(100vh - 66px);
+    grid-template-rows: repeat(7, minmax(0, 1fr)) 4px repeat(2, minmax(0, 1fr));
+    gap: 1.5px;
+  }
+
+  .f-block-gap {
+    height: 4px;
+    padding: 0;
+  }
+
+  .f-block-gap span {
+    display: none;
+  }
+
+  .iupac-central-hub {
+    border-radius: 10px;
+    padding: 4px 6px;
+  }
+
+  /* Celdas ultra-optimizadas para altura reducida sin solapamiento de texto */
+  .element-cell {
+    padding: 1px 1px;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .element-cell::before {
+    height: 1.5px;
+  }
+
+  .elem-num {
+    font-size: 7px;
+    line-height: 1;
+    position: absolute;
+    top: 1px;
+    left: 2px;
+  }
+
+  .elem-symbol {
+    font-size: clamp(9.5px, 2.3vh, 13px);
+    font-weight: 800;
+    line-height: 1;
+    margin: auto 0;
+    text-align: center;
+  }
+
+  /* En horizontal bajo, ocultamos el nombre para que el símbolo sea 100% nítido y no se corte */
+  .elem-name {
+    display: none;
+  }
+
+  .elem-prop {
+    font-size: 6.5px;
+    line-height: 1;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+/* 2. MÓVIL EN MODO VERTICAL (PORTRAIT) */
+@media (max-width: 768px) and (orientation: portrait) {
+  body {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: hidden;
+  }
+
+  .periodic-fullscreen-container {
+    padding: 4px 2px;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+  }
+
+  .periodic-grid-wrapper {
+    width: auto;
+    min-width: 760px;
+    height: 100%;
+  }
+
+  .periodic-grid {
+    min-width: 760px;
+    height: 100%;
+    max-height: calc(100vh - 100px);
+    grid-template-rows: repeat(7, minmax(0, 1fr)) 8px repeat(2, minmax(0, 1fr));
+    gap: 2px;
+  }
+
+  .element-cell {
+    min-height: 38px;
+    padding: 2px;
+    border-radius: 4px;
+  }
+
+  .elem-num {
+    font-size: 8px;
+  }
+
+  .elem-symbol {
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .elem-name {
+    font-size: 7.5px;
+    display: block;
+  }
+
+  .elem-prop {
+    font-size: 7px;
+  }
+
+  .iupac-central-hub {
+    border-radius: 12px;
+    padding: 6px 8px;
+  }
+}
+
+/* 3. TABLETS Y PANTALLAS INTERMEDIAS (< 960px) */
+@media (max-width: 960px) and (min-height: 541px) {
   .periodic-fullscreen-container {
     overflow-x: auto;
-    overflow-y: hidden;
-    padding: 6px;
-    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 6px;
   }
+
   .periodic-grid {
-    min-width: 820px;
-    height: 520px;
+    min-width: 740px;
+    height: 100%;
+    max-height: calc(100vh - 90px);
   }
 }
