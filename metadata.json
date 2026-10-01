@@ -1,0 +1,6 @@
+{
+  "name": "Tabla Periódica Actualizada",
+  "description": "Tabla Periódica Actualizada con estándares oficiales IUPAC, visualización completa en pantalla, estética glassmorfismo ultra-moderna, valencias, masas atómicas, tendencias Chart.js y soporte offline.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

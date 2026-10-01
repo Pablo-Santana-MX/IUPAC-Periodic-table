@@ -1,0 +1,839 @@
+/* ==========================================================================
+   TABLA PERIÓDICA ACTUALIZADA (ESTÁNDAR OFICIAL IUPAC 2026) - STYLE.CSS
+   Estilo: SISTEMA DE TEMAS COMPLETO (DARK NEON GLASS & LIGHT CLEAR GLASS)
+   - 100% Visualización en pantalla adaptativa
+   - Variables CSS centralizadas para DARK, LIGHT y SYSTEM
+   - Transiciones suaves y alto contraste
+   - Ficha Central Integrada IUPAC
+   - Ventana Modal Ultra-Interactiva (Bohr Canvas, Termodinámica, Abundancia y Compuestos)
+   ========================================================================== */
+
+/* --- Variables Globales y Paleta Oficial IUPAC --- */
+:root,
+html[data-theme="dark"] {
+  /* Fondo y Superficies Glass Oscuras (Scientific Neon Glass) */
+  --bg-deep: #060913;
+  --bg-secondary: #0d1424;
+  --bg-radial-1: rgba(56, 189, 248, 0.09);
+  --bg-radial-2: rgba(192, 132, 252, 0.08);
+  --bg-radial-3: rgba(34, 211, 238, 0.06);
+  --bg-radial-4: rgba(244, 63, 94, 0.04);
+  
+  --glass-base: rgba(13, 20, 36, 0.75);
+  --glass-card: rgba(26, 38, 62, 0.52);
+  --glass-cell: rgba(17, 27, 48, 0.65);
+  --glass-hover: rgba(43, 62, 98, 0.85);
+  --glass-sunken: rgba(8, 13, 24, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.13);
+  --glass-border-light: rgba(255, 255, 255, 0.28);
+  --glass-blur: blur(20px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-primary: #38bdf8;
+  --accent-secondary: #818cf8;
+  --accent-glow: rgba(56, 189, 248, 0.4);
+
+  --hub-bg: rgba(15, 23, 42, 0.82);
+  --modal-backdrop: rgba(0, 0, 0, 0.78);
+  --input-bg: rgba(8, 13, 24, 0.8);
+  --scrollbar-track: rgba(8, 13, 24, 0.5);
+  --scrollbar-thumb: rgba(148, 163, 184, 0.3);
+  --cell-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --cell-hover-border: rgba(255, 255, 255, 0.7);
+
+  /* Familias Químicas Oficiales IUPAC */
+  --cat-alkali: #f43f5e;
+  --cat-alkaline-earth: #fb923c;
+  --cat-transition: #38bdf8;
+  --cat-post-transition: #2dd4bf;
+  --cat-metalloid: #34d399;
+  --cat-reactive-nonmetal: #facc15;
+  --cat-halogen: #c084fc;
+  --cat-noble-gas: #f472b6;
+  --cat-lanthanide: #818cf8;
+  --cat-actinide: #22d3ee;
+  --cat-unknown: #94a3b8;
+}
+
+/* --- Tema Claro Glassmorfismo Científico (Scientific Clear Glass) --- */
+html[data-theme="light"] {
+  --bg-deep: #f0f6fc;
+  --bg-secondary: #e2eeff;
+  --bg-radial-1: rgba(56, 189, 248, 0.12);
+  --bg-radial-2: rgba(129, 140, 248, 0.08);
+  --bg-radial-3: rgba(14, 165, 233, 0.07);
+  --bg-radial-4: rgba(244, 63, 94, 0.03);
+
+  --glass-base: rgba(255, 255, 255, 0.8);
+  --glass-card: rgba(255, 255, 255, 0.7);
+  --glass-cell: rgba(255, 255, 255, 0.75);
+  --glass-hover: rgba(235, 246, 255, 0.95);
+  --glass-sunken: rgba(241, 245, 249, 0.88);
+  --glass-border: rgba(14, 116, 144, 0.16);
+  --glass-border-light: rgba(14, 116, 144, 0.3);
+  --glass-blur: blur(20px);
+  --glass-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent-primary: #0284c7;
+  --accent-secondary: #6366f1;
+  --accent-glow: rgba(2, 132, 199, 0.3);
+
+  --hub-bg: rgba(255, 255, 255, 0.9);
+  --modal-backdrop: rgba(15, 23, 42, 0.5);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --scrollbar-track: rgba(226, 232, 240, 0.6);
+  --scrollbar-thumb: rgba(148, 163, 184, 0.5);
+  --cell-shadow: 0 1px 4px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --cell-hover-border: rgba(2, 132, 199, 0.6);
+
+  /* Familias Químicas en Claro con Contraste Reforzado */
+  --cat-alkali: #e11d48;
+  --cat-alkaline-earth: #ea580c;
+  --cat-transition: #0284c7;
+  --cat-post-transition: #0d9488;
+  --cat-metalloid: #059669;
+  --cat-reactive-nonmetal: #ca8a04;
+  --cat-halogen: #9333ea;
+  --cat-noble-gas: #db2777;
+  --cat-lanthanide: #4f46e5;
+  --cat-actinide: #0891b2;
+  --cat-unknown: #64748b;
+}
+
+/* --- Base & Fondo Dinámico --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(circle at 15% 15%, var(--bg-radial-1) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, var(--bg-radial-2) 0%, transparent 45%),
+    radial-gradient(circle at 50% 30%, var(--bg-radial-3) 0%, transparent 55%),
+    radial-gradient(circle at 50% 80%, var(--bg-radial-4) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  transition: background-color 0.25s ease, color 0.2s ease;
+}
+
+/* --- Transiciones de Tema Suaves --- */
+.glass-panel,
+.glass-card,
+.glass-button,
+.glass-input,
+.iupac-central-hub,
+.modal-tab-btn,
+.compound-card,
+.abundance-metric,
+.isotope-pill,
+.shell-pill,
+.theme-option-btn {
+  transition: background-color 0.22s ease, border-color 0.22s ease, color 0.18s ease, box-shadow 0.22s ease;
+}
+
+/* Scrollbar Personalizado en Cristal */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* --- Utilidades de Glassmorfismo --- */
+.glass-panel {
+  background: var(--glass-base);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-card {
+  background: var(--glass-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.15);
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--glass-border-light);
+  color: var(--text-primary);
+  box-shadow: 0 0 16px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.glass-button.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.glass-input {
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+/* --- Selector de Tema (Popover y Opciones) --- */
+#themeSelectorContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+#themeDropdownMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 150px;
+  background: var(--glass-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border-light);
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.5), 0 0 16px var(--accent-glow);
+  z-index: 100;
+}
+
+html[data-theme="light"] #themeDropdownMenu {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(14, 116, 144, 0.28);
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.16), 0 0 14px rgba(2, 132, 199, 0.12);
+}
+
+.theme-option-btn {
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 10px;
+  padding: 6px 10px;
+  transition: all 0.15s ease;
+}
+
+.theme-option-btn:hover,
+.theme-option-btn:focus-visible {
+  background: var(--glass-hover);
+  color: var(--text-primary);
+  border-color: var(--glass-border);
+  outline: none;
+}
+
+.theme-option-btn.active {
+  background: rgba(56, 189, 248, 0.18);
+  color: var(--accent-primary);
+  font-weight: 700;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+html[data-theme="light"] .theme-option-btn.active {
+  background: rgba(2, 132, 199, 0.14);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+.theme-option-btn.active .theme-check {
+  display: inline-block !important;
+}
+
+/* --- Contenedor Principal: LA TABLA SE MUESTRA TOTALMENTE EN PANTALLA --- */
+.periodic-fullscreen-container {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.periodic-grid-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s ease-out;
+}
+
+/* Grid Atómico Oficial IUPAC (18 Columnas x 10 Filas) */
+.periodic-grid {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(0, 1fr));
+  grid-template-rows: repeat(7, minmax(0, 1fr)) 10px repeat(2, minmax(0, 1fr));
+  gap: 3px;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 100px);
+  margin: 0 auto;
+}
+
+/* Hueco central IUPAC (Periodos 1 a 3, Columnas 3 a 12) */
+.iupac-central-hub {
+  grid-column: 3 / 13;
+  grid-row: 1 / 4;
+  z-index: 20;
+  pointer-events: auto;
+  overflow: hidden;
+  background: var(--hub-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4), 0 0 25px var(--accent-glow);
+}
+
+/* Separador visual para filas de Lantánidos y Actínidos */
+.f-block-gap {
+  grid-column: 1 / span 18;
+  grid-row: 8;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 6px;
+}
+
+/* --- Celdas de los Elementos (Glass Cards Táctiles) --- */
+.element-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px 3px;
+  background: var(--glass-cell);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 5px;
+  cursor: pointer;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  box-shadow: var(--cell-shadow);
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s, border-color 0.16s, opacity 0.16s, background-color 0.2s ease;
+}
+
+.element-cell:hover,
+.element-cell:focus-visible {
+  transform: translateY(-2px) scale(1.18);
+  z-index: 35;
+  border-color: var(--cell-hover-border);
+  box-shadow: 0 12px 26px -4px rgba(0, 0, 0, 0.5), 0 0 18px var(--cell-glow, var(--accent-glow));
+  background: var(--glass-hover);
+  outline: none;
+}
+
+.element-cell:active {
+  transform: scale(1.05);
+  background: var(--glass-hover);
+}
+
+.element-cell.selected {
+  transform: scale(1.08);
+  z-index: 30;
+  border-color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.22);
+  box-shadow: 0 0 0 2px var(--accent-primary), 0 0 22px var(--accent-glow);
+}
+
+.element-cell.dimmed {
+  opacity: 0.12;
+  filter: grayscale(85%);
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+/* Borde superior con color de familia química */
+.element-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: var(--cell-color, #64748b);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* Tipografía de la celda */
+.elem-num {
+  font-size: clamp(0.5rem, 0.65vw, 0.68rem);
+  font-weight: 700;
+  color: var(--text-muted);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.elem-symbol {
+  font-size: clamp(0.75rem, 1.15vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.05;
+  color: var(--text-primary);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.elem-name {
+  font-size: clamp(0.42rem, 0.58vw, 0.6rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  line-height: 1;
+}
+
+.elem-prop {
+  font-size: clamp(0.4rem, 0.54vw, 0.58rem);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Placeholder de Lantánidos y Actínidos */
+.element-cell.placeholder-cell {
+  background: rgba(30, 41, 59, 0.25);
+  border: 1px dashed var(--text-muted);
+  cursor: default;
+}
+.element-cell.placeholder-cell:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- Categorías Oficiales IUPAC --- */
+.cat-alkali { --cell-color: var(--cat-alkali); --cell-glow: rgba(244, 63, 94, 0.55); }
+.cat-alkaline-earth { --cell-color: var(--cat-alkaline-earth); --cell-glow: rgba(251, 146, 60, 0.55); }
+.cat-transition { --cell-color: var(--cat-transition); --cell-glow: rgba(56, 189, 248, 0.55); }
+.cat-post-transition { --cell-color: var(--cat-post-transition); --cell-glow: rgba(45, 212, 191, 0.55); }
+.cat-metalloid { --cell-color: var(--cat-metalloid); --cell-glow: rgba(52, 211, 153, 0.55); }
+.cat-reactive-nonmetal { --cell-color: var(--cat-reactive-nonmetal); --cell-glow: rgba(250, 204, 21, 0.55); }
+.cat-halogen { --cell-color: var(--cat-halogen); --cell-glow: rgba(192, 132, 252, 0.55); }
+.cat-noble-gas { --cell-color: var(--cat-noble-gas); --cell-glow: rgba(244, 114, 182, 0.55); }
+.cat-lanthanide { --cell-color: var(--cat-lanthanide); --cell-glow: rgba(129, 140, 248, 0.55); }
+.cat-actinide { --cell-color: var(--cat-actinide); --cell-glow: rgba(34, 211, 238, 0.55); }
+.cat-unknown { --cell-color: var(--cat-unknown); --cell-glow: rgba(148, 163, 184, 0.35); }
+
+/* --- Animaciones de Apertura --- */
+@keyframes glassFloat {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-glass-in {
+  animation: glassFloat 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- Modales --- */
+#iupacModal,
+#trendsModal {
+  background-color: var(--modal-backdrop);
+}
+
+/* --- Pestañas Interactivas del Modal --- */
+.modal-tab-btn {
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  border-radius: 10px;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.modal-tab-btn:hover {
+  color: var(--text-primary);
+  background: var(--glass-hover);
+  border-color: var(--glass-border-light);
+}
+
+.modal-tab-btn.active {
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.16);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+/* --- Visualizador del Modelo Atómico de Bohr --- */
+.bohr-canvas-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.12) 0%, rgba(2, 6, 23, 0.7) 70%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.15);
+  overflow: hidden;
+}
+
+#bohrCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* --- Pastillas de Capas Electrónicas --- */
+.shell-pill {
+  font-size: 10.5px;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: var(--glass-sunken);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.shell-pill:hover, .shell-pill.active {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+/* --- Chips de Valencia Interactivos --- */
+.valence-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 6px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--accent-primary);
+  transition: all 0.15s ease;
+}
+
+.valence-chip:hover {
+  background: rgba(56, 189, 248, 0.3);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* --- Slider de Temperatura Interactivo --- */
+.temp-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 7px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #38bdf8 0%, #22c55e 25%, #facc15 60%, #ef4444 100%);
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.temp-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 14px var(--accent-primary);
+  cursor: grab;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.temp-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px var(--accent-primary);
+}
+
+.temp-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 14px var(--accent-primary);
+  cursor: grab;
+}
+
+/* --- Tarjetas de Compuestos Químicos Principales --- */
+.compound-card {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.compound-card:hover {
+  background: var(--glass-hover);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2), 0 0 14px var(--accent-glow);
+}
+
+.compound-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* --- Badges de Abundancia Terrestre --- */
+.abundance-metric {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.isotope-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  background: var(--glass-sunken);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+}
+
+.isotope-pill:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.15);
+}
+
+/* Gráfico Chart.js */
+#trendsChart {
+  width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* --- Ajustes Específicos para Tema Claro (Refinamiento Estético) --- */
+html[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+html[data-theme="light"] .text-slate-300 {
+  color: #334155 !important;
+}
+html[data-theme="light"] .text-slate-200 {
+  color: #1e293b !important;
+}
+html[data-theme="light"] .text-slate-400 {
+  color: #64748b !important;
+}
+html[data-theme="light"] .text-slate-100 {
+  color: #0f172a !important;
+}
+html[data-theme="light"] .text-cyan-300 {
+  color: #0284c7 !important;
+}
+html[data-theme="light"] .text-cyan-200 {
+  color: #0369a1 !important;
+}
+html[data-theme="light"] .text-cyan-400 {
+  color: #0284c7 !important;
+}
+html[data-theme="light"] .elem-symbol {
+  color: #0f172a;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .elem-num {
+  color: #0284c7;
+  font-weight: 800;
+}
+html[data-theme="light"] .elem-name {
+  color: #1e293b;
+  font-weight: 600;
+}
+html[data-theme="light"] .elem-prop {
+  color: #475569;
+  font-weight: 700;
+}
+html[data-theme="light"] .element-cell:hover,
+html[data-theme="light"] .element-cell:focus-visible {
+  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.16), 0 0 16px var(--accent-glow);
+  border-color: var(--accent-primary);
+  background: var(--glass-hover);
+}
+html[data-theme="light"] .placeholder-cell {
+  background: rgba(226, 232, 240, 0.6);
+  border-color: rgba(14, 116, 144, 0.3);
+}
+html[data-theme="light"] .placeholder-cell span.text-indigo-300 {
+  color: #4338ca !important;
+}
+html[data-theme="light"] .placeholder-cell span.text-cyan-300 {
+  color: #0369a1 !important;
+}
+html[data-theme="light"] .theme-option-btn.active {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+}
+html[data-theme="light"] .theme-option-btn .theme-check {
+  color: #0284c7 !important;
+}
+html[data-theme="light"] #themeCurrentIcon.text-cyan-400 {
+  color: #0284c7 !important;
+}
+html[data-theme="light"] .glass-button {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(14, 116, 144, 0.16);
+  color: #334155;
+}
+html[data-theme="light"] .glass-button:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(2, 132, 199, 0.4);
+  color: #0f172a;
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.2);
+}
+html[data-theme="light"] .glass-button.active {
+  background: rgba(2, 132, 199, 0.14);
+  border-color: #0284c7;
+  color: #0284c7;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.2);
+}
+html[data-theme="light"] .element-cell.selected {
+  background: rgba(224, 242, 254, 0.95);
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px #0284c7, 0 0 16px rgba(2, 132, 199, 0.35);
+}
+html[data-theme="light"] .border-white\/10 {
+  border-color: rgba(14, 116, 144, 0.15) !important;
+}
+html[data-theme="light"] .border-white\/20 {
+  border-color: rgba(14, 116, 144, 0.22) !important;
+}
+html[data-theme="light"] .border-white\/5 {
+  border-color: rgba(14, 116, 144, 0.1) !important;
+}
+html[data-theme="light"] .bg-white\/5 {
+  background-color: rgba(14, 116, 144, 0.05) !important;
+}
+html[data-theme="light"] .bg-white\/10 {
+  background-color: rgba(14, 116, 144, 0.08) !important;
+}
+html[data-theme="light"] .bohr-canvas-container {
+  background: radial-gradient(circle at center, rgba(14, 165, 233, 0.08) 0%, rgba(240, 249, 255, 0.96) 75%);
+  border-color: rgba(2, 132, 199, 0.25);
+  box-shadow: inset 0 0 20px rgba(2, 132, 199, 0.08);
+}
+html[data-theme="light"] .shell-pill {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(14, 116, 144, 0.2);
+  color: #334155;
+}
+html[data-theme="light"] .modal-tab-btn {
+  background: rgba(241, 245, 249, 0.75);
+  border-color: rgba(14, 116, 144, 0.15);
+  color: #475569;
+}
+html[data-theme="light"] .modal-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.35);
+}
+html[data-theme="light"] .modal-tab-btn.active {
+  background: rgba(2, 132, 199, 0.12);
+  border-color: #0284c7;
+  color: #0284c7;
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.2);
+}
+html[data-theme="light"] #trendsModal > div,
+html[data-theme="light"] #iupacModal > div {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+  }
+  .periodic-fullscreen-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px;
+    align-items: flex-start;
+  }
+  .periodic-grid {
+    min-width: 820px;
+    height: 520px;
+  }
+}

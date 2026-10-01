@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Tabla Periódica Actualizada | IUPAC 2026</title>
+  <meta name="description" content="Tabla Periódica Actualizada con estándares oficiales IUPAC. Visualización completa en pantalla, estética glassmorfismo, valencias, masas atómicas estándar, configuraciones electrónicas y soporte offline PWA." />
+  
+  <!-- Prevención FOUC de Tema (Claro / Oscuro / Sistema) -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('periodicTheme') || 'system';
+        var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var effectiveTheme = (savedTheme === 'system') ? (systemDark ? 'dark' : 'light') : savedTheme;
+        document.documentElement.setAttribute('data-theme', effectiveTheme);
+        if (effectiveTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Configuración PWA e Iconos -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#070b19" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Tabla Periódica" />
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png" />
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CDNs: Tailwind CSS, FontAwesome y Chart.js -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Estilos Glassmorfismo a Medida -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- AVISO DE CONEXIÓN OFFLINE -->
+  <div id="offlineNotice" class="hidden fixed top-3 right-4 z-50 flex items-center gap-2 glass-panel text-cyan-300 px-3.5 py-1.5 rounded-xl text-xs font-semibold shadow-xl border border-cyan-500/40 animate-pulse">
+    <i class="fa-solid fa-satellite-dish"></i>
+    <span data-i18n="offlineStatus">Modo sin conexión activo (Caché IUPAC)</span>
+  </div>
+
+  <!-- BARRA SUPERIOR GLASSMORFISMO (TOP NAVIGATION & CONTROLS) -->
+  <header class="glass-panel sticky top-0 z-40 px-3 py-1.5 md:px-5 md:py-2 flex flex-wrap items-center justify-between gap-2.5 border-b border-white/10 shrink-0">
+    
+    <!-- Zona 1: Marca & Verificación IUPAC -->
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl glass-button flex items-center justify-center text-cyan-400 font-black text-sm shadow-lg shadow-cyan-500/20">
+        <i class="fa-solid fa-atom"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-xs md:text-sm font-extrabold tracking-tight text-white flex items-center gap-1.5" data-i18n="appTitle">
+            Tabla Periódica Actualizada
+          </h1>
+          <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 tracking-wider">
+            IUPAC 2026
+          </span>
+        </div>
+        <p class="text-[10px] text-slate-400 font-medium hidden sm:block" data-i18n="appSubtitle">
+          Estándar Oficial de los Elementos Químicos
+        </p>
+      </div>
+    </div>
+
+    <!-- Zona 2: Buscador en Tiempo Real & Selector de Propiedad -->
+    <div class="flex items-center gap-2 flex-1 max-w-xl min-w-[220px]">
+      <div class="relative flex-1">
+        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+        <input 
+          type="text" 
+          id="elementSearch" 
+          placeholder="Buscar elemento (ej: Fe, Hierro, 26, valencia +3)..." 
+          class="glass-input w-full rounded-xl pl-8 pr-2.5 py-1 text-xs placeholder-slate-400"
+        />
+      </div>
+
+      <!-- Selector de Métrica a Visualizar en las Celdas -->
+      <select id="propertySelect" class="glass-input rounded-xl px-2 py-1 text-xs text-slate-200 cursor-pointer focus:border-cyan-400 shrink-0" aria-label="Seleccionar propiedad periódica">
+        <option value="valencia" data-i18n="valencia">Valencia / Oxidación</option>
+        <option value="electronegativity" data-i18n="electronegativity">Electronegatividad (Pauling)</option>
+        <option value="mass" data-i18n="mass">Masa Atómica (CIAAW)</option>
+        <option value="atomicRadius" data-i18n="atomicRadius">Radio Atómico (pm)</option>
+        <option value="ionizationEnergy" data-i18n="ionizationEnergy">Energía Ionización (kJ/mol)</option>
+        <option value="electronConfig" data-i18n="electronConfig">Config. Electrónica</option>
+        <option value="phase" data-i18n="phase">Estado a 298.15 K</option>
+      </select>
+    </div>
+
+    <!-- Zona 3: Acciones Rápidas (Ajustar a Pantalla, Gráfico, Idioma, PWA & Visitas) -->
+    <div class="flex items-center gap-1.5">
+      <!-- Botón Ajustar Pantalla Completa -->
+      <button id="toggleFullscreenBtn" class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Ajustar / Pantalla completa" aria-label="Pantalla completa">
+        <i class="fa-solid fa-expand text-cyan-400"></i>
+        <span class="hidden xl:inline text-[11px]" data-i18n="btnFitScreen">Pantalla Completa</span>
+      </button>
+
+      <!-- Botón para ver gráfico de tendencias -->
+      <button id="toggleTrendsBtn" class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Ver tendencias periódicas" aria-label="Ver tendencias periódicas">
+        <i class="fa-solid fa-chart-line text-cyan-400"></i>
+        <span class="hidden md:inline text-[11px]" data-i18n="navTrends">Tendencias</span>
+      </button>
+
+      <!-- Selector de Tema (Claro / Oscuro / Sistema) -->
+      <div class="relative flex items-center glass-button rounded-xl p-0.5 shadow-sm" id="themeSelectorContainer">
+        <!-- Botón principal: clic directo alterna Claro <-> Oscuro al instante -->
+        <button 
+          id="themeToggleBtn" 
+          class="px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 hover:bg-white/10 transition-colors cursor-pointer" 
+          title="Alternar tema (Claro / Oscuro)" 
+          aria-label="Alternar tema (Claro / Oscuro)"
+        >
+          <i id="themeCurrentIcon" class="fa-solid fa-moon text-indigo-400 text-xs"></i>
+          <span id="themeCurrentLabel" class="hidden xl:inline text-[11px]">Oscuro</span>
+        </button>
+
+        <!-- Botón chevron: abre popover con las 3 opciones (Claro, Oscuro, Sistema) -->
+        <button 
+          id="themeMenuTriggerBtn" 
+          class="px-1.5 py-1 text-slate-400 hover:text-cyan-400 hover:bg-white/10 rounded-lg transition-colors border-l border-white/10 cursor-pointer" 
+          title="Opciones de tema: Claro, Oscuro o Sistema" 
+          aria-label="Menú desplegable de temas" 
+          aria-haspopup="true" 
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-chevron-down text-[8.5px]"></i>
+        </button>
+
+        <!-- Popover / Menú Desplegable con 3 Opciones -->
+        <div 
+          id="themeDropdownMenu" 
+          class="hidden absolute right-0 top-full mt-1.5 w-40 glass-panel rounded-2xl p-1.5 shadow-2xl z-50 animate-glass-in space-y-1 text-xs" 
+          role="menu" 
+          aria-orientation="vertical"
+        >
+          <button class="theme-option-btn w-full text-left px-2.5 py-1.5 rounded-xl flex items-center justify-between transition-all cursor-pointer" data-theme-value="light" role="menuitem" tabindex="0">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-sun text-amber-400 text-xs"></i>
+              <span data-i18n="themeLight">Claro</span>
+            </span>
+            <i class="fa-solid fa-check text-cyan-400 text-xs theme-check hidden"></i>
+          </button>
+          <button class="theme-option-btn w-full text-left px-2.5 py-1.5 rounded-xl flex items-center justify-between transition-all cursor-pointer" data-theme-value="dark" role="menuitem" tabindex="0">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-moon text-indigo-400 text-xs"></i>
+              <span data-i18n="themeDark">Oscuro</span>
+            </span>
+            <i class="fa-solid fa-check text-cyan-400 text-xs theme-check hidden"></i>
+          </button>
+          <button class="theme-option-btn w-full text-left px-2.5 py-1.5 rounded-xl flex items-center justify-between transition-all cursor-pointer" data-theme-value="system" role="menuitem" tabindex="0">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-desktop text-cyan-400 text-xs"></i>
+              <span data-i18n="themeSystem">Sistema</span>
+            </span>
+            <i class="fa-solid fa-check text-cyan-400 text-xs theme-check hidden"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Botón de Idioma (ES / EN) -->
+      <button id="langToggleBtn" class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold flex items-center gap-1.5" title="Cambiar idioma / Switch language" aria-label="Cambiar idioma">
+        <i class="fa-solid fa-globe text-cyan-400"></i>
+        <span>EN</span>
+      </button>
+
+      <!-- Botón de Instalación PWA -->
+      <button id="pwaInstallBtn" class="hidden glass-button px-2.5 py-1 rounded-xl text-xs font-semibold text-emerald-400 border-emerald-500/30 flex items-center gap-1.5">
+        <i class="fa-solid fa-download"></i>
+        <span class="hidden sm:inline text-[11px]" data-i18n="installApp">Instalar</span>
+      </button>
+
+      <!-- Contador Discreto de Visitas (LocalStorage) -->
+      <div id="visitCounter" class="glass-card px-2.5 py-1 rounded-xl text-xs font-mono text-slate-400 border border-white/10 flex items-center gap-1.5">
+        <i class="fa-solid fa-signal text-cyan-400 text-[10px]"></i>
+        <span class="hidden lg:inline text-[10px]" data-i18n="visitsLabel">Visitas:</span>
+        <strong class="text-cyan-300 font-bold text-xs">1</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- CINTA HORIZONTAL DE FILTROS POR FAMILIA QUÍMICA (GLASS TABS) -->
+  <div class="glass-panel px-3 py-1 flex items-center gap-1.5 overflow-x-auto text-[10.5px] border-b border-white/5 scrollbar-none shrink-0" role="toolbar" aria-label="Filtros de familias químicas">
+    <span class="text-slate-400 font-semibold px-1 shrink-0 uppercase tracking-wider text-[9.5px]" data-i18n="familiesLabel">Familias IUPAC:</span>
+    <button data-category-filter="all" class="filter-btn glass-button active px-2 py-0.5 rounded-lg shrink-0" data-i18n="filterAll">Todas</button>
+    <button data-category-filter="alkali" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-rose-500"></span><span data-i18n="alkali">Metales alcalinos</span>
+    </button>
+    <button data-category-filter="alkaline-earth" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-orange-400"></span><span data-i18n="alkaline-earth">Alcalinotérreos</span>
+    </button>
+    <button data-category-filter="transition" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-sky-400"></span><span data-i18n="transition">Metales de transición</span>
+    </button>
+    <button data-category-filter="post-transition" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-teal-400"></span><span data-i18n="post-transition">Post-transición</span>
+    </button>
+    <button data-category-filter="metalloid" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span><span data-i18n="metalloid">Metaloides</span>
+    </button>
+    <button data-category-filter="reactive-nonmetal" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-amber-300"></span><span data-i18n="reactive-nonmetal">No metales reactivos</span>
+    </button>
+    <button data-category-filter="halogen" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-purple-400"></span><span data-i18n="halogen">Halógenos</span>
+    </button>
+    <button data-category-filter="noble-gas" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-pink-400"></span><span data-i18n="noble-gas">Gases nobles</span>
+    </button>
+    <button data-category-filter="lanthanide" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-indigo-400"></span><span data-i18n="lanthanide">Lantánidos</span>
+    </button>
+    <button data-category-filter="actinide" class="filter-btn glass-button px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-cyan-400"></span><span data-i18n="actinide">Actínidos</span>
+    </button>
+  </div>
+
+  <!-- CONTENEDOR PRINCIPAL: LA TABLA SE MUESTRA TOTALMENTE EN PANTALLA -->
+  <main class="periodic-fullscreen-container">
+    
+    <div class="periodic-grid-wrapper" id="periodicGridWrapper">
+      
+      <!-- GRID ATÓMICO OFICIAL IUPAC 18 COLUMNAS x 10 FILAS -->
+      <div id="periodicGrid" class="periodic-grid">
+        
+        <!-- HUECO CENTRAL IUPAC (Periodos 1-3, Columnas 3-12): FICHA INTEGRADA SIN OCULTAR LA TABLA -->
+        <div id="iupacCentralHub" class="iupac-central-hub rounded-2xl p-2.5 md:p-3 flex flex-col justify-between shadow-2xl">
+          <!-- Inyectado dinámicamente: Ficha IUPAC del elemento activo -->
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- VENTANA MODAL GLASS ULTRA-INTERACTIVA: FICHA TÉCNICA OFICIAL IUPAC -->
+  <div id="iupacModal" class="hidden fixed inset-0 z-50 flex items-center justify-center backdrop-blur-lg p-2.5 sm:p-4 md:p-6">
+    <div class="glass-panel w-full max-w-4xl rounded-3xl p-4 sm:p-6 space-y-4 max-h-[92vh] overflow-y-auto border border-white/20 shadow-2xl animate-glass-in relative">
+      
+      <!-- Encabezado con Navegación Anterior / Siguiente, Título, Voz, Copiado y Cierre -->
+      <div class="flex items-center justify-between border-b border-white/10 pb-3 gap-2">
+        
+        <!-- Navegación entre Elementos (< Z-1 y Z+1 >) -->
+        <div class="flex items-center gap-1.5">
+          <button id="modalPrevElemBtn" class="glass-button px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1 text-slate-300 hover:text-white" title="Elemento anterior (Flecha Izquierda)" aria-label="Elemento anterior">
+            <i class="fa-solid fa-chevron-left text-[11px]"></i>
+            <span class="hidden sm:inline" id="modalPrevElemLabel">Z-1</span>
+          </button>
+          
+          <button id="modalNextElemBtn" class="glass-button px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1 text-slate-300 hover:text-white" title="Elemento siguiente (Flecha Derecha)" aria-label="Elemento siguiente">
+            <span class="hidden sm:inline" id="modalNextElemLabel">Z+1</span>
+            <i class="fa-solid fa-chevron-right text-[11px]"></i>
+          </button>
+        </div>
+
+        <!-- Indicador Central -->
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-atom text-cyan-400 text-base"></i>
+          <h2 class="text-sm sm:text-base font-bold text-white tracking-tight" data-i18n="modalIupacTitle">
+            Ficha Interactiva Oficial IUPAC
+          </h2>
+        </div>
+
+        <!-- Acciones: Leer en Voz Alta, Copiar Datos y Cerrar -->
+        <div class="flex items-center gap-1.5">
+          <button id="modalSpeakBtn" class="glass-button w-8 h-8 rounded-full flex items-center justify-center text-cyan-300 hover:text-white" title="Escuchar pronunciación y datos (Text-to-Speech)" aria-label="Escuchar ficha técnica">
+            <i class="fa-solid fa-volume-high text-xs"></i>
+          </button>
+
+          <button id="modalCopyBtn" class="glass-button w-8 h-8 rounded-full flex items-center justify-center text-slate-300 hover:text-white" title="Copiar ficha técnica al portapapeles" aria-label="Copiar datos al portapapeles">
+            <i class="fa-solid fa-copy text-xs"></i>
+          </button>
+
+          <button id="closeModalBtn" class="glass-button w-8 h-8 rounded-full flex items-center justify-center text-rose-300 hover:text-white hover:bg-rose-500/20" title="Cerrar ventana (Esc)" aria-label="Cerrar modal">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Contenedor Dinámico de la Ventana Interactiva -->
+      <div id="modalDetailsContent" class="space-y-4">
+        <!-- Renderizado dinámico: Bohr Model Canvas, Pestañas, Simulador Térmico y Parámetros IUPAC -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GLASS: GRÁFICO DE TENDENCIAS PERIÓDICAS (CHART.JS) -->
+  <div id="trendsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md p-3 md:p-6">
+    <div class="glass-panel w-full max-w-4xl rounded-3xl p-5 md:p-6 space-y-4 border border-white/20 shadow-2xl animate-glass-in">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-cyan-400"></i>
+            <span data-i18n="chartTitle">Gráfico de Tendencias Periódicas</span>
+          </h2>
+          <p class="text-xs text-slate-400" data-i18n="chartSubtitle">Variación fisicoquímica según el número atómico (Z)</p>
+        </div>
+        <button id="closeTrendsBtn" class="glass-button w-8 h-8 rounded-full flex items-center justify-center text-slate-300 hover:text-white" title="Cerrar gráfico" aria-label="Cerrar gráfico">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div class="h-80 w-full relative">
+        <canvas id="trendsChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script src="app.js" defer></script>
+</body>
+</html>
