@@ -1,3 +1,12 @@
+<div align="right">
+  <a href="#español">🇲🇽 Español</a> | <a href="#english">🇬🇧 English</a>
+</div>
+
+---
+
+<a id="español"></a>
+# 🇲🇽 Español
+
 <div align="center">
 
 # ⚛️ Tabla Periódica Actualizada
@@ -147,9 +156,169 @@ El proyecto guarda preferencias del usuario para una experiencia fluida:
 *   `zperiod_lang`: (`es` | `en`)
 *   `zperiod_visits_count`: Contador local de visitas.
 
+<br>
+<br>
+
+---
+
+<a id="english"></a>
+# 🇬🇧 English
+
+<div align="center">
+
+# ⚛️ Updated Periodic Table
+**IUPAC Official Standard 2026 | Progressive Web App (PWA)**
+
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PWA Ready](https://img.shields.io/badge/PWA-Ready-success?logo=pwa)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
+[![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-ES6+-yellow?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![IUPAC Standard](https://img.shields.io/badge/Data-IUPAC_2026-8A2BE2)](https://iupac.org/)
+
+A next-generation scientific web application designed for comprehensive visualization, physicochemical inspection, and interactive analysis of the 118 chemical elements.
+
+[Explore Live Demo](#) <!-- Replace # with your demo link -->
+
+<br/>
+
+<!-- RECOMMENDATION: Add a GIF or screenshot of your project here -->
+<img src="https://via.placeholder.com/800x400/060913/38bdf8?text=Banner+or+GIF+of+the+Periodic+Table+Here" alt="Periodic Table Demo" width="100%">
+
+</div>
+
+---
+
+## 🌟 Main Features
+
+### 🌓 Advanced Theme System (Light / Dark / System)
+*   **Dark Mode (*Scientific Neon Glass*)**: Deep blue-black background, glassmorphism transparencies (`backdrop-filter: blur(20px)`), cyan and violet accents.
+*   **Light Mode (*Scientific Clear Glass*)**: Translucent white surfaces, subtle borders, clean laboratory aesthetic.
+*   **Auto Detection**: Live synchronization with OS system preferences.
+*   **FOUC Prevention**: Pre-rendered theme application to avoid visual flashes on load.
+
+### 🔬 Integrated Central Hub (IUPAC Hub)
+Leverages the natural space of periods 1 to 3 (columns 3 to 12) to display official real-time information via *hover*, including atomic mass, electronegativity, electron configuration, and more.
+
+### 🧪 Ultra-Interactive Glass Modal
+Expanded technical dossier featuring 6 analysis modules:
+1.  **Atomic Model**: Interactive 2D Bohr visualizer on `<canvas>`.
+2.  **Valences & Bonding**: Official oxidation states and a visual electronegativity bar.
+3.  **Key Compounds**: Catalog of primary molecules with a quick-copy button.
+4.  **Geochemistry**: Earth abundance, oceans, atmosphere, human body, and cosmic origin.
+5.  **Thermodynamic Simulator**: Interactive slider (0 K to 4000 K) to calculate the state of matter in real-time.
+6.  **History**: Discovery data and industrial uses.
+
+### 📈 Charts and Accessibility
+*   **Integrated Chart.js**: Dynamic periodic trend charts (Z vs. Properties) that adapt to the active theme.
+*   **Text-to-Speech**: Native bilingual vocal synthesis (ES/EN) for pronunciation and key data.
+*   **100% Keyboard Navigation**: Full support for `Tab`, `Enter`, `Arrows`, and `Escape`.
+*   **Live Search**: Filter by symbol, name, atomic number, or chemical family.
+
+---
+
+## 📱 PWA & Offline Mode
+
+Works **100% offline**. Uses a Service Worker (v3) with a *Network-First* strategy and local cache fallback. Installable as a native application (*standalone*) on Android, iOS, Windows, and macOS.
+
+---
+
+## 🛠️ Technical Details and Structure
+
+<details>
+<summary><strong>📁 View Project Structure</strong></summary>
+
+```text
+tabla-periodica-actualizada/
+├── index.html        # Semantic structure, 18x10 atomic grid
+├── style.css         # CSS Variables, glass animations, responsive
+├── app.js            # IUPAC dataset, themes, Bohr canvas, simulator & i18n
+├── sw.js             # Service Worker (v3)
+├── manifest.json     # PWA Manifest
+├── public/           # Static files
+└── icons/            # PWA Iconography (192px and 512px)
+```
+</details>
+
+<details>
+<summary><strong>🎨 Color Palette (CSS Variables)</strong></summary>
+
+```css
+/* Dark Mode Variables */
+html[data-theme="dark"] {
+  --bg-deep: #060913;
+  --bg-secondary: #0d1424;
+  --glass-base: rgba(13, 20, 36, 0.75);
+  --text-primary: #f8fafc;
+  --accent-primary: #38bdf8;
+}
+
+/* Light Mode Variables */
+html[data-theme="light"] {
+  --bg-deep: #f0f6fc;
+  --bg-secondary: #e2eeff;
+  --glass-base: rgba(255, 255, 255, 0.8);
+  --text-primary: #0f172a;
+  --accent-primary: #0284c7;
+}
+```
+</details>
+
+<details>
+<summary><strong>🔬 Verified Parameters (IUPAC / CIAAW)</strong></summary>
+
+| Parameter | Description |
+| :--- | :--- |
+| **Z, Symbol, Name** | Universal and bilingual nomenclature. |
+| **Atomic Mass** | Evaluated by the CIAAW commission. |
+| **Electron Config.** | Sublevels $s, p, d, f$ and $K-Q$ population. |
+| **Thermodynamics** | Melting/boiling points and phases at 298.15 K. |
+| **Properties** | Electronegativity, atomic radius, and ionization energy. |
+
+</details>
+
+---
+
+## 🚀 Installation and Deployment
+
+### Development Environment (Vite)
+```bash
+# 1. Clone the repository
+git clone [https://github.com/your-username/tabla-periodica-actualizada.git](https://github.com/your-username/tabla-periodica-actualizada.git)
+cd tabla-periodica-actualizada
+
+# 2. Install dependencies
+npm install
+
+# 3. Start local server (Port 3000)
+npm run dev
+```
+
+### Alternative: Fast Static Server (Python)
+```bash
+python3 -m http.server 3000
+```
+
+### Production Build
+```bash
+npm run build
+```
+Upload the `dist/` folder to any static hosting service (GitHub Pages, Vercel, Netlify).
+
+---
+
+## 💾 Local Storage Persistence
+
+The project saves user preferences for a seamless experience:
+*   `periodicTheme`: (`light` | `dark` | `system`)
+*   `zperiod_lang`: (`es` | `en`)
+*   `zperiod_visits_count`: Local visit counter.
+
 ---
 
 <div align="center">
-  <p>Desarrollado bajo la licencia <strong>MIT</strong>.<br/>
-  Datos atómicos de conformidad con la <strong>IUPAC</strong> y la <strong>CIAAW</strong>.</p>
+  <p>Developed under the <strong>MIT</strong> license.<br/>
+  Atomic data in accordance with <strong>IUPAC</strong> and <strong>CIAAW</strong>.</p>
+</div>
+<div align="center">
+  <a href="#español">⬆️ Volver arriba (Español)</a> | <a href="#english">⬆️ Back to top (English)</a>
 </div>
