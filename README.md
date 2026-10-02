@@ -25,7 +25,7 @@ Una aplicación web científica de última generación diseñada para la visuali
 <br/>
 
 <!-- RECOMENDACIÓN: Añade un GIF o captura de pantalla de tu proyecto aquí -->
-<img src="https://via.placeholder.com/800x400/060913/38bdf8?text=Banner+o+GIF+de+la+Tabla+Periodica+Aqui" alt="Demo de la Tabla Periódica" width="100%">
+<img src="periodic_table1.png" alt="Demo de la Tabla Periódica" width="100%">
 
 </div>
 
@@ -65,7 +65,7 @@ Funciona **100% sin conexión**. Utiliza un Service Worker (v3) con estrategia *
 
 ---
 
-## 🛠️ Detalles Técnicos y Estructura
+## 🛠 Detalles Técnicos y Estructura
 
 <details>
 <summary><strong>📁 Ver Estructura del Proyecto</strong></summary>
@@ -156,6 +156,19 @@ El proyecto guarda preferencias del usuario para una experiencia fluida:
 *   `zperiod_lang`: (`es` | `en`)
 *   `zperiod_visits_count`: Contador local de visitas.
 
+---
+
+## 📬 Contacto y Perfil de Investigación
+
+**Pablo Alberto Santana Flores** <br>
+*Científico de Datos | Inteligencia de Decisiones | PhDc en Ciencias Marinas* <br>
+Especializado en arquitecturas de datos modernas y Optimization Engines.
+
+* 🌐 **Portafolio:** [pablo-santana-mx.github.io](https://pablo-santana-mx.github.io/)
+* 💼 **LinkedIn:** [linkedin.com/in/pablo-santana-mx](https://www.linkedin.com/in/pablo-santana-mx)
+* 🐙 **GitHub:** [github.com/Pablo-Santana-MX](https://github.com/Pablo-Santana-MX)
+* ✉ **Email:** [pablo.santana@outlook.com](mailto:pablo.santana@outlook.com)
+
 <br>
 <br>
 
@@ -182,7 +195,7 @@ A next-generation scientific web application designed for comprehensive visualiz
 <br/>
 
 <!-- RECOMMENDATION: Add a GIF or screenshot of your project here -->
-<img src="https://via.placeholder.com/800x400/060913/38bdf8?text=Banner+or+GIF+of+the+Periodic+Table+Here" alt="Periodic Table Demo" width="100%">
+<img src="periodic_table1.png" alt="Periodic Table Demo" width="100%">
 
 </div>
 
@@ -312,6 +325,19 @@ The project saves user preferences for a seamless experience:
 *   `periodicTheme`: (`light` | `dark` | `system`)
 *   `zperiod_lang`: (`es` | `en`)
 *   `zperiod_visits_count`: Local visit counter.
+
+---
+
+## 📬 Contact & Research Profile
+
+**Pablo Alberto Santana Flores** <br>
+*Data Scientist | Decision Intelligence | PhDc in Marine Sciences* <br>
+Specialized in modern data architectures and Optimization Engines.
+
+* 🌐 **Portfolio:** [pablo-santana-mx.github.io](https://pablo-santana-mx.github.io/)
+* 💼 **LinkedIn:** [linkedin.com/in/pablo-santana-mx](https://www.linkedin.com/in/pablo-santana-mx)
+* 🐙 **GitHub:** [github.com/Pablo-Santana-MX](https://github.com/Pablo-Santana-MX)
+* ✉️ **Email:** [pablo.santana@outlook.com](mailto:pablo.santana@outlook.com)
 
 ---
 
