@@ -20,12 +20,11 @@
 
 Una aplicación web científica de última generación diseñada para la visualización integral, inspección fisicoquímica y análisis interactivo de los 118 elementos químicos. 
 
-[Explorar Demo En Vivo](https://pablo-santana-mx.github.io/IUPAC-Periodic-table/) <!-- Reemplaza # con el link a tu demo -->
+[Explorar Demo En Vivo](https://pablo-santana-mx.github.io/IUPAC-Periodic-table/) 
 
 <br/>
 
-<!-- RECOMENDACIÓN: Añade un GIF o captura de pantalla de tu proyecto aquí -->
-<img src="periodic_table1.png" alt="Demo de la Tabla Periódica" width="100%">
+<img src="src/periodic_table1.png" alt="Demo de la Tabla Periódica" width="100%">
 
 </div>
 
@@ -190,13 +189,10 @@ Especializado en arquitecturas de datos modernas y Optimization Engines.
 
 A next-generation scientific web application designed for comprehensive visualization, physicochemical inspection, and interactive analysis of the 118 chemical elements.
 
-[Explore Live Demo](https://pablo-santana-mx.github.io/IUPAC-Periodic-table/) <!-- Replace # with your demo link -->
+[Explore Live Demo](https://pablo-santana-mx.github.io/IUPAC-Periodic-table/) 
 
 <br/>
-
-<!-- RECOMMENDATION: Add a GIF or screenshot of your project here -->
-<img src="periodic_table1.png" alt="Periodic Table Demo" width="100%">
-
+<img src="src/periodic_table1.png" alt="Demo de la Tabla Periódica" width="100%">
 </div>
 
 ---
