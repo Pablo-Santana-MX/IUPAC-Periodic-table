@@ -1444,44 +1444,6 @@ function getDiffElectron(elem) {
   };
 }
 
-// Mini generador de orbitales para la Ficha Central y vistas compactas
-function renderMiniOrbitalBoxesHTML(elem, diff) {
-  if (!elem) return '';
-  const parsed = parseSubshells(elem.electronConfig);
-  const target = parsed.valence.find(s => s.key === diff.subshellKey) || parsed.valence[parsed.valence.length - 1];
-  if (!target) return '';
-
-  const numOrbitals = 2 * target.l + 1;
-  const isDiffSubshell = (target.key === diff.subshellKey);
-
-  return `
-    <div class="hidden xl:flex items-center gap-1 shrink-0 bg-white/5 px-1.5 py-0.5 rounded-lg border border-white/10" title="Subnivel diferencial ${target.key} (${target.count} e⁻)">
-      <span class="text-[8px] font-mono font-bold text-cyan-300 mr-0.5">${target.key}<sup>${target.count}</sup>:</span>
-      <div class="flex items-center gap-1">
-        ${Array.from({ length: numOrbitals }).map((_, i) => {
-          const m_l = -target.l + i;
-          const hasUp = target.count >= (i + 1);
-          const hasDown = target.count >= (numOrbitals + i + 1);
-          const isDiffBox = isDiffSubshell && (m_l === diff.m_l);
-
-          return `
-            <div class="orbital-box orbital-box-mini ${isDiffBox ? 'diff-electron-box' : ''}" title="mₗ=${m_l >= 0 ? '+' + m_l : m_l}">
-              <div class="orbital-slot-container">
-                <div class="orbital-slot">
-                  ${hasUp ? '<span class="electron-arrow-up">↑</span>' : '<span class="electron-empty">&bull;</span>'}
-                </div>
-                <div class="orbital-slot">
-                  ${hasDown ? '<span class="electron-arrow-down">↓</span>' : '<span class="electron-empty">&bull;</span>'}
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('')}
-      </div>
-    </div>
-  `;
-}
-
 // --- 8. FICHA CENTRAL INTEGRADA IUPAC (EN EL HUECO DEL GRID) ---
 function renderCentralHub(elem) {
   const hub = document.getElementById('iupacCentralHub');
@@ -1566,19 +1528,16 @@ function renderCentralHub(elem) {
         </div>
       </div>
 
-      <!-- Configuración Electrónica, Cuántica y Cajas de Orbitales -->
-      <div class="hub-tertiary-bar hidden lg:flex items-center justify-between text-[9px] text-slate-300 bg-white/5 px-2 py-0.5 rounded-lg border border-white/5 font-mono gap-1.5">
-        <div class="truncate mr-1 flex items-center gap-1.5 min-w-0">
+      <!-- Configuración Electrónica y Cuántica -->
+      <div class="hub-tertiary-bar hidden lg:flex items-center justify-between text-[9px] text-slate-300 bg-white/5 px-2 py-0.5 rounded-lg border border-white/5 font-mono">
+        <div class="truncate mr-2 flex items-center gap-1.5">
           <span class="text-slate-400">${t.electronConfig}:</span>
-          <strong class="text-cyan-300 font-bold truncate">${elem.electronConfig}</strong>
+          <strong class="text-cyan-300 font-bold">${elem.electronConfig}</strong>
         </div>
-        <div class="flex items-center gap-1.5 shrink-0">
-          ${renderMiniOrbitalBoxesHTML(elem, diff)}
-          <button class="shrink-0 text-cyan-300 hover:text-white glass-button px-1.5 py-0.5 rounded text-[8.5px] flex items-center gap-1 cursor-pointer transition-colors" onclick="openIupacModalTab('quantum')" title="${t.tabQuantum}">
-            <i class="fa-solid fa-shapes text-amber-400 text-[8px]"></i>
-            <span>e⁻ dif: (<strong>${diff.n}, ${diff.l}, ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}, ${diff.s_str}</strong> <span class="${diff.s_val > 0 ? 'text-cyan-400' : 'text-rose-400'} font-bold">${diff.s_arrow}</span>)</span>
-          </button>
-        </div>
+        <button class="shrink-0 text-cyan-300 hover:text-white glass-button px-1.5 py-0.5 rounded text-[8.5px] flex items-center gap-1 cursor-pointer transition-colors" onclick="openIupacModalTab('quantum')" title="${t.tabQuantum}">
+          <i class="fa-solid fa-shapes text-amber-400 text-[8px]"></i>
+          <span>e⁻ dif: (<strong>${diff.n}, ${diff.l}, ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}, ${diff.s_str}</strong> ${diff.s_arrow})</span>
+        </button>
       </div>
     </div>
   `;
