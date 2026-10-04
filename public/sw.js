@@ -6,7 +6,7 @@
  * - Recursos estáticos y librerías CDN: Stale-While-Revalidate / Cache-First
  */
 
-const CACHE_NAME = 'tabla-periodica-actualizada-v3';
+const CACHE_NAME = 'tabla-periodica-actualizada-v4';
 
 // Recursos esenciales para disponibilidad offline inmediata
 const PRECACHE_ASSETS = [

@@ -994,3 +994,170 @@ html[data-theme="light"] #iupacModal > div {
     max-height: calc(100vh - 90px);
   }
 }
+
+/* ==========================================================================
+   CONFIGURACIÓN ELECTRÓNICA GRÁFICA (DIAGRAMA DE CAJAS/ORBITALES) Y CUÁNTICA
+   ========================================================================== */
+
+.orbital-box {
+  position: relative;
+  width: 48px;
+  height: 66px;
+  background: var(--glass-card);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 3px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  backdrop-filter: blur(8px);
+}
+
+.orbital-box:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), 0 0 14px var(--accent-glow);
+}
+
+.orbital-box.diff-electron-box {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.16);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.45), 0 0 18px rgba(56, 189, 248, 0.4);
+  animation: pulse-diff 2.5s infinite ease-in-out;
+}
+
+html[data-theme="light"] .orbital-box.diff-electron-box {
+  border-color: #0284c7;
+  background: rgba(2, 132, 199, 0.14);
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.4), 0 0 16px rgba(2, 132, 199, 0.3);
+}
+
+@keyframes pulse-diff {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4), 0 0 16px rgba(56, 189, 248, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 2.5px rgba(56, 189, 248, 0.8), 0 0 24px rgba(56, 189, 248, 0.6);
+  }
+}
+
+.orbital-slot-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 100%;
+  flex: 1;
+}
+
+.orbital-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 30px;
+  position: relative;
+}
+
+.electron-arrow-up {
+  color: #38bdf8;
+  font-weight: 900;
+  font-size: 19px;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.65));
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+
+html[data-theme="light"] .electron-arrow-up {
+  color: #0284c7;
+  filter: drop-shadow(0 0 3px rgba(2, 132, 199, 0.5));
+}
+
+.electron-arrow-down {
+  color: #f43f5e;
+  font-weight: 900;
+  font-size: 19px;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.65));
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+
+html[data-theme="light"] .electron-arrow-down {
+  color: #e11d48;
+  filter: drop-shadow(0 0 3px rgba(225, 29, 72, 0.5));
+}
+
+.electron-empty {
+  color: rgba(148, 163, 184, 0.3);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.orbital-box-mini {
+  width: 32px !important;
+  height: 46px !important;
+  padding: 3px 2px !important;
+  border-radius: 7px !important;
+}
+
+.orbital-box-mini .orbital-slot {
+  width: 12px !important;
+  height: 20px !important;
+}
+
+.orbital-box-mini .electron-arrow-up,
+.orbital-box-mini .electron-arrow-down {
+  font-size: 13px !important;
+}
+
+.orbital-box-mini .electron-empty {
+  font-size: 10px !important;
+}
+
+.quantum-hero-card {
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.14) 0%, var(--glass-card) 65%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="light"] .quantum-hero-card {
+  background: radial-gradient(circle at top left, rgba(2, 132, 199, 0.12) 0%, rgba(255, 255, 255, 0.95) 75%);
+  border-color: rgba(2, 132, 199, 0.28);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.1);
+}
+
+.quantum-tile {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quantum-tile:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 14px var(--accent-glow);
+}
+
+@media (max-width: 640px) {
+  .orbital-box {
+    width: 38px;
+    height: 54px;
+    padding: 3px 2px;
+  }
+  .electron-arrow-up,
+  .electron-arrow-down {
+    font-size: 15px;
+  }
+}
+

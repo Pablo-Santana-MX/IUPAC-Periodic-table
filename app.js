@@ -97,11 +97,23 @@ const I18N = {
     unknown: 'Desconocido',
     // Pestañas y Geociencias
     tabAtomicModel: 'Modelo Atómico',
+    tabQuantum: 'Orbitales & Cuántica',
     tabValences: 'Valencias',
     tabCompounds: 'Compuestos Clave',
     tabAbundance: 'Abundancia en Tierra',
     tabThermal: 'Simulador Térmico',
     tabHistory: 'Historia & Usos',
+    diffElectronTitle: 'Números Cuánticos del Electrón Diferencial',
+    diffElectronSubtitle: 'Parámetros del último electrón incorporado según Aufbau',
+    diffElectronBadge: 'Electrón Diferencial',
+    orbitalBoxesTitle: 'Configuración Electrónica Gráfica',
+    orbitalBoxesSubtitle: 'Diagrama de orbitales y espines respetando Hund y Pauli',
+    valenceOnly: 'Capa de Valencia',
+    fullConfig: 'Configuración Completa',
+    copyQuantumTuple: 'Copiar cuádrupla (n, l, m, s)',
+    copiedTuple: '¡Copiado!',
+    nobleGasCoreClosed: 'Capa interna cerrada (gas noble)',
+    viewQuantumDiagram: 'Ver diagrama cuántico &rarr;',
     crustLabel: 'Corteza Terrestre',
     oceanLabel: 'Océanos',
     atmosphereLabel: 'Atmósfera',
@@ -223,11 +235,23 @@ const I18N = {
     unknown: 'Unknown',
     // Tabs & Geosciences
     tabAtomicModel: 'Atomic Model',
+    tabQuantum: 'Orbitals & Quantum',
     tabValences: 'Valences',
     tabCompounds: 'Key Compounds',
     tabAbundance: 'Earth Abundance',
     tabThermal: 'Thermal Simulator',
     tabHistory: 'History & Uses',
+    diffElectronTitle: 'Differentiating Electron Quantum Numbers',
+    diffElectronSubtitle: 'Parameters of the last added electron per Aufbau sequence',
+    diffElectronBadge: 'Differentiating Electron',
+    orbitalBoxesTitle: 'Graphical Electron Configuration',
+    orbitalBoxesSubtitle: 'Orbital box diagram with spins following Hund and Pauli',
+    valenceOnly: 'Valence Shell',
+    fullConfig: 'Full Configuration',
+    copyQuantumTuple: 'Copy tuple (n, l, m, s)',
+    copiedTuple: 'Copied!',
+    nobleGasCoreClosed: 'Closed noble gas core',
+    viewQuantumDiagram: 'View quantum diagram &rarr;',
     crustLabel: 'Earth Crust',
     oceanLabel: 'Oceans',
     atmosphereLabel: 'Atmosphere',
@@ -1269,6 +1293,195 @@ function getElementPropertyDisplay(elem, propKey) {
   return '';
 }
 
+// --- 7.5. MOTOR DE MECÁNICA CUÁNTICA, ORBITALES Y ELECTRÓN DIFERENCIAL ---
+const NOBLE_CORE_SUBSHELLS = {
+  '[He]': [{ n: 1, type: 's', l: 0, count: 2, key: '1s' }],
+  '[Ne]': [
+    { n: 1, type: 's', l: 0, count: 2, key: '1s' },
+    { n: 2, type: 's', l: 0, count: 2, key: '2s' },
+    { n: 2, type: 'p', l: 1, count: 6, key: '2p' }
+  ],
+  '[Ar]': [
+    { n: 1, type: 's', l: 0, count: 2, key: '1s' },
+    { n: 2, type: 's', l: 0, count: 2, key: '2s' },
+    { n: 2, type: 'p', l: 1, count: 6, key: '2p' },
+    { n: 3, type: 's', l: 0, count: 2, key: '3s' },
+    { n: 3, type: 'p', l: 1, count: 6, key: '3p' }
+  ],
+  '[Kr]': [
+    { n: 1, type: 's', l: 0, count: 2, key: '1s' },
+    { n: 2, type: 's', l: 0, count: 2, key: '2s' },
+    { n: 2, type: 'p', l: 1, count: 6, key: '2p' },
+    { n: 3, type: 's', l: 0, count: 2, key: '3s' },
+    { n: 3, type: 'p', l: 1, count: 6, key: '3p' },
+    { n: 3, type: 'd', l: 2, count: 10, key: '3d' },
+    { n: 4, type: 's', l: 0, count: 2, key: '4s' },
+    { n: 4, type: 'p', l: 1, count: 6, key: '4p' }
+  ],
+  '[Xe]': [
+    { n: 1, type: 's', l: 0, count: 2, key: '1s' },
+    { n: 2, type: 's', l: 0, count: 2, key: '2s' },
+    { n: 2, type: 'p', l: 1, count: 6, key: '2p' },
+    { n: 3, type: 's', l: 0, count: 2, key: '3s' },
+    { n: 3, type: 'p', l: 1, count: 6, key: '3p' },
+    { n: 3, type: 'd', l: 2, count: 10, key: '3d' },
+    { n: 4, type: 's', l: 0, count: 2, key: '4s' },
+    { n: 4, type: 'p', l: 1, count: 6, key: '4p' },
+    { n: 4, type: 'd', l: 2, count: 10, key: '4d' },
+    { n: 5, type: 's', l: 0, count: 2, key: '5s' },
+    { n: 5, type: 'p', l: 1, count: 6, key: '5p' }
+  ],
+  '[Rn]': [
+    { n: 1, type: 's', l: 0, count: 2, key: '1s' },
+    { n: 2, type: 's', l: 0, count: 2, key: '2s' },
+    { n: 2, type: 'p', l: 1, count: 6, key: '2p' },
+    { n: 3, type: 's', l: 0, count: 2, key: '3s' },
+    { n: 3, type: 'p', l: 1, count: 6, key: '3p' },
+    { n: 3, type: 'd', l: 2, count: 10, key: '3d' },
+    { n: 4, type: 's', l: 0, count: 2, key: '4s' },
+    { n: 4, type: 'p', l: 1, count: 6, key: '4p' },
+    { n: 4, type: 'd', l: 2, count: 10, key: '4d' },
+    { n: 4, type: 'f', l: 3, count: 14, key: '4f' },
+    { n: 5, type: 's', l: 0, count: 2, key: '5s' },
+    { n: 5, type: 'p', l: 1, count: 6, key: '5p' },
+    { n: 5, type: 'd', l: 2, count: 10, key: '5d' },
+    { n: 6, type: 's', l: 0, count: 2, key: '6s' },
+    { n: 6, type: 'p', l: 1, count: 6, key: '6p' }
+  ]
+};
+
+function normalizeSuperscript(str) {
+  if (!str) return '';
+  const map = { '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁰': '0' };
+  return str.replace(/[¹²³⁴⁵⁶⁷⁸⁹⁰]/g, (m) => map[m]);
+}
+
+function parseSubshells(configStr) {
+  const norm = normalizeSuperscript(configStr || '');
+  const coreMatch = norm.match(/\[(He|Ne|Ar|Kr|Xe|Rn)\]/);
+  const coreName = coreMatch ? coreMatch[0] : null;
+  const regex = /(\d)([spdf])(\d+)/g;
+  const valence = [];
+  let m;
+  while ((m = regex.exec(norm)) !== null) {
+    valence.push({
+      n: parseInt(m[1], 10),
+      type: m[2],
+      l: { s: 0, p: 1, d: 2, f: 3 }[m[2]],
+      count: parseInt(m[3], 10),
+      key: m[1] + m[2]
+    });
+  }
+  const core = coreName && NOBLE_CORE_SUBSHELLS[coreName] ? NOBLE_CORE_SUBSHELLS[coreName] : [];
+  const full = [...core, ...valence];
+  return { coreName, valence: valence.length ? valence : full, full };
+}
+
+function getDiffElectron(elem) {
+  if (!elem) return { subshellKey: '1s', subshellCount: 1, n: 1, l: 0, l_name: 's', m_l: 0, s_val: 0.5, s_str: '+1/2', s_arrow: '↑', electronIndex: 1 };
+  
+  const parsed = parseSubshells(elem.electronConfig);
+  const valence = parsed.valence;
+  const full = parsed.full;
+
+  let targetSubshell = null;
+  // Excepciones y configuraciones terminales de Aufbau reconocidas por IUPAC
+  if (elem.number === 57) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
+  else if (elem.number === 64) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
+  else if (elem.number === 71) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
+  else if (elem.number === 89) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 1, key: '6d' };
+  else if (elem.number === 90) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 2, key: '6d' };
+  else if (elem.number === 96) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 1, key: '6d' };
+  else if (elem.number === 103) targetSubshell = full.find(s => s.key === '7p') || { n: 7, type: 'p', l: 1, count: 1, key: '7p' };
+
+  if (!targetSubshell) {
+    // Buscar en valence desde el final hacia el inicio coincidiendo con el bloque del elemento
+    targetSubshell = valence.slice().reverse().find(s => s.type === elem.block) ||
+                     full.slice().reverse().find(s => s.type === elem.block);
+  }
+
+  if (!targetSubshell && valence.length > 0) {
+    targetSubshell = valence[valence.length - 1];
+  }
+
+  if (!targetSubshell && full.length > 0) {
+    targetSubshell = full[full.length - 1];
+  }
+
+  if (!targetSubshell) {
+    targetSubshell = { n: 1, type: 's', l: 0, count: 1, key: '1s' };
+  }
+
+  const n = targetSubshell.n;
+  const l = targetSubshell.l;
+  const k = targetSubshell.count;
+  const numOrbitals = 2 * l + 1;
+
+  let m_l, s_val, s_str, s_arrow;
+  if (k <= numOrbitals) {
+    m_l = -l + (k - 1);
+    s_val = 0.5;
+    s_str = '+1/2';
+    s_arrow = '↑';
+  } else {
+    m_l = -l + (k - numOrbitals - 1);
+    s_val = -0.5;
+    s_str = '-1/2';
+    s_arrow = '↓';
+  }
+
+  return {
+    subshellKey: targetSubshell.key,
+    subshellCount: k,
+    n,
+    l,
+    l_name: targetSubshell.type,
+    m_l,
+    s_val,
+    s_str,
+    s_arrow,
+    electronIndex: k
+  };
+}
+
+// Mini generador de orbitales para la Ficha Central y vistas compactas
+function renderMiniOrbitalBoxesHTML(elem, diff) {
+  if (!elem) return '';
+  const parsed = parseSubshells(elem.electronConfig);
+  const target = parsed.valence.find(s => s.key === diff.subshellKey) || parsed.valence[parsed.valence.length - 1];
+  if (!target) return '';
+
+  const numOrbitals = 2 * target.l + 1;
+  const isDiffSubshell = (target.key === diff.subshellKey);
+
+  return `
+    <div class="hidden xl:flex items-center gap-1 shrink-0 bg-white/5 px-1.5 py-0.5 rounded-lg border border-white/10" title="Subnivel diferencial ${target.key} (${target.count} e⁻)">
+      <span class="text-[8px] font-mono font-bold text-cyan-300 mr-0.5">${target.key}<sup>${target.count}</sup>:</span>
+      <div class="flex items-center gap-1">
+        ${Array.from({ length: numOrbitals }).map((_, i) => {
+          const m_l = -target.l + i;
+          const hasUp = target.count >= (i + 1);
+          const hasDown = target.count >= (numOrbitals + i + 1);
+          const isDiffBox = isDiffSubshell && (m_l === diff.m_l);
+
+          return `
+            <div class="orbital-box orbital-box-mini ${isDiffBox ? 'diff-electron-box' : ''}" title="mₗ=${m_l >= 0 ? '+' + m_l : m_l}">
+              <div class="orbital-slot-container">
+                <div class="orbital-slot">
+                  ${hasUp ? '<span class="electron-arrow-up">↑</span>' : '<span class="electron-empty">&bull;</span>'}
+                </div>
+                <div class="orbital-slot">
+                  ${hasDown ? '<span class="electron-arrow-down">↓</span>' : '<span class="electron-empty">&bull;</span>'}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
 // --- 8. FICHA CENTRAL INTEGRADA IUPAC (EN EL HUECO DEL GRID) ---
 function renderCentralHub(elem) {
   const hub = document.getElementById('iupacCentralHub');
@@ -1279,6 +1492,7 @@ function renderCentralHub(elem) {
   const categoryLabel = t[elem.category] || elem.category;
   const phaseLabel = t[elem.phase] || elem.phase;
   const geo = getElementGeochemistryAndCompounds(elem);
+  const diff = getDiffElectron(elem);
 
   hub.innerHTML = `
     <div class="h-full flex flex-col justify-between overflow-hidden">
@@ -1352,14 +1566,18 @@ function renderCentralHub(elem) {
         </div>
       </div>
 
-      <!-- Configuración Electrónica y Descubrimiento (Oculto en móvil pequeño) -->
-      <div class="hub-tertiary-bar hidden lg:flex items-center justify-between text-[9px] text-slate-300 bg-white/5 px-2 py-0.5 rounded-lg border border-white/5 font-mono">
-        <div class="truncate mr-2">
+      <!-- Configuración Electrónica, Cuántica y Cajas de Orbitales -->
+      <div class="hub-tertiary-bar hidden lg:flex items-center justify-between text-[9px] text-slate-300 bg-white/5 px-2 py-0.5 rounded-lg border border-white/5 font-mono gap-1.5">
+        <div class="truncate mr-1 flex items-center gap-1.5 min-w-0">
           <span class="text-slate-400">${t.electronConfig}:</span>
-          <strong class="text-cyan-300 font-bold">${elem.electronConfig}</strong>
+          <strong class="text-cyan-300 font-bold truncate">${elem.electronConfig}</strong>
         </div>
-        <div class="shrink-0 text-slate-400 text-[8.5px]">
-          <span>${elem.discoveredBy} ${elem.year ? '(' + elem.year + ')' : ''}</span>
+        <div class="flex items-center gap-1.5 shrink-0">
+          ${renderMiniOrbitalBoxesHTML(elem, diff)}
+          <button class="shrink-0 text-cyan-300 hover:text-white glass-button px-1.5 py-0.5 rounded text-[8.5px] flex items-center gap-1 cursor-pointer transition-colors" onclick="openIupacModalTab('quantum')" title="${t.tabQuantum}">
+            <i class="fa-solid fa-shapes text-amber-400 text-[8px]"></i>
+            <span>e⁻ dif: (<strong>${diff.n}, ${diff.l}, ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}, ${diff.s_str}</strong> <span class="${diff.s_val > 0 ? 'text-cyan-400' : 'text-rose-400'} font-bold">${diff.s_arrow}</span>)</span>
+          </button>
         </div>
       </div>
     </div>
@@ -2297,6 +2515,10 @@ function renderModalBody() {
           <i class="fa-solid fa-atom"></i>
           <span>${t.tabAtomicModel}</span>
         </button>
+        <button class="modal-tab-btn ${activeModalTab === 'quantum' ? 'active' : ''}" data-tab="quantum" role="tab" aria-selected="${activeModalTab === 'quantum'}">
+          <i class="fa-solid fa-shapes"></i>
+          <span>${t.tabQuantum}</span>
+        </button>
         <button class="modal-tab-btn ${activeModalTab === 'chemistry' ? 'active' : ''}" data-tab="chemistry" role="tab" aria-selected="${activeModalTab === 'chemistry'}">
           <i class="fa-solid fa-flask"></i>
           <span>${t.tabValences}</span>
@@ -2366,100 +2588,497 @@ function parseElementTemps(elem) {
   return { meltK, boilK };
 }
 
+// --- 11.5. CONFIGURACIÓN ELECTRÓNICA GRÁFICA & MECÁNICA CUÁNTICA ---
+let quantumViewMode = 'valence'; // 'valence' o 'full'
+
+window.setQuantumViewMode = function(mode) {
+  quantumViewMode = mode;
+  renderModalBody();
+};
+
+window.copyQuantumNumbers = function(tupleStr, btnEl) {
+  navigator.clipboard.writeText(tupleStr).then(() => {
+    if (btnEl) {
+      const originalHTML = btnEl.innerHTML;
+      btnEl.innerHTML = '<i class="fa-solid fa-check text-emerald-400 text-xs"></i> <span class="text-emerald-400 font-bold text-xs">' + (I18N[currentLang].copiedTuple || '¡Copiado!') + '</span>';
+      setTimeout(() => { btnEl.innerHTML = originalHTML; }, 1800);
+    }
+  }).catch(() => {});
+};
+
+// Componente 1: Ficha Hero de los 4 Números Cuánticos del Electrón Diferencial
+function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
+  const t = I18N[currentLang];
+  const name = currentLang === 'es' ? elem.name_es : elem.name_en;
+  const tupleString = `(n=${diff.n}, l=${diff.l}, m=${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}, s=${diff.s_str})`;
+
+  const shellNames = ['K', 'L', 'M', 'N', 'O', 'P', 'Q'];
+  const shellLetter = shellNames[diff.n - 1] || `Nivel ${diff.n}`;
+  const lGeom = diff.l === 0
+    ? (currentLang === 'es' ? 'Esférico (s)' : 'Spherical (s)')
+    : diff.l === 1
+      ? (currentLang === 'es' ? 'Bilobular (p)' : 'Bilobed (p)')
+      : diff.l === 2
+        ? (currentLang === 'es' ? 'Tetralobular (d)' : 'Four-lobed (d)')
+        : (currentLang === 'es' ? 'Multilobular Complejo (f)' : 'Complex multi-lobed (f)');
+
+  return `
+    <div class="quantum-hero-card p-3.5 sm:p-4 md:p-5 rounded-2xl space-y-3 border border-cyan-500/30 shadow-xl">
+      <!-- Encabezado del Hero Cuántico -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-b border-white/10 pb-3">
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-[10px] uppercase tracking-wider border border-cyan-500/40 flex items-center gap-1">
+              <i class="fa-solid fa-bolt-lightning text-amber-400 text-[9px]"></i>
+              <span>${t.diffElectronBadge}</span>
+            </span>
+            <h3 class="text-sm sm:text-base md:text-lg font-black text-white tracking-tight flex items-center gap-1.5">
+              <span>${t.diffElectronTitle}</span>
+            </h3>
+          </div>
+          <p class="text-[11px] text-slate-300 mt-0.5">
+            ${t.diffElectronSubtitle} &bull; <strong class="text-cyan-200">${name} (${elem.symbol}, Z=${elem.number})</strong> &bull; Subnivel: <strong class="text-amber-300 font-mono">${diff.subshellKey}</strong>
+          </p>
+        </div>
+
+        <!-- Cuádrupla Cuántica Destacada & Botón de Copiado -->
+        <div class="flex items-center gap-2 shrink-0 self-start sm:self-auto">
+          <div class="glass-panel px-3 py-1.5 rounded-xl border border-cyan-400/40 flex items-center gap-2 shadow-lg shadow-cyan-500/10">
+            <i class="fa-solid fa-shapes text-amber-400 text-xs"></i>
+            <span class="font-mono font-bold text-xs sm:text-sm text-cyan-300 tracking-wider">
+              (${diff.n}, ${diff.l}, ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}, ${diff.s_str})
+            </span>
+          </div>
+          <button 
+            class="glass-button px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-slate-300 hover:text-white cursor-pointer transition-all shadow-sm"
+            onclick="copyQuantumNumbers('${tupleString}', this)"
+            title="${t.copyQuantumTuple}"
+            aria-label="${t.copyQuantumTuple}"
+          >
+            <i class="fa-solid fa-copy text-xs"></i>
+            <span class="hidden sm:inline text-[11px]">${t.copyQuantumTuple}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Tarjetas de los Números Cuánticos (n, l, m, s) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+        
+        <!-- n: Número Cuántico Principal -->
+        <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-cyan-300 uppercase tracking-wider font-mono">Principal</span>
+            <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-300 font-mono font-black flex items-center justify-center text-xs border border-cyan-500/30">n</span>
+          </div>
+          <div class="my-0.5">
+            <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.n}</div>
+            <span class="text-[10.5px] font-bold text-cyan-200 mt-1 block font-mono">Capa ${shellLetter} (Nivel ${diff.n})</span>
+          </div>
+          <p class="text-[10px] text-slate-300 leading-tight">
+            ${currentLang === 'es' ? 'Determina el volumen, tamaño del orbital y la energía fundamental.' : 'Defines main energy level, average orbital radius and overall electron energy.'}
+          </p>
+        </div>
+
+        <!-- l: Número Cuántico Azimutal (Momento Angular) -->
+        <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider font-mono">Azimutal</span>
+            <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono font-black flex items-center justify-center text-xs border border-emerald-500/30">l</span>
+          </div>
+          <div class="my-0.5">
+            <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.l} <span class="text-base font-bold text-emerald-400 uppercase font-mono">(${diff.l_name})</span></div>
+            <span class="text-[10.5px] font-bold text-emerald-200 mt-1 block">${lGeom}</span>
+          </div>
+          <p class="text-[10px] text-slate-300 leading-tight">
+            ${currentLang === 'es' ? 'Determina la geometría espacial tridimensional y el momento angular orbital.' : 'Defines 3D spatial geometry, orbital shape and orbital angular momentum.'}
+          </p>
+        </div>
+
+        <!-- m_l: Número Cuántico Magnético -->
+        <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider font-mono">Magnético</span>
+            <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 font-mono font-black flex items-center justify-center text-xs border border-amber-500/30">mₗ</span>
+          </div>
+          <div class="my-0.5">
+            <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</div>
+            <span class="text-[10.5px] font-bold text-amber-200 mt-1 block font-mono">mₗ ∈ [ -${diff.l}, +${diff.l} ]</span>
+          </div>
+          <p class="text-[10px] text-slate-300 leading-tight">
+            ${currentLang === 'es' ? `Orientación del orbital #${diff.m_l + diff.l + 1} del subnivel en el espacio.` : `Spatial orientation of orbital #${diff.m_l + diff.l + 1} in the subshell.`}
+          </p>
+        </div>
+
+        <!-- m_s: Número Cuántico de Espín -->
+        <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-rose-300 uppercase tracking-wider font-mono">Espín</span>
+            <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-300 font-mono font-black flex items-center justify-center text-xs border border-rose-500/30">s</span>
+          </div>
+          <div class="my-0.5 flex items-baseline gap-2">
+            <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.s_str}</div>
+            <span class="text-2xl font-black ${diff.s_val > 0 ? 'text-cyan-400' : 'text-rose-400'} leading-none">${diff.s_arrow}</span>
+          </div>
+          <span class="text-[10.5px] font-bold text-rose-200 block">
+            ${diff.s_val > 0 ? (currentLang === 'es' ? 'Paralelo (↑ Horario)' : 'Parallel (↑ Clockwise)') : (currentLang === 'es' ? 'Antiparalelo (↓ Antihorario)' : 'Antiparallel (↓ Counterclockwise)')}
+          </span>
+          <p class="text-[10px] text-slate-300 leading-tight">
+            ${diff.s_val > 0 ? (currentLang === 'es' ? 'Semillenado inicial (Regla de Hund).' : 'Initial single occupation (Hund).') : (currentLang === 'es' ? 'Apareamiento opuesto (Exclusión de Pauli).' : 'Paired opposite spin (Pauli).')}
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Resumen Pedagógico Riguroso IUPAC -->
+      <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 sm:p-3 text-[11px] leading-relaxed text-slate-200">
+        <p>
+          ${currentLang === 'es'
+            ? `En el átomo neutro de <strong>${name} (${elem.symbol})</strong>, el electrón diferencial (el <strong>${elem.number}º electrón</strong> añadido según el orden de Aufbau) se aloja en el subnivel <strong>${diff.subshellKey}</strong>. Conforme a la <strong>Regla de Hund</strong> y al <strong>Principio de Exclusión de Pauli</strong>, este electrón ocupa el orbital de orientación magnética <strong>mₗ = ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</strong> con espín cuántico <strong>s = ${diff.s_str} (${diff.s_arrow})</strong>.`
+            : `In the neutral atom of <strong>${name} (${elem.symbol})</strong>, the differentiating electron (the <strong>${elem.number}th electron</strong> added per Aufbau order) occupies the <strong>${diff.subshellKey}</strong> subshell. Following <strong>Hund's Rule</strong> and <strong>Pauli Exclusion Principle</strong>, it enters the orbital with magnetic quantum number <strong>mₗ = ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</strong> and spin state <strong>s = ${diff.s_str} (${diff.s_arrow})</strong>.`
+          }
+        </p>
+      </div>
+    </div>
+  `;
+}
+
+// Componente 2: Configuración Electrónica Gráfica (Cajas y Espines de Hund/Pauli)
+function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false) {
+  const t = I18N[currentLang];
+  const subshellData = parseSubshells(elem.electronConfig);
+  const displaySubshells = isFull ? subshellData.full : subshellData.valence;
+
+  return `
+    <div class="glass-card p-3.5 sm:p-4 md:p-5 rounded-2xl space-y-3.5 border border-white/10 shadow-xl">
+      
+      <!-- Encabezado con selector de vista (Valencia vs Completa) -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
+        <div>
+          <h4 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-table-cells text-cyan-400"></i>
+            <span>${t.orbitalBoxesTitle}</span>
+          </h4>
+          <p class="text-[11px] text-slate-300 mt-0.5">
+            ${t.orbitalBoxesSubtitle} &bull; <span class="text-cyan-300 font-mono">${elem.electronConfig}</span>
+          </p>
+        </div>
+
+        <!-- Selector de Modo de Vista (Valencia vs Completa) -->
+        <div class="flex items-center gap-1 glass-panel p-1 rounded-xl shrink-0 self-start sm:self-auto border border-white/10">
+          <button 
+            class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${!isFull ? 'bg-cyan-500/25 text-cyan-300 font-bold border border-cyan-500/40 shadow-sm' : 'text-slate-400 hover:text-white'}"
+            onclick="setQuantumViewMode('valence')"
+          >
+            ${t.valenceOnly}
+          </button>
+          <button 
+            class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${isFull ? 'bg-cyan-500/25 text-cyan-300 font-bold border border-cyan-500/40 shadow-sm' : 'text-slate-400 hover:text-white'}"
+            onclick="setQuantumViewMode('full')"
+          >
+            ${t.fullConfig}
+          </button>
+        </div>
+      </div>
+
+      <!-- Indicador de Gas Noble si es capa de valencia -->
+      ${!isFull && subshellData.coreName ? `
+        <div class="glass-panel px-3 py-2 rounded-xl border border-white/10 flex items-center justify-between flex-wrap gap-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-300 font-mono font-bold flex items-center justify-center text-sm border border-indigo-500/30">
+              ${subshellData.coreName}
+            </span>
+            <div>
+              <span class="font-bold text-white block">${t.nobleGasCoreClosed}</span>
+              <span class="text-[10px] text-slate-400 font-mono">
+                ${subshellData.core.map(c => `${c.key}<sup>${c.count}</sup>`).join(' ')}
+              </span>
+            </div>
+          </div>
+          <button class="text-cyan-300 hover:text-white text-[11px] font-semibold underline underline-offset-2 cursor-pointer flex items-center gap-1" onclick="setQuantumViewMode('full')">
+            <span>${currentLang === 'es' ? 'Ver todos los orbitales internos' : 'Expand full inner core orbitals'}</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+      ` : ''}
+
+      <!-- Contenedor de Grupos de Subniveles con sus Cajas de Orbitales -->
+      <div class="space-y-3 pt-1">
+        ${displaySubshells.map((s) => {
+          const numOrbitals = 2 * s.l + 1;
+          const maxElectrons = numOrbitals * 2;
+          const isDiffSubshell = (s.key === diff.subshellKey);
+
+          return `
+            <div class="glass-card p-3 sm:p-3.5 rounded-xl border ${isDiffSubshell ? 'border-cyan-500/50 bg-cyan-950/25 shadow-md shadow-cyan-500/10' : 'border-white/10'} space-y-2">
+              
+              <!-- Encabezado del Subnivel -->
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-base sm:text-lg font-black text-white font-mono tracking-wide">
+                    ${s.n}${s.type}<sup class="text-cyan-300 font-bold">${s.count}</sup>
+                  </span>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-md glass-panel text-slate-300 border border-white/10 font-mono">
+                    n = ${s.n}, l = ${s.l} (${s.type.toUpperCase()})
+                  </span>
+                  ${isDiffSubshell ? `
+                    <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 flex items-center gap-1 animate-pulse">
+                      <i class="fa-solid fa-star text-[8px] text-amber-400"></i>
+                      <span>${t.diffElectronBadge}</span>
+                    </span>
+                  ` : ''}
+                </div>
+
+                <span class="text-[10.5px] text-slate-400 font-mono font-semibold">
+                  ${s.count} / ${maxElectrons} e⁻
+                </span>
+              </div>
+
+              <!-- Cajas de los Orbitales de este subnivel -->
+              <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-0.5 overflow-x-auto pb-1">
+                ${Array.from({ length: numOrbitals }).map((_, i) => {
+                  const m_l = -s.l + i;
+                  const hasUp = s.count >= (i + 1);
+                  const hasDown = s.count >= (numOrbitals + i + 1);
+                  const isDiffBox = isDiffSubshell && (m_l === diff.m_l);
+                  const isDiffUp = isDiffBox && diff.s_val > 0 && hasUp;
+                  const isDiffDown = isDiffBox && diff.s_val < 0 && hasDown;
+
+                  const upTitle = hasUp ? `e⁻ (n=${s.n}, l=${s.l}, m=${m_l >= 0 ? '+' + m_l : m_l}, s=+1/2 ↑)` : '';
+                  const downTitle = hasDown ? `e⁻ (n=${s.n}, l=${s.l}, m=${m_l >= 0 ? '+' + m_l : m_l}, s=-1/2 ↓)` : '';
+
+                  return `
+                    <div 
+                      class="orbital-box ${isDiffBox ? 'diff-electron-box' : ''}" 
+                      title="Orbital ${s.key} (mₗ = ${m_l >= 0 ? '+' + m_l : m_l})${isDiffBox ? ' — Contiene el electrón diferencial' : ''}"
+                    >
+                      <!-- Etiqueta m_l arriba -->
+                      <span class="text-[8.5px] font-mono font-bold text-slate-400 leading-none">
+                        ${m_l >= 0 ? '+' + m_l : m_l}
+                      </span>
+
+                      <!-- Flechas de espín -->
+                      <div class="orbital-slot-container">
+                        <!-- Espín Arriba (+1/2) -->
+                        <div class="orbital-slot" title="${upTitle}">
+                          ${hasUp ? `
+                            <span class="electron-arrow-up ${isDiffUp ? 'ring-1 ring-cyan-300 rounded px-0.5' : ''}">↑</span>
+                          ` : `
+                            <span class="electron-empty">&bull;</span>
+                          `}
+                        </div>
+
+                        <!-- Espín Abajo (-1/2) -->
+                        <div class="orbital-slot" title="${downTitle}">
+                          ${hasDown ? `
+                            <span class="electron-arrow-down ${isDiffDown ? 'ring-1 ring-rose-400 rounded px-0.5' : ''}">↓</span>
+                          ` : `
+                            <span class="electron-empty">&bull;</span>
+                          `}
+                        </div>
+                      </div>
+
+                      <!-- Indicador inferior -->
+                      <div class="text-[8px] font-mono leading-none">
+                        ${isDiffBox ? `
+                          <span class="text-[7.5px] font-black uppercase text-cyan-300 block leading-tight">e⁻ dif</span>
+                        ` : `
+                          <span class="text-[7.5px] text-slate-500">${s.type}</span>
+                        `}
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+      <!-- Leyenda Educativa de los Principios Cuánticos (Hund, Pauli, Aufbau) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-2 text-[10.5px] text-slate-300 border-t border-white/10 font-mono">
+        <div class="glass-panel p-2.5 rounded-xl border border-white/10 space-y-1">
+          <strong class="text-cyan-300 flex items-center gap-1.5 font-bold font-sans">
+            <i class="fa-solid fa-arrows-up-down text-cyan-400"></i>
+            <span>Espines de Pauli</span>
+          </strong>
+          <p class="text-[10px] text-slate-300 leading-tight">
+            <span class="text-cyan-400 font-bold">↑ (+½)</span> primer electrón; <span class="text-rose-400 font-bold">↓ (-½)</span> apareado con espín antiparalelo opuesto.
+          </p>
+        </div>
+
+        <div class="glass-panel p-2.5 rounded-xl border border-white/10 space-y-1">
+          <strong class="text-amber-300 flex items-center gap-1.5 font-bold font-sans">
+            <i class="fa-solid fa-shield-halved text-amber-400"></i>
+            <span>Regla de Hund</span>
+          </strong>
+          <p class="text-[10px] text-slate-300 leading-tight">
+            Semillenado uniforme con espines paralelos (↑) de menor repulsión antes de aparearse.
+          </p>
+        </div>
+
+        <div class="glass-panel p-2.5 rounded-xl border border-white/10 space-y-1">
+          <strong class="text-emerald-300 flex items-center gap-1.5 font-bold font-sans">
+            <i class="fa-solid fa-stairs text-emerald-400"></i>
+            <span>Regla de Aufbau</span>
+          </strong>
+          <p class="text-[10px] text-slate-300 leading-tight">
+            Orden progresivo de llenado orbital según energía creciente dada por la suma (n + l).
+          </p>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+function renderQuantumTabContent(elem) {
+  const diff = getDiffElectron(elem);
+  const isFull = quantumViewMode === 'full';
+
+  return `
+    <div class="space-y-4 text-xs">
+      <!-- HERO: NÚMEROS CUÁNTICOS DEL ELECTRÓN DIFERENCIAL -->
+      ${renderDiffElectronHeroCard(elem, diff, false)}
+
+      <!-- SECCIÓN: CONFIGURACIÓN ELECTRÓNICA GRÁFICA (CAJAS Y FLECHAS) -->
+      ${renderOrbitalBoxesDiagram(elem, diff, isFull, false)}
+
+      <!-- LABORATORIO CUÁNTICO: FUNDAMENTOS FÍSICOS Y ECUACIONES -->
+      <div class="glass-card p-4 sm:p-5 rounded-2xl border border-white/10 space-y-3">
+        <h4 class="text-sm font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-atom text-cyan-400"></i>
+          <span>${currentLang === 'es' ? 'Fundamentos Cuánticos del Átomo Polielectrónico' : 'Polyelectronic Quantum Mechanics Foundations'}</span>
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed text-slate-300">
+          <div class="glass-panel p-3 rounded-xl border border-white/10 space-y-1.5">
+            <strong class="text-cyan-300 font-mono block">${currentLang === 'es' ? 'Operador Momento Angular Orbital (L̂):' : 'Orbital Angular Momentum Operator (L̂):'}</strong>
+            <p>
+              El módulo del momento angular está cuantizado como <span class="font-mono text-cyan-200">|L| = ℏ√[l(l+1)]</span> y su proyección en el eje z por <span class="font-mono text-amber-200">L_z = mₗ ℏ</span>, donde <span class="font-mono text-slate-200">-l ≤ mₗ ≤ +l</span>.
+            </p>
+          </div>
+          <div class="glass-panel p-3 rounded-xl border border-white/10 space-y-1.5">
+            <strong class="text-rose-300 font-mono block">${currentLang === 'es' ? 'Espín Intrínseco del Electrón (Ŝ):' : 'Intrinsic Electron Spin (Ŝ):'}</strong>
+            <p>
+              Fermión de espín 1/2 con <span class="font-mono text-rose-200">|S| = ℏ√(3/4)</span> y proyecciones discretas <span class="font-mono text-cyan-300">S_z = +½ℏ (↑)</span> o <span class="font-mono text-rose-300">S_z = -½ℏ (↓)</span>, base del ferromagnetismo y la estructura periódica.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 // Renderizado por Pestaña
 function renderActiveTabContent(elem, tempValues) {
   const t = I18N[currentLang];
   const desc = currentLang === 'es' ? elem.desc_es : elem.desc_en;
+  const diff = getDiffElectron(elem);
+
+  if (activeModalTab === 'quantum') {
+    return renderQuantumTabContent(elem);
+  }
 
   if (activeModalTab === 'general') {
     const shells = parseElectronShells(elem);
+    const isFull = quantumViewMode === 'full';
+
     return `
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-        <!-- Visualizador Interactivo del Modelo de Bohr (Canvas 2D) -->
-        <div class="md:col-span-5 flex flex-col items-center justify-center space-y-2">
-          <div class="bohr-canvas-container">
-            <canvas id="bohrCanvas" width="300" height="300"></canvas>
+      <div class="space-y-4">
+        <!-- 1. BLOQUE PRINCIPAL: MODELO DE BOHR Y PARÁMETROS FISICOQUÍMICOS -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+          <!-- Visualizador Interactivo del Modelo de Bohr (Canvas 2D) -->
+          <div class="md:col-span-5 flex flex-col items-center justify-center space-y-2">
+            <div class="bohr-canvas-container">
+              <canvas id="bohrCanvas" width="300" height="300"></canvas>
+            </div>
+            <span class="text-[10px] text-slate-400 font-mono flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-info text-cyan-400"></i>
+              <span>${t.shellInstruction}</span>
+            </span>
+            <div class="flex flex-wrap items-center justify-center gap-1.5 max-w-xs">
+              ${shells.map((count, idx) => {
+                const shellLetters = ['K', 'L', 'M', 'N', 'O', 'P', 'Q'];
+                return `<span class="shell-pill" data-shell-idx="${idx}">${shellLetters[idx]}: <strong>${count}e⁻</strong></span>`;
+              }).join('')}
+            </div>
           </div>
-          <span class="text-[10px] text-slate-400 font-mono flex items-center gap-1.5">
-            <i class="fa-solid fa-circle-info text-cyan-400"></i>
-            <span>${t.shellInstruction}</span>
-          </span>
-          <div class="flex flex-wrap items-center justify-center gap-1.5 max-w-xs">
-            ${shells.map((count, idx) => {
-              const shellLetters = ['K', 'L', 'M', 'N', 'O', 'P', 'Q'];
-              return `<span class="shell-pill" data-shell-idx="${idx}">${shellLetters[idx]}: <strong>${count}e⁻</strong></span>`;
-            }).join('')}
+
+          <!-- Ficha de Datos Fundamentales -->
+          <div class="md:col-span-7 space-y-3">
+            <p class="text-xs leading-relaxed text-slate-200 glass-card p-3 rounded-xl border border-white/10">
+              ${desc}
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+              <div class="glass-card p-2.5 rounded-xl">
+                <span class="text-[10px] text-slate-400 block">${t.atomicNumber}</span>
+                <strong class="text-sm text-cyan-300 font-mono">${elem.number}</strong>
+              </div>
+              <div class="glass-card p-2.5 rounded-xl">
+                <span class="text-[10px] text-slate-400 block">${t.mass}</span>
+                <strong class="text-sm text-white font-mono">${typeof elem.mass === 'number' ? elem.mass.toFixed(4) : elem.mass} u</strong>
+              </div>
+              <div class="glass-card p-2.5 rounded-xl">
+                <span class="text-[10px] text-slate-400 block">${t.phase}</span>
+                <strong class="text-xs text-white">${t[elem.phase] || elem.phase}</strong>
+              </div>
+              <div class="glass-card p-2.5 rounded-xl">
+                <span class="text-[10px] text-slate-400 block">${t.group} / ${t.period}</span>
+                <strong class="text-xs text-cyan-300 font-mono">G: ${elem.group} | P: ${elem.period}</strong>
+              </div>
+              <div class="glass-card p-2.5 rounded-xl">
+                <span class="text-[10px] text-slate-400 block">${t.block}</span>
+                <strong class="text-xs text-white uppercase font-mono">${t.block} ${elem.block}</strong>
+              </div>
+              <div class="glass-card p-2.5 rounded-xl">
+                <span class="text-[10px] text-slate-400 block">${t.density}</span>
+                <strong class="text-xs text-white">${elem.density || '—'}</strong>
+              </div>
+            </div>
+
+            <div class="glass-card p-2.5 rounded-xl flex items-center justify-between text-xs font-mono">
+              <span class="text-slate-400">${t.electronConfig}:</span>
+              <strong class="text-cyan-300 font-bold">${elem.electronConfig}</strong>
+            </div>
+
+            <!-- Acceso Rápido a Abundancia en la Tierra y Compuestos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
+              <div class="glass-card p-2.5 rounded-xl border border-cyan-500/20 hover:border-cyan-400/50 transition-all cursor-pointer" onclick="openIupacModalTab('abundance')" role="button" tabindex="0">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] text-slate-400 flex items-center gap-1.5 font-semibold">
+                    <i class="fa-solid fa-earth-americas text-cyan-400"></i>
+                    <span>${t.tabAbundance}</span>
+                  </span>
+                  <span class="text-[9px] text-cyan-300 font-mono">${t.viewGeoreport}</span>
+                </div>
+                <strong class="text-xs text-white block mt-1">${getElementGeochemistryAndCompounds(elem).crustRank}</strong>
+                <span class="text-[10px] text-slate-300 block truncate font-mono mt-0.5">${getElementGeochemistryAndCompounds(elem).crust}</span>
+              </div>
+
+              <div class="glass-card p-2.5 rounded-xl border border-amber-500/20 hover:border-amber-400/50 transition-all cursor-pointer" onclick="openIupacModalTab('compounds')" role="button" tabindex="0">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] text-slate-400 flex items-center gap-1.5 font-semibold">
+                    <i class="fa-solid fa-vial-virus text-amber-400"></i>
+                    <span>${t.tabCompounds}</span>
+                  </span>
+                  <span class="text-[9px] text-amber-300 font-mono">${t.viewCatalog}</span>
+                </div>
+                <div class="flex flex-wrap gap-1 mt-1 font-mono">
+                  ${getElementGeochemistryAndCompounds(elem).compounds.slice(0, 3).map(c => `
+                    <span class="px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-cyan-200 font-bold">${c.formula}</span>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Ficha de Datos Fundamentales -->
-        <div class="md:col-span-7 space-y-3">
-          <p class="text-xs leading-relaxed text-slate-200 glass-card p-3 rounded-xl border border-white/10">
-            ${desc}
-          </p>
+        <!-- 2. NÚMEROS CUÁNTICOS DEL ELECTRÓN DIFERENCIAL (AUFBAU: n, l, m, s) -->
+        ${renderDiffElectronHeroCard(elem, diff, false)}
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-            <div class="glass-card p-2.5 rounded-xl">
-              <span class="text-[10px] text-slate-400 block">${t.atomicNumber}</span>
-              <strong class="text-sm text-cyan-300 font-mono">${elem.number}</strong>
-            </div>
-            <div class="glass-card p-2.5 rounded-xl">
-              <span class="text-[10px] text-slate-400 block">${t.mass}</span>
-              <strong class="text-sm text-white font-mono">${typeof elem.mass === 'number' ? elem.mass.toFixed(4) : elem.mass} u</strong>
-            </div>
-            <div class="glass-card p-2.5 rounded-xl">
-              <span class="text-[10px] text-slate-400 block">${t.phase}</span>
-              <strong class="text-xs text-white">${t[elem.phase] || elem.phase}</strong>
-            </div>
-            <div class="glass-card p-2.5 rounded-xl">
-              <span class="text-[10px] text-slate-400 block">${t.group} / ${t.period}</span>
-              <strong class="text-xs text-cyan-300 font-mono">G: ${elem.group} | P: ${elem.period}</strong>
-            </div>
-            <div class="glass-card p-2.5 rounded-xl">
-              <span class="text-[10px] text-slate-400 block">${t.block}</span>
-              <strong class="text-xs text-white uppercase font-mono">${t.block} ${elem.block}</strong>
-            </div>
-            <div class="glass-card p-2.5 rounded-xl">
-              <span class="text-[10px] text-slate-400 block">${t.density}</span>
-              <strong class="text-xs text-white">${elem.density || '—'}</strong>
-            </div>
-          </div>
+        <!-- 3. CONFIGURACIÓN ELECTRÓNICA GRÁFICA (NOTACIÓN DE CAJAS/ORBITALES CON FLECHAS Y ESPÍN) -->
+        ${renderOrbitalBoxesDiagram(elem, diff, isFull, false)}
 
-          <div class="glass-card p-2.5 rounded-xl flex items-center justify-between text-xs font-mono">
-            <span class="text-slate-400">${t.electronConfig}:</span>
-            <strong class="text-cyan-300 font-bold">${elem.electronConfig}</strong>
-          </div>
-
-          <!-- Acceso Rápido a Abundancia en la Tierra y Compuestos -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
-            <div class="glass-card p-2.5 rounded-xl border border-cyan-500/20 hover:border-cyan-400/50 transition-all cursor-pointer" onclick="openIupacModalTab('abundance')" role="button" tabindex="0">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] text-slate-400 flex items-center gap-1.5 font-semibold">
-                  <i class="fa-solid fa-earth-americas text-cyan-400"></i>
-                  <span>${t.tabAbundance}</span>
-                </span>
-                <span class="text-[9px] text-cyan-300 font-mono">${t.viewGeoreport}</span>
-              </div>
-              <strong class="text-xs text-white block mt-1">${getElementGeochemistryAndCompounds(elem).crustRank}</strong>
-              <span class="text-[10px] text-slate-300 block truncate font-mono mt-0.5">${getElementGeochemistryAndCompounds(elem).crust}</span>
-            </div>
-
-            <div class="glass-card p-2.5 rounded-xl border border-amber-500/20 hover:border-amber-400/50 transition-all cursor-pointer" onclick="openIupacModalTab('compounds')" role="button" tabindex="0">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] text-slate-400 flex items-center gap-1.5 font-semibold">
-                  <i class="fa-solid fa-vial-virus text-amber-400"></i>
-                  <span>${t.tabCompounds}</span>
-                </span>
-                <span class="text-[9px] text-amber-300 font-mono">${t.viewCatalog}</span>
-              </div>
-              <div class="flex flex-wrap gap-1 mt-1 font-mono">
-                ${getElementGeochemistryAndCompounds(elem).compounds.slice(0, 3).map(c => `
-                  <span class="px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-cyan-200 font-bold">${c.formula}</span>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     `;
   }
@@ -2979,12 +3598,13 @@ function speakElementDetails(elem) {
   window.speechSynthesis.cancel();
 
   const geo = getElementGeochemistryAndCompounds(elem);
+  const diff = getDiffElectron(elem);
   const name = currentLang === 'es' ? elem.name_es : elem.name_en;
   const desc = currentLang === 'es' ? elem.desc_es : elem.desc_en;
   const compStr = geo.compounds.slice(0, 3).map(c => c.name).join(', ');
   const text = currentLang === 'es'
-    ? `${name}. Símbolo: ${elem.symbol}. Número atómico: ${elem.number}. Masa atómica: ${elem.mass}. Valencia: ${elem.valencia}. Abundancia en la Tierra: ${geo.crustRank}, con ${geo.crust}. Principales compuestos: ${compStr}. ${desc}`
-    : `${name}. Symbol: ${elem.symbol}. Atomic number: ${elem.number}. Atomic mass: ${elem.mass}. Valence: ${elem.valencia}. Earth abundance: ${geo.crustRank}, ${geo.crust}. Key compounds: ${compStr}. ${desc}`;
+    ? `${name}. Símbolo: ${elem.symbol}. Número atómico: ${elem.number}. Masa atómica: ${elem.mass}. Valencia: ${elem.valencia}. Electrón diferencial en subnivel ${diff.subshellKey}, con números cuánticos: n igual a ${diff.n}, l igual a ${diff.l}, m igual a ${diff.m_l}, espín ${diff.s_str}. Abundancia en la Tierra: ${geo.crustRank}, con ${geo.crust}. Principales compuestos: ${compStr}. ${desc}`
+    : `${name}. Symbol: ${elem.symbol}. Atomic number: ${elem.number}. Atomic mass: ${elem.mass}. Valence: ${elem.valencia}. Differentiating electron in ${diff.subshellKey} subshell, quantum numbers: n equals ${diff.n}, l equals ${diff.l}, m equals ${diff.m_l}, spin ${diff.s_str}. Earth abundance: ${geo.crustRank}, ${geo.crust}. Key compounds: ${compStr}. ${desc}`;
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = currentLang === 'es' ? 'es-ES' : 'en-US';
@@ -2995,13 +3615,15 @@ function speakElementDetails(elem) {
 // Copiar datos del elemento al portapapeles
 function copyElementData(elem) {
   const geo = getElementGeochemistryAndCompounds(elem);
+  const diff = getDiffElectron(elem);
   const name = currentLang === 'es' ? elem.name_es : elem.name_en;
   const compList = geo.compounds.map(c => `${c.formula} (${c.name})`).join(', ');
   const isEs = currentLang === 'es';
   const formatted = isEs ? `[IUPAC 2026] ${elem.number} - ${elem.symbol} (${name})
 Masa Atómica: ${elem.mass} u
 Valencia: ${elem.valencia}
-Configuración: ${elem.electronConfig}
+Configuración Electrónica: ${elem.electronConfig}
+Electrón Diferencial (Aufbau): n=${diff.n}, l=${diff.l} (${diff.l_name}), m=${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}, s=${diff.s_str} (${diff.s_arrow}) [Subnivel: ${diff.subshellKey}]
 Grupo: ${elem.group} | Periodo: ${elem.period} | Bloque: ${elem.block}
 Electronegatividad: ${elem.electronegativity || 'N/A'}
 Abundancia en la Tierra: ${geo.crustRank} [${geo.crust}]
@@ -3009,7 +3631,8 @@ Océanos: ${geo.ocean} | Atmósfera: ${geo.atmosphere}
 Compuestos Principales: ${compList}` : `[IUPAC 2026] ${elem.number} - ${elem.symbol} (${name})
 Atomic Weight: ${elem.mass} u
 Valence: ${elem.valencia}
-Configuration: ${elem.electronConfig}
+Electron Configuration: ${elem.electronConfig}
+Differentiating Electron (Aufbau): n=${diff.n}, l=${diff.l} (${diff.l_name}), m=${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}, s=${diff.s_str} (${diff.s_arrow}) [Subshell: ${diff.subshellKey}]
 Group: ${elem.group} | Period: ${elem.period} | Block: ${elem.block}
 Electronegativity: ${elem.electronegativity || 'N/A'}
 Earth Abundance: ${geo.crustRank} [${geo.crust}]

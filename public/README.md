@@ -107,6 +107,33 @@ Cada elemento cuenta con los parámetros físicos y químicos verificados de acu
 | **Abundancia Terrestre** | $ppm$ / Porcentaje en masa | Concentración en corteza, océanos, atmósfera y cuerpo humano. |
 | **Origen Cósmico** | Mecanismo astrofísico | Big Bang, nucleosíntesis estelar, supernovas o kilonovas. |
 | **Compuestos Principales** | Fórmulas moleculares y sales | Fórmulas, tipo de red química y usos industriales. |
+| **Electrón Diferencial ($n, l, m_l, s$)** | Cuádrupla de números cuánticos | Parámetros cuánticos del último electrón en añadirse según el principio de Aufbau. |
+| **Configuración Gráfica de Cajas** | Casillas orbitales y espines ($\uparrow, \downarrow$) | Representación visual con espines respetando el principio de exclusión de Pauli y regla de Hund. |
+
+---
+
+## ⚛️ Mecánica Cuántica y Configuración Gráfica
+
+La ficha científica integra ahora el análisis cuántico completo para los 118 elementos químicos:
+
+1. **Configuración Electrónica Gráfica (Notación de Cajas / Orbitales):**
+   - Muestra visualmente las casillas orbitales degeneradas ($s=1$, $p=3$, $d=5$, $f=7$) para cada subnivel.
+   - Representación precisa de electrones mediante flechas de espín:
+     - Flecha hacia arriba ($\uparrow$) para spin positivo ($s = +1/2$).
+     - Flecha hacia abajo ($\downarrow$) para spin negativo ($s = -1/2$).
+   - Riguroso cumplimiento pedagógico:
+     - **Regla de Hund:** Los orbitales degenerados se semillenen inicialmente con espines paralelos ($\uparrow$) de menor repulsión electrostática.
+     - **Principio de Exclusión de Pauli:** No existen dos electrones con los cuatro números cuánticos idénticos; en una misma casilla orbital coexisten únicamente espines antiparalelos ($\uparrow\downarrow$).
+     - **Selector de Vista:** Alterna dinámicamente entre **Capa de Valencia** (con indicador del gas noble cerrado) y **Configuración Completa**.
+     - **Resaltado Dinámico:** La casilla del electrón diferencial se destaca con borde pulsante cian, resplandor de neón y la etiqueta distintiva `e⁻ dif`.
+
+2. **Números Cuánticos del Electrón Diferencial:**
+   - Calcula de forma exacta los cuatro números cuánticos correspondientes al último electrón en añadirse al átomo neutro según el principio de Aufbau:
+     - **$n$ (Principal):** Nivel energético fundamental y radio medio orbital (capas $K, L, M, N, O, P, Q$).
+     - **$l$ (Azimutal / Momento Angular):** Subnivel y geometría espacial ($0 = s$ esférico, $1 = p$ bilobular, $2 = d$ tetralobular, $3 = f$ complejo).
+     - **$m_l$ (Magnético):** Orientación tridimensional del orbital respecto a los ejes cartesianos (valores enteros entre $-l$ y $+l$).
+     - **$s$ (Espín Cuántico):** Momento angular intrínseco ($+1/2$ para giro paralelo/horario $\uparrow$, $-1/2$ para giro antiparalelo/antihorario $\downarrow$).
+   - Botón de copiado con un clic de la cuádrupla formal `(n, l, m, s)` con retroalimentación háptica/visual.
 
 ---
 
