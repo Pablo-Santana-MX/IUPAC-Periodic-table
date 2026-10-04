@@ -32,17 +32,22 @@ Una aplicación web científica de última generación diseñada para la visuali
 
 ## 🌟 Características Principales
 
-### 🌓 Sistema de Temas Avanzado (Light / Dark / System)
-*   **Oscuro (*Scientific Neon Glass*)**: Fondo azul-negro profundo, transparencias glassmorfismo (`backdrop-filter: blur(20px)`), acentos cyan y violetas.
-*   **Claro (*Scientific Clear Glass*)**: Superficies translúcidas blancas, bordes tenues, sin reflejos borrosos. Estilo laboratorio.
-*   **Detección Automática**: Sincronización en vivo con las preferencias del sistema operativo.
-*   **Prevención de FOUC**: Aplicación de tema pre-renderizado para evitar destellos visuales.
-
 ### 🔬 Ficha Central Integrada (Hub IUPAC)
 Aprovecha el espacio natural de los periodos 1 a 3 (columnas 3 a 12) para mostrar información oficial en tiempo real mediante *hover*, incluyendo masa atómica, electronegatividad, configuración electrónica y más.
 
+### 📊 Visualización Dinámica y Filtros
+*   **Selector de Propiedades en Celda**: Cambia dinámicamente la métrica visualizada en la cuadrícula principal (Valencia, Electronegatividad, Masa Atómica, Radio Atómico, Energía de Ionización, Configuración Electrónica o Estado de la Materia).
+*   **Cinta de Familias Químicas**: Pestañas de filtrado rápido (*Slim Glass Tabs*) para aislar visualmente grupos como Alcalinos, Metales de Transición, Halógenos, Gases Nobles, etc.
+*   **Búsqueda en Vivo**: Filtrado universal por símbolo, nombre, número atómico o familia química.
+
+### 🎓 Academia Química (Modo Didáctico)
+Nuevo módulo interactivo diseñado para el aprendizaje y la evaluación:
+*   **Quiz Cuántico**: Desafíos para evaluar conocimientos sobre configuraciones electrónicas y números cuánticos.
+*   **Memorama**: Emparejamiento interactivo de elementos (Símbolo-Nombre, Símbolo-Valencia, Símbolo-Z).
+*   **Efectos Inmersivos**: Soporte de efectos de sonido activables para gamificar la experiencia.
+
 ### 🧪 Modal Glass Ultra-Interactivo
-Dossier técnico expandido con 6 módulos de análisis:
+Dossier técnico expandido con módulos de análisis profundo:
 1.  **Modelo Atómico**: Visualizador interactivo 2D de Bohr en `<canvas>`.
 2.  **Valencias y Enlace**: Estados de oxidación oficiales y barra visual de electronegatividad.
 3.  **Compuestos Clave**: Catálogo de moléculas principales con botón de copiado rápido.
@@ -50,17 +55,18 @@ Dossier técnico expandido con 6 módulos de análisis:
 5.  **Simulador Termodinámico**: Deslizador interactivo (0 K a 4000 K) para calcular el estado de la materia en tiempo real.
 6.  **Historia**: Datos del descubrimiento y usos industriales.
 
-### 📈 Gráficos y Accesibilidad
-*   **Chart.js Integrado**: Gráficos dinámicos de tendencias periódicas (Z vs Propiedades) adaptables al tema.
-*   **Text-to-Speech**: Síntesis vocal bilingüe nativa (ES/EN) para pronunciación y datos clave.
-*   **Navegación 100% por Teclado**: Soporte completo para `Tab`, `Enter`, `Flechas` y `Escape`.
-*   **Búsqueda en Vivo**: Filtrado por símbolo, nombre, número atómico o familia química.
+### 🌓 Interfaz Avanzada y Accesibilidad (UX)
+*   **Gestión de Temas**: Menú desplegable para alternar entre Oscuro (*Neon Glass*), Claro (*Clear Glass*) o Sincronización con el Sistema, con prevención FOUC.
+*   **Diseño Fluido**: Soporte de pantalla completa inmersiva, notificaciones flotantes de estado *Offline*, y sugerencias de scroll horizontal inteligente para dispositivos móviles.
+*   **Gráficos Chart.js**: Tendencias periódicas (Z vs Propiedades) adaptables al tema.
+*   **Text-to-Speech & Teclado**: Síntesis vocal nativa (ES/EN) y navegación 100% por teclado (`Tab`, `Enter`, `Flechas`, `Esc`).
+*   **Métricas de Usuario**: Contador visual discreto de visitas en la interfaz.
 
 ---
 
 ## 📱 PWA & Modo Offline
 
-Funciona **100% sin conexión**. Utiliza un Service Worker (v3) con estrategia *Network-First* y *fallback* a caché local. Instalable como aplicación nativa (*standalone*) en Android, iOS, Windows y macOS.
+Funciona **100% sin conexión**. Utiliza un Service Worker (v3) con estrategia *Network-First* y *fallback* a caché local, mostrando una alerta visual discreta cuando no hay conexión. Instalable como aplicación nativa (*standalone*) en Android, iOS, Windows y macOS.
 
 ---
 
@@ -153,7 +159,7 @@ Sube la carpeta `dist/` a cualquier servicio de hosting estático (GitHub Pages,
 El proyecto guarda preferencias del usuario para una experiencia fluida:
 *   `periodicTheme`: (`light` | `dark` | `system`)
 *   `zperiod_lang`: (`es` | `en`)
-*   `zperiod_visits_count`: Contador local de visitas.
+*   `zperiod_visits_count`: Contador local de visitas reflejado en la interfaz principal.
 
 ---
 
@@ -199,17 +205,22 @@ A next-generation scientific web application designed for comprehensive visualiz
 
 ## 🌟 Main Features
 
-### 🌓 Advanced Theme System (Light / Dark / System)
-*   **Dark Mode (*Scientific Neon Glass*)**: Deep blue-black background, glassmorphism transparencies (`backdrop-filter: blur(20px)`), cyan and violet accents.
-*   **Light Mode (*Scientific Clear Glass*)**: Translucent white surfaces, subtle borders, clean laboratory aesthetic.
-*   **Auto Detection**: Live synchronization with OS system preferences.
-*   **FOUC Prevention**: Pre-rendered theme application to avoid visual flashes on load.
-
 ### 🔬 Integrated Central Hub (IUPAC Hub)
 Leverages the natural space of periods 1 to 3 (columns 3 to 12) to display official real-time information via *hover*, including atomic mass, electronegativity, electron configuration, and more.
 
+### 📊 Dynamic Visualization and Filters
+*   **Cell Property Selector**: Dynamically change the metric displayed on the main grid (Valence, Electronegativity, Atomic Mass, Atomic Radius, Ionization Energy, Electron Config, or State of Matter).
+*   **Chemical Family Ribbon**: Quick-filter *Slim Glass Tabs* to visually isolate groups like Alkali Metals, Transition Metals, Halogens, Noble Gases, etc.
+*   **Live Search**: Universal filtering by symbol, name, atomic number, or chemical family.
+
+### 🎓 Chemical Academy (Educational Mode)
+New interactive module designed for learning and testing:
+*   **Quantum Quiz**: Challenges to assess knowledge on electron configurations and quantum numbers.
+*   **Memory Game (Memorama)**: Interactive element matching (Symbol-Name, Symbol-Valence, Symbol-Z).
+*   **Immersive Effects**: Togglable sound effects support to gamify the learning experience.
+
 ### 🧪 Ultra-Interactive Glass Modal
-Expanded technical dossier featuring 6 analysis modules:
+Expanded technical dossier featuring in-depth analysis modules:
 1.  **Atomic Model**: Interactive 2D Bohr visualizer on `<canvas>`.
 2.  **Valences & Bonding**: Official oxidation states and a visual electronegativity bar.
 3.  **Key Compounds**: Catalog of primary molecules with a quick-copy button.
@@ -217,17 +228,18 @@ Expanded technical dossier featuring 6 analysis modules:
 5.  **Thermodynamic Simulator**: Interactive slider (0 K to 4000 K) to calculate the state of matter in real-time.
 6.  **History**: Discovery data and industrial uses.
 
-### 📈 Charts and Accessibility
-*   **Integrated Chart.js**: Dynamic periodic trend charts (Z vs. Properties) that adapt to the active theme.
-*   **Text-to-Speech**: Native bilingual vocal synthesis (ES/EN) for pronunciation and key data.
-*   **100% Keyboard Navigation**: Full support for `Tab`, `Enter`, `Arrows`, and `Escape`.
-*   **Live Search**: Filter by symbol, name, atomic number, or chemical family.
+### 🌓 Advanced UI and Accessibility (UX)
+*   **Theme Management**: Dropdown menu to switch between Dark (*Neon Glass*), Light (*Clear Glass*), or System Synchronization, with FOUC prevention.
+*   **Fluid Design**: Immersive fullscreen toggle, floating offline status notifications, and smart horizontal scroll hints for mobile devices.
+*   **Chart.js Integrations**: Dynamic periodic trend charts (Z vs. Properties) that adapt to the active theme.
+*   **Text-to-Speech & Keyboard**: Native bilingual vocal synthesis (ES/EN) and 100% keyboard navigation support (`Tab`, `Enter`, `Arrows`, `Esc`).
+*   **User Metrics**: Discreet visual visit counter integrated into the interface.
 
 ---
 
 ## 📱 PWA & Offline Mode
 
-Works **100% offline**. Uses a Service Worker (v3) with a *Network-First* strategy and local cache fallback. Installable as a native application (*standalone*) on Android, iOS, Windows, and macOS.
+Works **100% offline**. Uses a Service Worker (v3) with a *Network-First* strategy and local cache fallback, displaying a subtle visual alert when no connection is present. Installable as a native application (*standalone*) on Android, iOS, Windows, and macOS.
 
 ---
 
@@ -320,7 +332,7 @@ Upload the `dist/` folder to any static hosting service (GitHub Pages, Vercel, N
 The project saves user preferences for a seamless experience:
 *   `periodicTheme`: (`light` | `dark` | `system`)
 *   `zperiod_lang`: (`es` | `en`)
-*   `zperiod_visits_count`: Local visit counter.
+*   `zperiod_visits_count`: Local visit counter reflected in the main interface.
 
 ---
 
