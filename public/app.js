@@ -1482,10 +1482,15 @@ function renderCentralHub(elem) {
         </div>
 
         <div class="flex items-center gap-1.5 shrink-0">
-          <button id="openModalBtn" class="glass-button px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-[10px] sm:text-xs font-semibold text-cyan-300 hover:text-white flex items-center gap-1 shadow-md cursor-pointer" aria-label="${t.fullSheetBtn}">
-            <i class="fa-solid fa-expand text-[9px]"></i>
-            <span class="hidden sm:inline">${t.fullSheetBtn}</span>
-            <span class="sm:hidden">${t.detailsTitle || 'Ficha'}</span>
+          <button 
+            id="openModalBtn" 
+            onclick="openIupacModal()" 
+            class="glass-button px-2.5 py-1 sm:px-3 sm:py-1 rounded-xl text-[10px] sm:text-xs font-semibold text-cyan-300 hover:text-white flex items-center gap-1.5 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95 border border-cyan-400/40" 
+            title="${t.fullSheetBtn}"
+            aria-label="${t.fullSheetBtn}"
+          >
+            <i class="fa-solid fa-expand text-[10px] pointer-events-none"></i>
+            <span class="pointer-events-none font-bold">${t.fullSheetBtn}</span>
           </button>
         </div>
       </div>
@@ -1544,7 +1549,10 @@ function renderCentralHub(elem) {
 
   const openModalBtn = document.getElementById('openModalBtn');
   if (openModalBtn) {
-    openModalBtn.addEventListener('click', () => openIupacModal(elem));
+    openModalBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openIupacModal(elem);
+    });
   }
 }
 
@@ -2378,6 +2386,9 @@ function localizeGeochemistry(geo, elem, lang) {
 }
 
 function openIupacModal(elem) {
+  if (!elem || elem instanceof Event || typeof elem.number !== 'number') {
+    elem = currentModalElement || selectedElement || ELEMENTS_DATA[0];
+  }
   currentModalElement = elem;
   const modal = document.getElementById('iupacModal');
   if (!modal) return;
@@ -2399,13 +2410,17 @@ function openIupacModal(elem) {
   if (prevBtn) {
     prevBtn.onclick = (e) => {
       e.stopPropagation();
-      selectElement(prevElem);
+      selectedElement = prevElem;
+      renderCentralHub(prevElem);
+      openIupacModal(prevElem);
     };
   }
   if (nextBtn) {
     nextBtn.onclick = (e) => {
       e.stopPropagation();
-      selectElement(nextElem);
+      selectedElement = nextElem;
+      renderCentralHub(nextElem);
+      openIupacModal(nextElem);
     };
   }
 
@@ -2427,9 +2442,16 @@ function openIupacModal(elem) {
     };
   }
 
-  renderModalBody();
+  // Asegurar apertura inmediata del modal en el DOM
   modal.classList.remove('hidden');
+
+  try {
+    renderModalBody();
+  } catch (err) {
+    console.error('Error al desplegar el contenido de la ficha técnica:', err);
+  }
 }
+window.openIupacModal = openIupacModal;
 
 function renderModalBody() {
   const elem = currentModalElement;
@@ -3920,6 +3942,7 @@ function initApp() {
       window.speechSynthesis.cancel();
     }
   }
+  window.closeInteractiveModal = closeInteractiveModal;
 
   if (closeModalBtn) {
     closeModalBtn.addEventListener('click', closeInteractiveModal);

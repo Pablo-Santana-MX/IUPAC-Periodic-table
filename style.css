@@ -494,6 +494,33 @@ html[data-theme="light"] .theme-option-btn.active {
 }
 
 /* --- Modales --- */
+.hidden {
+  display: none !important;
+}
+
+#iupacModal.hidden,
+#trendsModal.hidden,
+#offlineNotice.hidden,
+#themeDropdownMenu.hidden {
+  display: none !important;
+}
+
+#iupacModal:not(.hidden) {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 1000 !important;
+}
+
+#trendsModal:not(.hidden) {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 1000 !important;
+}
+
 #iupacModal,
 #trendsModal {
   background-color: var(--modal-backdrop);
