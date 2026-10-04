@@ -54,6 +54,55 @@ const I18N = {
     fullSheetBtn: 'Ver Ficha Completa',
     closeBtn: 'Cerrar',
     mobileScrollPrompt: 'Desliza para ver los 18 grupos',
+    // Modo Quiz y Memorama
+    navQuiz: 'Modo Quiz',
+    quizTitle: 'Academia Química: Quiz & Memorama',
+    quizSubtitle: 'Desafíos interactivos de configuración electrónica, números cuánticos y juego de memoria',
+    tabQuantumQuiz: 'Quiz Cuántico',
+    tabMemorama: 'Memorama',
+    quizStreak: 'Racha:',
+    quizBestStreak: 'Récord:',
+    quizAccuracy: 'Aciertos:',
+    quizDifficulty: 'Dificultad:',
+    diffBasic: 'Básico (Z 1–18)',
+    diffMedium: 'Intermedio (Z 1–36)',
+    diffAdvanced: 'Avanzado (Z 1–86)',
+    diffAll: 'Experto (118 elementos)',
+    nextRandomElem: '🎲 Siguiente Elemento',
+    challengeConfigTitle: 'Desafío A: Configuración Electrónica',
+    challengeConfigPrompt: 'Escribe o compone la configuración electrónica oficial:',
+    placeholderConfig: 'Ej: 1s2 2s2 2p6 o [Ne] 3s1...',
+    btnCheckConfig: 'Comprobar Configuración',
+    challengeQuantumTitle: 'Desafío B: Números Cuánticos del Electrón Diferencial',
+    challengeQuantumPrompt: 'Identifica los 4 números cuánticos (n, l, mₗ, s) del último electrón incorporado:',
+    labelN: 'Principal (n):',
+    labelL: 'Azimutal (l):',
+    labelMl: 'Magnético (mₗ):',
+    labelS: 'Espín (s):',
+    btnCheckQuantum: 'Comprobar Números Cuánticos',
+    nextChallengeBtn: 'Siguiente Desafío ➔',
+    memoramaModeLabel: 'Modo de Emparejamiento:',
+    memoSymbolName: 'Símbolo ⟷ Nombre',
+    memoSymbolZ: 'Símbolo ⟷ Número Atómico (Z)',
+    memoSymbolValence: 'Símbolo ⟷ Valencia / Oxidación',
+    memoSymbolConfig: 'Símbolo ⟷ Config. Electrónica',
+    memoMixed: '🎲 Modo Mixto (Desafío)',
+    memoBoardSize: 'Tamaño:',
+    pairs4: '8 cartas (4 pares)',
+    pairs6: '12 cartas (6 pares)',
+    pairs8: '16 cartas (8 pares)',
+    memoCategory: 'Elementos:',
+    catCommon: 'Elementos Esenciales',
+    catAll: 'Todos los 118',
+    memoRestartBtn: '🔄 Reiniciar Partida',
+    memoTime: 'Tiempo:',
+    memoMoves: 'Movimientos:',
+    memoPairs: 'Pares:',
+    memoBest: 'Récord:',
+    memoVictoryTitle: '¡Felicitaciones! ¡Memorama Completado!',
+    memoPlayAgain: 'Jugar Otra Ronda',
+    soundToggleOn: 'Sonido: Activado',
+    soundToggleOff: 'Sonido: Silenciado',
     // Propiedades oficiales IUPAC
     atomicNumber: 'Número Atómico (Z)',
     mass: 'Masa Atómica (CIAAW)',
@@ -106,6 +155,13 @@ const I18N = {
     diffElectronTitle: 'Números Cuánticos del Electrón Diferencial',
     diffElectronSubtitle: 'Parámetros del último electrón incorporado según Aufbau',
     diffElectronBadge: 'Electrón Diferencial',
+    quantumHelpBtn: 'Guía para Estudiantes',
+    quantumHelpTitle: 'Guía de Ayuda: Números Cuánticos y Cajas Orbitales',
+    howToReadBoxes: '¿Cómo leer las cajas?',
+    tooltipN: 'Número Cuántico Principal (n): Nivel de energía y distancia media al núcleo. Mayor n = mayor tamaño y energía orbital (como los pisos de un edificio atómico).',
+    tooltipL: 'Número Cuántico Azimutal (l): Forma tridimensional de la nube: l=0 esférico (s), l=1 bilobular en ocho (p), l=2 trébol (d), l=3 multilobular (f). Valores de 0 a n-1.',
+    tooltipMl: 'Número Cuántico Magnético (mₗ): Orientación espacial del orbital en un campo magnético (-l a +l). Cada valor entero es una "caja" con capacidad para 2 electrones.',
+    tooltipS: 'Número Cuántico de Espín (s): Rotación intrínseca del electrón sobre sí mismo: +1/2 (↑ horario) o -1/2 (↓ antihorario apareado según Pauli).',
     orbitalBoxesTitle: 'Configuración Electrónica Gráfica',
     orbitalBoxesSubtitle: 'Diagrama de orbitales y espines respetando Hund y Pauli',
     valenceOnly: 'Capa de Valencia',
@@ -192,6 +248,55 @@ const I18N = {
     fullSheetBtn: 'View Full Dossier',
     closeBtn: 'Close',
     mobileScrollPrompt: 'Swipe to explore all 18 groups',
+    // Quiz & Memory Game Mode
+    navQuiz: 'Quiz Mode',
+    quizTitle: 'Chemistry Academy: Quiz & Memory Game',
+    quizSubtitle: 'Interactive challenges for electron configurations, quantum numbers, and memory matching',
+    tabQuantumQuiz: 'Quantum Quiz',
+    tabMemorama: 'Memory Game',
+    quizStreak: 'Streak:',
+    quizBestStreak: 'Record:',
+    quizAccuracy: 'Score:',
+    quizDifficulty: 'Difficulty:',
+    diffBasic: 'Basic (Z 1–18)',
+    diffMedium: 'Intermediate (Z 1–36)',
+    diffAdvanced: 'Advanced (Z 1–86)',
+    diffAll: 'Expert (All 118 elements)',
+    nextRandomElem: '🎲 Next Element',
+    challengeConfigTitle: 'Challenge A: Electron Configuration',
+    challengeConfigPrompt: 'Type or compose the official electron configuration:',
+    placeholderConfig: 'e.g. 1s2 2s2 2p6 or [Ne] 3s1...',
+    btnCheckConfig: 'Check Configuration',
+    challengeQuantumTitle: 'Challenge B: Differentiating Electron Quantum Numbers',
+    challengeQuantumPrompt: 'Identify the 4 quantum numbers (n, l, ml, s) for the last added electron:',
+    labelN: 'Principal (n):',
+    labelL: 'Azimuthal (l):',
+    labelMl: 'Magnetic (mₗ):',
+    labelS: 'Spin (s):',
+    btnCheckQuantum: 'Check Quantum Numbers',
+    nextChallengeBtn: 'Next Challenge ➔',
+    memoramaModeLabel: 'Matching Mode:',
+    memoSymbolName: 'Symbol ⟷ Name',
+    memoSymbolZ: 'Symbol ⟷ Atomic Number (Z)',
+    memoSymbolValence: 'Symbol ⟷ Valence / Oxidation',
+    memoSymbolConfig: 'Symbol ⟷ Electron Config.',
+    memoMixed: '🎲 Mixed Mode (Challenge)',
+    memoBoardSize: 'Board Size:',
+    pairs4: '8 cards (4 pairs)',
+    pairs6: '12 cards (6 pairs)',
+    pairs8: '16 cards (8 pairs)',
+    memoCategory: 'Elements:',
+    catCommon: 'Essential Elements',
+    catAll: 'All 118 Elements',
+    memoRestartBtn: '🔄 Restart Game',
+    memoTime: 'Time:',
+    memoMoves: 'Moves:',
+    memoPairs: 'Pairs:',
+    memoBest: 'Record:',
+    memoVictoryTitle: 'Congratulations! Memory Game Completed!',
+    memoPlayAgain: 'Play Again',
+    soundToggleOn: 'Sound: Enabled',
+    soundToggleOff: 'Sound: Muted',
     // IUPAC Properties
     atomicNumber: 'Atomic Number (Z)',
     mass: 'Atomic Weight (CIAAW)',
@@ -244,6 +349,13 @@ const I18N = {
     diffElectronTitle: 'Differentiating Electron Quantum Numbers',
     diffElectronSubtitle: 'Parameters of the last added electron per Aufbau sequence',
     diffElectronBadge: 'Differentiating Electron',
+    quantumHelpBtn: 'Student Guide',
+    quantumHelpTitle: 'Student Help Guide: Quantum Numbers & Orbital Boxes',
+    howToReadBoxes: 'How to read the boxes?',
+    tooltipN: 'Principal Quantum Number (n): Main energy level and average orbital radius. Higher n = larger size and higher energy (like floors of an atomic building).',
+    tooltipL: 'Azimuthal Quantum Number (l): 3D spatial shape of the electron cloud: l=0 spherical (s), l=1 dumbbell (p), l=2 cloverleaf (d), l=3 complex (f). Values from 0 to n-1.',
+    tooltipMl: 'Magnetic Quantum Number (mₗ): Spatial orientation of the orbital in a magnetic field (-l to +l). Each integer value is a "box" holding up to 2 electrons.',
+    tooltipS: 'Spin Quantum Number (s): Intrinsic electron spin rotation: +1/2 (↑ clockwise) or -1/2 (↓ counterclockwise paired per Pauli exclusion).',
     orbitalBoxesTitle: 'Graphical Electron Configuration',
     orbitalBoxesSubtitle: 'Orbital box diagram with spins following Hund and Pauli',
     valenceOnly: 'Valence Shell',
@@ -1374,30 +1486,74 @@ function parseSubshells(configStr) {
   }
   const core = coreName && NOBLE_CORE_SUBSHELLS[coreName] ? NOBLE_CORE_SUBSHELLS[coreName] : [];
   const full = [...core, ...valence];
-  return { coreName, valence: valence.length ? valence : full, full };
+  return { coreName, core, valence: valence.length ? valence : full, full };
 }
 
-function getDiffElectron(elem) {
-  if (!elem) return { subshellKey: '1s', subshellCount: 1, n: 1, l: 0, l_name: 's', m_l: 0, s_val: 0.5, s_str: '+1/2', s_arrow: '↑', electronIndex: 1 };
-  
-  const parsed = parseSubshells(elem.electronConfig);
-  const valence = parsed.valence;
-  const full = parsed.full;
+// Deducir bloque espectroscópico (s, p, d, f) a partir del número atómico Z
+function getBlockFromAtomicNumber(z) {
+  if (z === 1 || z === 2) return 's';
+  if ((z >= 3 && z <= 4) || (z >= 11 && z <= 12) || (z >= 19 && z <= 20) || (z >= 37 && z <= 38) || (z >= 55 && z <= 56) || (z >= 87 && z <= 88)) return 's';
+  if ((z >= 5 && z <= 10) || (z >= 13 && z <= 18) || (z >= 31 && z <= 36) || (z >= 49 && z <= 54) || (z >= 81 && z <= 86) || (z >= 113 && z <= 118)) return 'p';
+  if ((z >= 21 && z <= 30) || (z >= 39 && z <= 48) || (z >= 72 && z <= 80) || (z >= 104 && z <= 112) || z === 57 || z === 89 || z === 90) return 'd';
+  if ((z >= 58 && z <= 71) || (z >= 91 && z <= 103)) return 'f';
+  return 's';
+}
+
+/**
+ * Función auxiliar para calcular los cuatro números cuánticos (n, l, m, s)
+ * del electrón diferencial de cualquier elemento basándose en su número atómico
+ * y configuración electrónica según la regla de Hund y el principio de Aufbau.
+ * 
+ * @param {number|object} atomicNumber - Número atómico (Z) u objeto elemento
+ * @param {string} [electronConfig] - Configuración electrónica (ej: "[Ar] 3d⁶ 4s²")
+ * @param {string} [explicitBlock] - Bloque opcional ('s', 'p', 'd', 'f')
+ * @returns {object} { n, l, m, m_l, s, s_val, m_s, s_str, s_arrow, subshell, subshellKey, subshellCount, electronIndex, l_name, block, tuple, tupleString }
+ */
+function calculateDifferentialQuantumNumbers(atomicNumber, electronConfig, explicitBlock) {
+  let num = typeof atomicNumber === 'number' ? atomicNumber : parseInt(atomicNumber, 10);
+  let config = electronConfig;
+  let block = explicitBlock;
+
+  // Si se pasa un objeto elemento como primer parámetro
+  if (atomicNumber && typeof atomicNumber === 'object') {
+    num = atomicNumber.number || num;
+    config = config || atomicNumber.electronConfig || atomicNumber.config;
+    block = block || atomicNumber.block;
+  }
+
+  // Buscar metadatos en la base de datos si falta la configuración o el bloque
+  const elemData = (!isNaN(num) && typeof ELEMENTS_DATA !== 'undefined')
+    ? ELEMENTS_DATA.find(e => e.number === num)
+    : null;
+
+  if (!config && elemData) {
+    config = elemData.electronConfig;
+  }
+  if (!block && elemData) {
+    block = elemData.block;
+  }
+  if (!block && !isNaN(num)) {
+    block = getBlockFromAtomicNumber(num);
+  }
+
+  const parsed = parseSubshells(config || '1s¹');
+  const valence = parsed.valence || [];
+  const full = parsed.full || [];
 
   let targetSubshell = null;
   // Excepciones y configuraciones terminales de Aufbau reconocidas por IUPAC
-  if (elem.number === 57) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
-  else if (elem.number === 64) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
-  else if (elem.number === 71) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
-  else if (elem.number === 89) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 1, key: '6d' };
-  else if (elem.number === 90) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 2, key: '6d' };
-  else if (elem.number === 96) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 1, key: '6d' };
-  else if (elem.number === 103) targetSubshell = full.find(s => s.key === '7p') || { n: 7, type: 'p', l: 1, count: 1, key: '7p' };
+  if (num === 57) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
+  else if (num === 64) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
+  else if (num === 71) targetSubshell = full.find(s => s.key === '5d') || { n: 5, type: 'd', l: 2, count: 1, key: '5d' };
+  else if (num === 89) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 1, key: '6d' };
+  else if (num === 90) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 2, key: '6d' };
+  else if (num === 96) targetSubshell = full.find(s => s.key === '6d') || { n: 6, type: 'd', l: 2, count: 1, key: '6d' };
+  else if (num === 103) targetSubshell = full.find(s => s.key === '7p') || { n: 7, type: 'p', l: 1, count: 1, key: '7p' };
 
-  if (!targetSubshell) {
+  if (!targetSubshell && block) {
     // Buscar en valence desde el final hacia el inicio coincidiendo con el bloque del elemento
-    targetSubshell = valence.slice().reverse().find(s => s.type === elem.block) ||
-                     full.slice().reverse().find(s => s.type === elem.block);
+    targetSubshell = valence.slice().reverse().find(s => s.type === block) ||
+                     full.slice().reverse().find(s => s.type === block);
   }
 
   if (!targetSubshell && valence.length > 0) {
@@ -1431,17 +1587,36 @@ function getDiffElectron(elem) {
   }
 
   return {
-    subshellKey: targetSubshell.key,
-    subshellCount: k,
     n,
     l,
-    l_name: targetSubshell.type,
+    m: m_l,
     m_l,
+    s: s_val,
     s_val,
+    m_s: s_val,
     s_str,
     s_arrow,
-    electronIndex: k
+    subshell: targetSubshell.key,
+    subshellKey: targetSubshell.key,
+    subshellCount: k,
+    electronIndex: k,
+    l_name: targetSubshell.type,
+    block: targetSubshell.type,
+    tuple: [n, l, m_l, s_val],
+    tupleString: `(${n}, ${l}, ${m_l >= 0 ? '+' + m_l : m_l}, ${s_str})`
   };
+}
+
+// Aliases para máxima ergonomía y compatibilidad global
+window.calculateDifferentialQuantumNumbers = calculateDifferentialQuantumNumbers;
+window.calculateQuantumNumbers = calculateDifferentialQuantumNumbers;
+window.getDifferentialQuantumNumbers = calculateDifferentialQuantumNumbers;
+
+function getDiffElectron(elem) {
+  if (!elem) {
+    return calculateDifferentialQuantumNumbers(1, '1s¹');
+  }
+  return calculateDifferentialQuantumNumbers(elem.number, elem.electronConfig, elem.block);
 }
 
 // --- 8. FICHA CENTRAL INTEGRADA IUPAC (EN EL HUECO DEL GRID) ---
@@ -1483,8 +1658,17 @@ function renderCentralHub(elem) {
 
         <div class="flex items-center gap-1.5 shrink-0">
           <button 
+            onclick="openQuizWithElement(selectedElement)" 
+            class="glass-button px-2 py-1 sm:px-2.5 sm:py-1 rounded-xl text-[10px] sm:text-xs font-semibold text-amber-300 hover:text-white flex items-center gap-1 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95 border border-amber-400/40" 
+            title="Desafío en Modo Quiz"
+            aria-label="Desafío en Modo Quiz"
+          >
+            <i class="fa-solid fa-graduation-cap text-amber-400 text-[10px] pointer-events-none"></i>
+            <span class="hidden sm:inline pointer-events-none font-bold">Quiz</span>
+          </button>
+          <button 
             id="openModalBtn" 
-            onclick="openIupacModal()" 
+            onclick="openIupacModal(selectedElement)" 
             class="glass-button px-2.5 py-1 sm:px-3 sm:py-1 rounded-xl text-[10px] sm:text-xs font-semibold text-cyan-300 hover:text-white flex items-center gap-1.5 shadow-md cursor-pointer transition-all hover:scale-105 active:scale-95 border border-cyan-400/40" 
             title="${t.fullSheetBtn}"
             aria-label="${t.fullSheetBtn}"
@@ -2571,10 +2755,27 @@ function parseElementTemps(elem) {
 
 // --- 11.5. CONFIGURACIÓN ELECTRÓNICA GRÁFICA & MECÁNICA CUÁNTICA ---
 let quantumViewMode = 'valence'; // 'valence' o 'full'
+let isQuantumGuideOpen = false;
 
 window.setQuantumViewMode = function(mode) {
   quantumViewMode = mode;
   renderModalBody();
+};
+
+window.toggleQuantumStudentGuide = function() {
+  isQuantumGuideOpen = !isQuantumGuideOpen;
+  renderModalBody();
+};
+
+window.toggleQuantumTileTooltip = function(event, btnEl) {
+  if (event) event.stopPropagation();
+  const trigger = btnEl ? btnEl.closest('.quantum-tooltip-trigger') : null;
+  if (!trigger) return;
+  const wasActive = trigger.classList.contains('active');
+  document.querySelectorAll('.quantum-tooltip-trigger.active').forEach(el => el.classList.remove('active'));
+  if (!wasActive) {
+    trigger.classList.add('active');
+  }
 };
 
 window.copyQuantumNumbers = function(tupleStr, btnEl) {
@@ -2586,6 +2787,172 @@ window.copyQuantumNumbers = function(tupleStr, btnEl) {
     }
   }).catch(() => {});
 };
+
+// Componente de Ayuda Didáctica e Interactiva para Estudiantes de Química Cuántica
+function renderQuantumStudentGuide(t, diff, elem) {
+  const isEs = currentLang === 'es';
+  const name = isEs ? elem.name_es : elem.name_en;
+
+  return `
+    <div class="student-guide-panel p-3.5 sm:p-4 md:p-5 rounded-2xl space-y-3.5 my-2 border border-amber-400/40 shadow-2xl animate-glass-in text-xs">
+      
+      <!-- Cabecera de la Guía -->
+      <div class="flex items-center justify-between border-b border-amber-400/20 pb-3 flex-wrap gap-2">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-base border border-amber-400/40 shadow-md shadow-amber-500/10">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <h4 class="text-sm sm:text-base font-black text-amber-300 tracking-tight flex items-center gap-1.5">
+              <span>${isEs ? 'Guía Didáctica Cuántica para Estudiantes' : 'Student Quantum Mechanics & Orbital Guide'}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-200 border border-amber-400/30 font-bold uppercase tracking-wider font-mono">
+                ${isEs ? 'Fundamentos' : 'Fundamentals'}
+              </span>
+            </h4>
+            <p class="text-[11px] text-slate-300 mt-0.5">
+              ${isEs ? 'Aprende qué significa cada número cuántico y cómo interpretar el diagrama de cajas paso a paso.' : 'Learn what each quantum number means and how to read orbital box diagrams step by step.'}
+            </p>
+          </div>
+        </div>
+
+        <button 
+          type="button"
+          class="glass-button px-2.5 py-1 rounded-xl text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1 cursor-pointer transition-all border border-white/10"
+          onclick="toggleQuantumStudentGuide()"
+          title="${isEs ? 'Ocultar guía' : 'Hide guide'}"
+        >
+          <i class="fa-solid fa-xmark text-sm"></i>
+          <span class="text-[11px] font-bold">${isEs ? 'Cerrar' : 'Close'}</span>
+        </button>
+      </div>
+
+      <!-- Tarjetas Didácticas en Cuadrícula -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px]">
+        
+        <!-- Bloque 1: Los 4 Números Cuánticos -->
+        <div class="glass-panel p-3.5 rounded-xl border border-white/10 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-2">
+            <strong class="text-cyan-300 font-bold flex items-center gap-1.5 text-xs font-mono">
+              <i class="fa-solid fa-address-card text-cyan-400"></i>
+              <span>1. La Cuádrupla (n, l, mₗ, s)</span>
+            </strong>
+            <p class="text-[10.5px] text-slate-300 leading-snug">
+              ${isEs ? 'Son como la <strong>dirección postal</strong> única de cada electrón dentro del átomo:' : 'They act as the unique <strong>postal address</strong> for every electron in the atom:'}
+            </p>
+            <ul class="space-y-1.5 text-[10px] text-slate-200">
+              <li class="p-1.5 rounded-lg bg-cyan-950/40 border border-cyan-500/25">
+                <span class="font-bold text-cyan-300 font-mono">n (Piso / Nivel):</span> ${isEs ? 'Tamaño del orbital y nivel de energía (1, 2, 3...). A mayor n, mayor distancia al núcleo.' : 'Orbital size and energy level (1, 2, 3...). Higher n means farther from nucleus.'}
+              </li>
+              <li class="p-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/25">
+                <span class="font-bold text-emerald-300 font-mono">l (Habitación):</span> ${isEs ? 'Forma de la nube: <strong>0 = s</strong> (esfera), <strong>1 = p</strong> (en ocho), <strong>2 = d</strong> (trébol), <strong>3 = f</strong> (compleja).' : '3D orbital shape: <strong>0 = s</strong> (sphere), <strong>1 = p</strong> (dumbbell), <strong>2 = d</strong> (clover), <strong>3 = f</strong> (complex).'}
+              </li>
+              <li class="p-1.5 rounded-lg bg-amber-950/40 border border-amber-500/25">
+                <span class="font-bold text-amber-300 font-mono">mₗ (Ventana):</span> ${isEs ? 'Orientación espacial ante un campo magnético (-l a +l). Cada valor entero es una "caja".' : 'Spatial orientation in a magnetic field (-l to +l). Each integer value is a "box".'}
+              </li>
+              <li class="p-1.5 rounded-lg bg-rose-950/40 border border-rose-500/25">
+                <span class="font-bold text-rose-300 font-mono">s (Giro intrínseco):</span> ${isEs ? 'Sentido de rotación del electrón: <strong>+½ (↑)</strong> horario o <strong>-½ (↓)</strong> antihorario.' : 'Intrinsic spin rotation: <strong>+½ (↑)</strong> spin-up or <strong>-½ (↓)</strong> spin-down.'}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bloque 2: Cómo interpretar el Diagrama de Cajas -->
+        <div class="glass-panel p-3.5 rounded-xl border border-white/10 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-2">
+            <strong class="text-amber-300 font-bold flex items-center gap-1.5 text-xs font-mono">
+              <i class="fa-solid fa-table-cells text-amber-400"></i>
+              <span>2. Anatomía de Cajas y Flechas</span>
+            </strong>
+            <p class="text-[10.5px] text-slate-300 leading-snug">
+              ${isEs ? 'Cada símbolo en la cuadrícula tiene un significado físico directo:' : 'Each graphical element in the diagram represents real quantum properties:'}
+            </p>
+            <ul class="space-y-1.5 text-[10px] text-slate-200">
+              <li class="p-1.5 rounded-lg bg-white/5 border border-white/10 flex items-start gap-1.5">
+                <span class="w-4 h-4 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 flex items-center justify-center font-mono font-bold text-[9px] shrink-0 mt-0.5">□</span>
+                <div>
+                  <strong class="text-white block">${isEs ? 'Caja = 1 Orbital' : 'Box = 1 Orbital'}</strong>
+                  <span class="text-slate-300">${isEs ? 'Cada caja alberga como máximo 2 electrones.' : 'Each box can hold at most 2 electrons.'}</span>
+                </div>
+              </li>
+              <li class="p-1.5 rounded-lg bg-white/5 border border-white/10 flex items-start gap-1.5">
+                <span class="text-cyan-400 font-mono font-black text-sm leading-none shrink-0 mt-0.5">↑</span>
+                <div>
+                  <strong class="text-cyan-300 block">${isEs ? 'Flecha Arriba (+½)' : 'Spin Up (+½)'}</strong>
+                  <span class="text-slate-300">${isEs ? 'Primer electrón en entrar al orbital (regla de Hund).' : 'First electron entering orbital (Hund rule).'}</span>
+                </div>
+              </li>
+              <li class="p-1.5 rounded-lg bg-white/5 border border-white/10 flex items-start gap-1.5">
+                <span class="text-rose-400 font-mono font-black text-sm leading-none shrink-0 mt-0.5">↓</span>
+                <div>
+                  <strong class="text-rose-300 block">${isEs ? 'Flecha Abajo (-½)' : 'Spin Down (-½)'}</strong>
+                  <span class="text-slate-300">${isEs ? 'Segundo electrón apareado con espín opuesto (Pauli).' : 'Second paired electron with opposite spin (Pauli).'}</span>
+                </div>
+              </li>
+              <li class="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-400/40 flex items-start gap-1.5">
+                <i class="fa-solid fa-star text-amber-400 text-xs shrink-0 mt-1 animate-pulse"></i>
+                <div>
+                  <strong class="text-cyan-200 block">${isEs ? 'Borde Cyan y Estrella' : 'Cyan Glow & Star'}</strong>
+                  <span class="text-slate-300">${isEs ? 'Señala el <strong>electrón diferencial</strong> de este átomo.' : 'Highlights the <strong>differentiating electron</strong> of this atom.'}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bloque 3: Las 3 Leyes Fundamentales -->
+        <div class="glass-panel p-3.5 rounded-xl border border-white/10 space-y-2.5 flex flex-col justify-between">
+          <div class="space-y-2">
+            <strong class="text-emerald-300 font-bold flex items-center gap-1.5 text-xs font-mono">
+              <i class="fa-solid fa-scale-balanced text-emerald-400"></i>
+              <span>3. Las 3 Leyes de Llenado</span>
+            </strong>
+            <p class="text-[10.5px] text-slate-300 leading-snug">
+              ${isEs ? 'Reglas obligatorias que rigen la distribución electrónica:' : 'Universal rules governing electron distribution:'}
+            </p>
+            <ul class="space-y-1.5 text-[10px] text-slate-200">
+              <li class="p-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/25">
+                <strong class="text-emerald-300 block font-sans">${isEs ? 'Principio de Aufbau:' : 'Aufbau Principle:'}</strong>
+                <span class="text-slate-300">${isEs ? 'Los electrones llenan siempre los orbitales de menor energía disponible antes que los superiores (regla de n + l).' : 'Electrons always occupy lowest energy available orbitals first (n + l rule).'}</span>
+              </li>
+              <li class="p-1.5 rounded-lg bg-amber-950/40 border border-amber-500/25">
+                <strong class="text-amber-300 block font-sans">${isEs ? 'Regla de Hund (Multiplicidad):' : 'Hund\'s Rule (Multiplicity):'}</strong>
+                <span class="text-slate-300">${isEs ? 'En un mismo subnivel, se coloca 1 electrón con flecha arriba (↑) en cada caja antes de empezar a aparear (↓), minimizando la repulsión.' : 'In degenerate orbitals, place one spin-up (↑) in each box before pairing (↓) to minimize electron repulsion.'}</span>
+              </li>
+              <li class="p-1.5 rounded-lg bg-indigo-950/40 border border-indigo-500/25">
+                <strong class="text-indigo-300 block font-sans">${isEs ? 'Principio de Pauli:' : 'Pauli Exclusion Principle:'}</strong>
+                <span class="text-slate-300">${isEs ? 'Dos electrones en el mismo orbital deben tener espines contrarios (↑↓); nunca los 4 números cuánticos iguales.' : 'Two electrons in the same orbital must have opposite spins (↑↓); no two electrons share 4 identical quantum numbers.'}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Resumen Práctico del Elemento Seleccionado -->
+      <div class="bg-amber-500/10 border border-amber-400/30 rounded-xl p-3 flex items-center justify-between flex-wrap gap-2 text-[10.5px]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-xs shrink-0 border border-amber-400/30">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <div class="text-slate-200 leading-relaxed">
+            ${isEs
+              ? `Ejemplo práctico con <strong>${name} (${elem.symbol}, Z=${elem.number})</strong>: Su electrón diferencial es el último electrón añadido según Aufbau. Entra en el subnivel <strong>${diff.subshellKey}</strong>, ocupando la caja con orientación <strong>mₗ = ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</strong> y espín <strong>s = ${diff.s_str} (${diff.s_arrow})</strong>.`
+              : `Practical example with <strong>${name} (${elem.symbol}, Z=${elem.number})</strong>: Its differentiating electron is the last electron added per Aufbau. It enters subshell <strong>${diff.subshellKey}</strong>, occupying the box with orientation <strong>mₗ = ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</strong> and spin <strong>s = ${diff.s_str} (${diff.s_arrow})</strong>.`
+            }
+          </div>
+        </div>
+        <button 
+          type="button"
+          class="text-amber-300 hover:text-white font-bold text-[10.5px] underline underline-offset-2 cursor-pointer shrink-0"
+          onclick="toggleQuantumStudentGuide()"
+        >
+          ${isEs ? 'Entendido, ocultar guía' : 'Got it, hide guide'}
+        </button>
+      </div>
+
+    </div>
+  `;
+}
 
 // Componente 1: Ficha Hero de los 4 Números Cuánticos del Electrón Diferencial
 function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
@@ -2622,8 +2989,20 @@ function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
           </p>
         </div>
 
-        <!-- Cuádrupla Cuántica Destacada & Botón de Copiado -->
-        <div class="flex items-center gap-2 shrink-0 self-start sm:self-auto">
+        <!-- Controles Cuánticos: Botón Guía Estudiantes, Cuádrupla Destacada & Botón de Copiado -->
+        <div class="flex items-center gap-2 shrink-0 self-start sm:self-auto flex-wrap">
+          <button 
+            type="button"
+            class="glass-button px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-amber-300 hover:text-amber-200 border border-amber-400/40 hover:border-amber-300 bg-amber-500/10 hover:bg-amber-500/20 cursor-pointer transition-all shadow-sm"
+            onclick="toggleQuantumStudentGuide()"
+            aria-expanded="${isQuantumGuideOpen}"
+            title="${t.quantumHelpTitle}"
+          >
+            <i class="fa-solid fa-graduation-cap text-amber-400 text-xs"></i>
+            <span class="font-bold">${isQuantumGuideOpen ? (currentLang === 'es' ? 'Ocultar Guía' : 'Hide Guide') : t.quantumHelpBtn}</span>
+            <i class="fa-solid ${isQuantumGuideOpen ? 'fa-chevron-up' : 'fa-chevron-down'} text-[10px] opacity-70"></i>
+          </button>
+
           <div class="glass-panel px-3 py-1.5 rounded-xl border border-cyan-400/40 flex items-center gap-2 shadow-lg shadow-cyan-500/10">
             <i class="fa-solid fa-shapes text-amber-400 text-xs"></i>
             <span class="font-mono font-bold text-xs sm:text-sm text-cyan-300 tracking-wider">
@@ -2642,14 +3021,37 @@ function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
         </div>
       </div>
 
-      <!-- 4 Tarjetas de los Números Cuánticos (n, l, m, s) -->
+      <!-- Panel Desplegable de Ayuda Didáctica para Estudiantes -->
+      ${isQuantumGuideOpen ? renderQuantumStudentGuide(t, diff, elem) : ''}
+
+      <!-- 4 Tarjetas de los Números Cuánticos (n, l, m, s) con Tooltips Interactivos -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
         
         <!-- n: Número Cuántico Principal -->
         <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-bold text-cyan-300 uppercase tracking-wider font-mono">Principal</span>
-            <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-300 font-mono font-black flex items-center justify-center text-xs border border-cyan-500/30">n</span>
+            <div class="flex items-center gap-1.5">
+              <div class="quantum-tooltip-trigger">
+                <button 
+                  type="button" 
+                  class="w-5 h-5 rounded-full glass-button text-cyan-300 hover:text-white flex items-center justify-center text-[10px] font-bold border border-cyan-400/30 cursor-pointer transition-transform hover:scale-110 active:scale-95"
+                  onclick="toggleQuantumTileTooltip(event, this)"
+                  title="${t.tooltipN}"
+                  aria-label="Explicación de n"
+                >
+                  <i class="fa-solid fa-question text-[9px] pointer-events-none"></i>
+                </button>
+                <div class="quantum-tooltip-popover">
+                  <div class="font-bold text-cyan-300 text-xs mb-1 flex items-center gap-1.5">
+                    <i class="fa-solid fa-layer-group text-cyan-400 text-[10px]"></i>
+                    <span>Número Principal (n)</span>
+                  </div>
+                  <p class="text-[10px] leading-relaxed text-slate-300">${t.tooltipN}</p>
+                </div>
+              </div>
+              <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-300 font-mono font-black flex items-center justify-center text-xs border border-cyan-500/30">n</span>
+            </div>
           </div>
           <div class="my-0.5">
             <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.n}</div>
@@ -2664,7 +3066,27 @@ function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
         <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider font-mono">Azimutal</span>
-            <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono font-black flex items-center justify-center text-xs border border-emerald-500/30">l</span>
+            <div class="flex items-center gap-1.5">
+              <div class="quantum-tooltip-trigger">
+                <button 
+                  type="button" 
+                  class="w-5 h-5 rounded-full glass-button text-emerald-300 hover:text-white flex items-center justify-center text-[10px] font-bold border border-emerald-400/30 cursor-pointer transition-transform hover:scale-110 active:scale-95"
+                  onclick="toggleQuantumTileTooltip(event, this)"
+                  title="${t.tooltipL}"
+                  aria-label="Explicación de l"
+                >
+                  <i class="fa-solid fa-question text-[9px] pointer-events-none"></i>
+                </button>
+                <div class="quantum-tooltip-popover">
+                  <div class="font-bold text-emerald-300 text-xs mb-1 flex items-center gap-1.5">
+                    <i class="fa-solid fa-shapes text-emerald-400 text-[10px]"></i>
+                    <span>Número Azimutal (l)</span>
+                  </div>
+                  <p class="text-[10px] leading-relaxed text-slate-300">${t.tooltipL}</p>
+                </div>
+              </div>
+              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono font-black flex items-center justify-center text-xs border border-emerald-500/30">l</span>
+            </div>
           </div>
           <div class="my-0.5">
             <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.l} <span class="text-base font-bold text-emerald-400 uppercase font-mono">(${diff.l_name})</span></div>
@@ -2679,7 +3101,27 @@ function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
         <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider font-mono">Magnético</span>
-            <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 font-mono font-black flex items-center justify-center text-xs border border-amber-500/30">mₗ</span>
+            <div class="flex items-center gap-1.5">
+              <div class="quantum-tooltip-trigger">
+                <button 
+                  type="button" 
+                  class="w-5 h-5 rounded-full glass-button text-amber-300 hover:text-white flex items-center justify-center text-[10px] font-bold border border-amber-400/30 cursor-pointer transition-transform hover:scale-110 active:scale-95"
+                  onclick="toggleQuantumTileTooltip(event, this)"
+                  title="${t.tooltipMl}"
+                  aria-label="Explicación de m_l"
+                >
+                  <i class="fa-solid fa-question text-[9px] pointer-events-none"></i>
+                </button>
+                <div class="quantum-tooltip-popover">
+                  <div class="font-bold text-amber-300 text-xs mb-1 flex items-center gap-1.5">
+                    <i class="fa-solid fa-compass text-amber-400 text-[10px]"></i>
+                    <span>Número Magnético (mₗ)</span>
+                  </div>
+                  <p class="text-[10px] leading-relaxed text-slate-300">${t.tooltipMl}</p>
+                </div>
+              </div>
+              <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 font-mono font-black flex items-center justify-center text-xs border border-amber-500/30">mₗ</span>
+            </div>
           </div>
           <div class="my-0.5">
             <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</div>
@@ -2694,7 +3136,27 @@ function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
         <div class="quantum-tile p-3 rounded-xl flex flex-col justify-between space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-bold text-rose-300 uppercase tracking-wider font-mono">Espín</span>
-            <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-300 font-mono font-black flex items-center justify-center text-xs border border-rose-500/30">s</span>
+            <div class="flex items-center gap-1.5">
+              <div class="quantum-tooltip-trigger">
+                <button 
+                  type="button" 
+                  class="w-5 h-5 rounded-full glass-button text-rose-300 hover:text-white flex items-center justify-center text-[10px] font-bold border border-rose-400/30 cursor-pointer transition-transform hover:scale-110 active:scale-95"
+                  onclick="toggleQuantumTileTooltip(event, this)"
+                  title="${t.tooltipS}"
+                  aria-label="Explicación de s"
+                >
+                  <i class="fa-solid fa-question text-[9px] pointer-events-none"></i>
+                </button>
+                <div class="quantum-tooltip-popover">
+                  <div class="font-bold text-rose-300 text-xs mb-1 flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrows-spin text-rose-400 text-[10px]"></i>
+                    <span>Número de Espín (s / mₛ)</span>
+                  </div>
+                  <p class="text-[10px] leading-relaxed text-slate-300">${t.tooltipS}</p>
+                </div>
+              </div>
+              <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-300 font-mono font-black flex items-center justify-center text-xs border border-rose-500/30">s</span>
+            </div>
           </div>
           <div class="my-0.5 flex items-baseline gap-2">
             <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-none">${diff.s_str}</div>
@@ -2725,9 +3187,36 @@ function renderDiffElectronHeroCard(elem, diff, isCompact = false) {
 
 // Componente 2: Configuración Electrónica Gráfica (Cajas y Espines de Hund/Pauli)
 function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false) {
-  const t = I18N[currentLang];
-  const subshellData = parseSubshells(elem.electronConfig);
-  const displaySubshells = isFull ? subshellData.full : subshellData.valence;
+  const t = I18N[currentLang] || I18N.es;
+
+  // Extraer defensivamente la configuración electrónica (config)
+  // Soporta tanto objeto elemento (elem.electronConfig) como string de configuración directo
+  let config = typeof elem === 'string' ? elem : (elem && elem.electronConfig ? elem.electronConfig : null);
+  if (!config && elem && typeof elem === 'object' && elem.config) {
+    config = elem.config;
+  }
+  // Si no se pasó elem o se pasó un objeto Event de un click listener, usar fallback
+  if (!elem || elem instanceof Event) {
+    const fallbackElem = currentModalElement || selectedElement || ELEMENTS_DATA[0];
+    if (fallbackElem && fallbackElem.electronConfig) {
+      config = fallbackElem.electronConfig;
+      elem = fallbackElem;
+    }
+  }
+
+  // Verificación defensiva solicitada para prevenir Uncaught TypeError cuando config sea undefined o null
+  if (!config) return;
+
+  if (!diff || typeof diff !== 'object') {
+    diff = getDiffElectron(elem || currentModalElement || selectedElement || ELEMENTS_DATA[0]);
+  }
+
+  const subshellData = parseSubshells(config) || { coreName: null, core: [], valence: [], full: [] };
+  const displaySubshells = (isFull ? subshellData.full : subshellData.valence) || [];
+
+  if (!displaySubshells || !Array.isArray(displaySubshells)) return;
+
+  const displayConfigStr = (elem && elem.electronConfig) ? elem.electronConfig : config;
 
   return `
     <div class="glass-card p-3.5 sm:p-4 md:p-5 rounded-2xl space-y-3.5 border border-white/10 shadow-xl">
@@ -2735,12 +3224,47 @@ function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false
       <!-- Encabezado con selector de vista (Valencia vs Completa) -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
         <div>
-          <h4 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-table-cells text-cyan-400"></i>
-            <span>${t.orbitalBoxesTitle}</span>
-          </h4>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h4 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-table-cells text-cyan-400"></i>
+              <span>${t.orbitalBoxesTitle}</span>
+            </h4>
+
+            <!-- Tooltip / Ayuda rápida interactiva para leer cajas -->
+            <div class="quantum-tooltip-trigger">
+              <button 
+                type="button"
+                class="glass-button px-2 py-0.5 rounded-lg text-[10px] font-bold text-cyan-300 hover:text-white border border-cyan-400/40 flex items-center gap-1 cursor-pointer transition-all hover:scale-105 active:scale-95"
+                onclick="toggleQuantumTileTooltip(event, this)"
+                title="${t.howToReadBoxes}"
+                aria-label="${t.howToReadBoxes}"
+              >
+                <i class="fa-solid fa-circle-question text-cyan-400 text-[10px] pointer-events-none"></i>
+                <span class="pointer-events-none">${t.howToReadBoxes}</span>
+              </button>
+              <div class="quantum-tooltip-popover w-64 sm:w-72">
+                <div class="font-bold text-cyan-300 text-xs mb-1.5 flex items-center gap-1.5">
+                  <i class="fa-solid fa-table-cells text-cyan-400 text-[10px]"></i>
+                  <span>${currentLang === 'es' ? 'Cómo interpretar las Cajas' : 'How to Read Orbital Boxes'}</span>
+                </div>
+                <ul class="text-[10px] leading-relaxed text-slate-200 space-y-1">
+                  <li>• <strong>Caja (□):</strong> 1 orbital individual (máx. 2 electrones).</li>
+                  <li>• <strong>↑ (+½):</strong> 1er electrón entrante (regla de Hund).</li>
+                  <li>• <strong>↓ (-½):</strong> 2º electrón apareado opuesto (Pauli).</li>
+                  <li>• <strong>Número mₗ arriba:</strong> Orientación magnética (-l a +l).</li>
+                  <li>• <strong>Borde cyan / ★:</strong> Electrón diferencial activo.</li>
+                </ul>
+                <div class="pt-1.5 mt-1.5 border-t border-white/10 text-right">
+                  <button type="button" class="text-amber-300 hover:text-white underline text-[9.5px] font-bold cursor-pointer" onclick="toggleQuantumStudentGuide()">
+                    ${currentLang === 'es' ? 'Ver guía completa con analogías &rarr;' : 'See full student guide &rarr;'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <p class="text-[11px] text-slate-300 mt-0.5">
-            ${t.orbitalBoxesSubtitle} &bull; <span class="text-cyan-300 font-mono">${elem.electronConfig}</span>
+            ${t.orbitalBoxesSubtitle} &bull; <span class="text-cyan-300 font-mono">${displayConfigStr}</span>
           </p>
         </div>
 
@@ -2771,7 +3295,7 @@ function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false
             <div>
               <span class="font-bold text-white block">${t.nobleGasCoreClosed}</span>
               <span class="text-[10px] text-slate-400 font-mono">
-                ${subshellData.core.map(c => `${c.key}<sup>${c.count}</sup>`).join(' ')}
+                ${(subshellData.core || []).map(c => `${c.key}<sup>${c.count}</sup>`).join(' ')}
               </span>
             </div>
           </div>
@@ -2784,7 +3308,7 @@ function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false
 
       <!-- Contenedor de Grupos de Subniveles con sus Cajas de Orbitales -->
       <div class="space-y-3 pt-1">
-        ${displaySubshells.map((s) => {
+        ${(!displaySubshells || !displaySubshells.length) ? '' : displaySubshells.map((s) => {
           const numOrbitals = 2 * s.l + 1;
           const maxElectrons = numOrbitals * 2;
           const isDiffSubshell = (s.key === diff.subshellKey);
@@ -2830,6 +3354,7 @@ function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false
                   return `
                     <div 
                       class="orbital-box ${isDiffBox ? 'diff-electron-box' : ''}" 
+                      style="animation-delay: ${(i * 0.045).toFixed(2)}s;"
                       title="Orbital ${s.key} (mₗ = ${m_l >= 0 ? '+' + m_l : m_l})${isDiffBox ? ' — Contiene el electrón diferencial' : ''}"
                     >
                       <!-- Etiqueta m_l arriba -->
@@ -2842,7 +3367,7 @@ function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false
                         <!-- Espín Arriba (+1/2) -->
                         <div class="orbital-slot" title="${upTitle}">
                           ${hasUp ? `
-                            <span class="electron-arrow-up ${isDiffUp ? 'ring-1 ring-cyan-300 rounded px-0.5' : ''}">↑</span>
+                            <span class="electron-arrow-up ${isDiffUp ? 'ring-1 ring-cyan-300 rounded px-0.5' : ''}" style="animation-delay: ${(0.05 + i * 0.045).toFixed(2)}s;">↑</span>
                           ` : `
                             <span class="electron-empty">&bull;</span>
                           `}
@@ -2851,7 +3376,7 @@ function renderOrbitalBoxesDiagram(elem, diff, isFull = false, isCompact = false
                         <!-- Espín Abajo (-1/2) -->
                         <div class="orbital-slot" title="${downTitle}">
                           ${hasDown ? `
-                            <span class="electron-arrow-down ${isDiffDown ? 'ring-1 ring-rose-400 rounded px-0.5' : ''}">↓</span>
+                            <span class="electron-arrow-down ${isDiffDown ? 'ring-1 ring-rose-400 rounded px-0.5' : ''}" style="animation-delay: ${(0.14 + i * 0.045).toFixed(2)}s;">↓</span>
                           ` : `
                             <span class="electron-empty">&bull;</span>
                           `}
@@ -2922,7 +3447,7 @@ function renderQuantumTabContent(elem) {
       ${renderDiffElectronHeroCard(elem, diff, false)}
 
       <!-- SECCIÓN: CONFIGURACIÓN ELECTRÓNICA GRÁFICA (CAJAS Y FLECHAS) -->
-      ${renderOrbitalBoxesDiagram(elem, diff, isFull, false)}
+      ${renderOrbitalBoxesDiagram(elem, diff, isFull, false) || ''}
 
       <!-- LABORATORIO CUÁNTICO: FUNDAMENTOS FÍSICOS Y ECUACIONES -->
       <div class="glass-card p-4 sm:p-5 rounded-2xl border border-white/10 space-y-3">
@@ -2952,6 +3477,7 @@ function renderQuantumTabContent(elem) {
 // Renderizado por Pestaña
 function renderActiveTabContent(elem, tempValues) {
   const t = I18N[currentLang];
+  const name = currentLang === 'es' ? elem.name_es : elem.name_en;
   const desc = currentLang === 'es' ? elem.desc_es : elem.desc_en;
   const diff = getDiffElectron(elem);
 
@@ -3058,7 +3584,7 @@ function renderActiveTabContent(elem, tempValues) {
         ${renderDiffElectronHeroCard(elem, diff, false)}
 
         <!-- 3. CONFIGURACIÓN ELECTRÓNICA GRÁFICA (NOTACIÓN DE CAJAS/ORBITALES CON FLECHAS Y ESPÍN) -->
-        ${renderOrbitalBoxesDiagram(elem, diff, isFull, false)}
+        ${renderOrbitalBoxesDiagram(elem, diff, isFull, false) || ''}
 
       </div>
     `;
@@ -3837,9 +4363,1413 @@ function setLanguage(lang) {
     renderModalBody();
   }
 
+  const qModal = document.getElementById('quizModal');
+  if (qModal && !qModal.classList.contains('hidden')) {
+    renderCurrentQuizView();
+  }
+
   initTrendsChart();
   initVisitCounter();
 }
+
+// ==========================================================================
+// MODO QUIZ & MEMORAMA DIDÁCTICO (ACADEMIA QUÍMICA IUPAC 2026)
+// ==========================================================================
+
+let quizAudioCtx = null;
+let quizSoundEnabled = true;
+
+function playQuizSound(type) {
+  if (!quizSoundEnabled) return;
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    if (!quizAudioCtx) {
+      quizAudioCtx = new AudioContext();
+    }
+    if (quizAudioCtx.state === 'suspended') {
+      quizAudioCtx.resume();
+    }
+    const now = quizAudioCtx.currentTime;
+
+    if (type === 'flip' || type === 'click') {
+      const osc = quizAudioCtx.createOscillator();
+      const gain = quizAudioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(520, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.04);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      osc.connect(gain);
+      gain.connect(quizAudioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.04);
+    } else if (type === 'correct' || type === 'match') {
+      const freqs = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+      freqs.forEach((freq, idx) => {
+        const osc = quizAudioCtx.createOscillator();
+        const gain = quizAudioCtx.createGain();
+        osc.type = 'triangle';
+        const start = now + idx * 0.07;
+        osc.frequency.setValueAtTime(freq, start);
+        gain.gain.setValueAtTime(0.08, start);
+        gain.gain.exponentialRampToValueAtTime(0.001, start + 0.22);
+        osc.connect(gain);
+        gain.connect(quizAudioCtx.destination);
+        osc.start(start);
+        osc.stop(start + 0.22);
+      });
+    } else if (type === 'wrong') {
+      const osc = quizAudioCtx.createOscillator();
+      const gain = quizAudioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(190, now);
+      osc.frequency.exponentialRampToValueAtTime(110, now + 0.2);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+      osc.connect(gain);
+      gain.connect(quizAudioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.2);
+    } else if (type === 'win') {
+      const freqs = [523.25, 659.25, 783.99, 1046.5, 1318.51];
+      freqs.forEach((freq, idx) => {
+        const osc = quizAudioCtx.createOscillator();
+        const gain = quizAudioCtx.createGain();
+        osc.type = 'sine';
+        const start = now + idx * 0.09;
+        osc.frequency.setValueAtTime(freq, start);
+        gain.gain.setValueAtTime(0.1, start);
+        gain.gain.exponentialRampToValueAtTime(0.001, start + 0.35);
+        osc.connect(gain);
+        gain.connect(quizAudioCtx.destination);
+        osc.start(start);
+        osc.stop(start + 0.35);
+      });
+    }
+  } catch (e) {
+    // Non-critical audio warning
+  }
+}
+
+function toggleQuizSound() {
+  quizSoundEnabled = !quizSoundEnabled;
+  const btn = document.getElementById('quizSoundToggleBtn');
+  if (btn) {
+    btn.innerHTML = quizSoundEnabled
+      ? '<i class="fa-solid fa-volume-high text-xs"></i>'
+      : '<i class="fa-solid fa-volume-xmark text-xs text-slate-500"></i>';
+    const t = I18N[currentLang] || I18N.es;
+    btn.title = quizSoundEnabled ? t.soundToggleOn : t.soundToggleOff;
+    btn.setAttribute('aria-label', btn.title);
+  }
+}
+
+const ESSENTIAL_ELEMENT_NUMBERS = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+  11, 12, 13, 14, 15, 16, 17, 18,
+  19, 20, 22, 24, 25, 26, 27, 28, 29, 30,
+  35, 36, 47, 50, 53, 54, 79, 80, 82, 92
+];
+
+const quizState = {
+  activeTab: 'quantum',
+  currentElem: null,
+  streak: 0,
+  bestStreak: parseInt(localStorage.getItem('iupac_quiz_best_streak') || '0', 10),
+  totalCorrect: 0,
+  totalAttempts: 0,
+  difficulty: 'medium',
+  showMoeller: false
+};
+
+const memoramaState = {
+  mode: 'symbol-name',
+  pairCount: 6,
+  category: 'common',
+  cards: [],
+  flippedIndices: [],
+  matchedPairs: 0,
+  moves: 0,
+  timerInterval: null,
+  elapsedSeconds: 0,
+  isBusy: false,
+  bestRecord: null,
+  gameCompleted: false
+};
+
+function getRandomQuizElement(diffLevel) {
+  let filtered = ELEMENTS_DATA;
+  if (diffLevel === 'basic') {
+    filtered = ELEMENTS_DATA.filter(e => e.number <= 18);
+  } else if (diffLevel === 'medium') {
+    filtered = ELEMENTS_DATA.filter(e => e.number <= 36);
+  } else if (diffLevel === 'advanced') {
+    filtered = ELEMENTS_DATA.filter(e => e.number <= 86);
+  }
+  if (!filtered || !filtered.length) filtered = ELEMENTS_DATA;
+  const randomIndex = Math.floor(Math.random() * filtered.length);
+  return filtered[randomIndex] || ELEMENTS_DATA[0];
+}
+
+function openQuizModal(initialTab = 'quantum', targetElem = null) {
+  const modal = document.getElementById('quizModal');
+  if (!modal) return;
+
+  if (targetElem) {
+    quizState.currentElem = targetElem;
+  } else if (!quizState.currentElem) {
+    quizState.currentElem = getRandomQuizElement(quizState.difficulty);
+  }
+
+  modal.classList.remove('hidden');
+  switchQuizTab(initialTab);
+}
+window.openQuizModal = openQuizModal;
+
+function openQuizWithElement(elem) {
+  openQuizModal('quantum', elem);
+}
+window.openQuizWithElement = openQuizWithElement;
+
+function closeQuizModal() {
+  const modal = document.getElementById('quizModal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  stopMemoramaTimer();
+}
+window.closeQuizModal = closeQuizModal;
+
+function switchQuizTab(tab) {
+  quizState.activeTab = tab;
+  const quantumView = document.getElementById('quizQuantumView');
+  const memoramaView = document.getElementById('quizMemoramaView');
+  const tabBtnQuantum = document.getElementById('quizTabBtnQuantum');
+  const tabBtnMemorama = document.getElementById('quizTabBtnMemorama');
+
+  if (tab === 'quantum') {
+    if (quantumView) quantumView.classList.remove('hidden');
+    if (memoramaView) memoramaView.classList.add('hidden');
+
+    if (tabBtnQuantum) {
+      tabBtnQuantum.className = 'px-2.5 py-1 rounded-xl font-bold transition-all text-amber-300 bg-amber-500/20 shadow-sm border border-amber-400/30 cursor-pointer flex items-center gap-1.5';
+    }
+    if (tabBtnMemorama) {
+      tabBtnMemorama.className = 'px-2.5 py-1 rounded-xl font-bold transition-all text-slate-400 hover:text-white cursor-pointer flex items-center gap-1.5';
+    }
+    stopMemoramaTimer();
+    renderQuantumQuizView();
+  } else {
+    if (quantumView) quantumView.classList.add('hidden');
+    if (memoramaView) memoramaView.classList.remove('hidden');
+
+    if (tabBtnMemorama) {
+      tabBtnMemorama.className = 'px-2.5 py-1 rounded-xl font-bold transition-all text-amber-300 bg-amber-500/20 shadow-sm border border-amber-400/30 cursor-pointer flex items-center gap-1.5';
+    }
+    if (tabBtnQuantum) {
+      tabBtnQuantum.className = 'px-2.5 py-1 rounded-xl font-bold transition-all text-slate-400 hover:text-white cursor-pointer flex items-center gap-1.5';
+    }
+
+    if (!memoramaState.cards || memoramaState.cards.length === 0 || memoramaState.gameCompleted) {
+      startMemoramaGame(memoramaState.pairCount, memoramaState.mode, memoramaState.category);
+    } else {
+      renderMemoramaView();
+    }
+  }
+}
+window.switchQuizTab = switchQuizTab;
+
+function renderCurrentQuizView() {
+  if (quizState.activeTab === 'quantum') {
+    renderQuantumQuizView();
+  } else {
+    renderMemoramaView();
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODO 1: QUIZ CUÁNTICO & CONFIGURACIÓN
+// --------------------------------------------------------------------------
+
+function renderQuantumQuizView() {
+  const container = document.getElementById('quizQuantumView');
+  if (!container) return;
+
+  const t = I18N[currentLang] || I18N.es;
+  const isEs = currentLang === 'es';
+  const elem = quizState.currentElem || ELEMENTS_DATA[0];
+  const name = isEs ? elem.name_es : elem.name_en;
+  const categoryLabel = t[elem.category] || elem.category;
+  const diff = getDiffElectron(elem);
+
+  const accuracyPct = quizState.totalAttempts > 0
+    ? Math.round((quizState.totalCorrect / quizState.totalAttempts) * 100)
+    : 0;
+
+  container.innerHTML = `
+    <!-- Barra Superior de Estadísticas y Dificultad -->
+    <div class="glass-card p-2.5 sm:p-3 rounded-2xl flex flex-wrap items-center justify-between gap-2.5 border border-white/10 text-xs">
+      <!-- Estadísticas: Racha y Precisión -->
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/15 border border-amber-400/30">
+          <span class="streak-flame text-sm">🔥</span>
+          <span class="text-slate-300 font-semibold">${t.quizStreak}</span>
+          <strong class="text-amber-300 font-mono text-sm">${quizState.streak}</strong>
+        </div>
+
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-800/60 border border-white/10">
+          <i class="fa-solid fa-trophy text-amber-400 text-xs"></i>
+          <span class="text-slate-300 font-semibold">${t.quizBestStreak}</span>
+          <strong class="text-white font-mono">${quizState.bestStreak}</strong>
+        </div>
+
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-cyan-500/10 border border-cyan-400/20">
+          <i class="fa-solid fa-bullseye text-cyan-400 text-xs"></i>
+          <span class="text-slate-300 font-semibold">${t.quizAccuracy}</span>
+          <strong class="text-cyan-300 font-mono">${quizState.totalCorrect}/${quizState.totalAttempts} (${accuracyPct}%)</strong>
+        </div>
+      </div>
+
+      <!-- Selector de Dificultad y Botón Siguiente -->
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5">
+          <label for="quizDifficultySelect" class="text-slate-400 text-[11px] font-semibold hidden md:inline">${t.quizDifficulty}</label>
+          <select id="quizDifficultySelect" onchange="changeQuizDifficulty(this.value)" class="glass-input rounded-xl px-2 py-1 text-xs text-amber-200 cursor-pointer">
+            <option value="basic" ${quizState.difficulty === 'basic' ? 'selected' : ''}>${t.diffBasic}</option>
+            <option value="medium" ${quizState.difficulty === 'medium' ? 'selected' : ''}>${t.diffMedium}</option>
+            <option value="advanced" ${quizState.difficulty === 'advanced' ? 'selected' : ''}>${t.diffAdvanced}</option>
+            <option value="all" ${quizState.difficulty === 'all' ? 'selected' : ''}>${t.diffAll}</option>
+          </select>
+        </div>
+
+        <button onclick="nextQuizChallenge()" class="glass-button px-2.5 py-1 rounded-xl text-xs font-bold text-amber-300 hover:text-white flex items-center gap-1.5 border border-amber-400/40 shadow-sm cursor-pointer hover:scale-105 active:scale-95 transition-all">
+          <i class="fa-solid fa-dice text-xs"></i>
+          <span class="hidden sm:inline">${t.nextRandomElem}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Ficha del Elemento Desafío -->
+    <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+      <div class="flex items-center gap-3">
+        <div class="w-13 h-13 sm:w-16 sm:h-16 rounded-2xl glass-card border-2 border-amber-400/60 flex flex-col items-center justify-center shadow-lg shadow-amber-500/20 shrink-0">
+          <span class="text-[9px] text-amber-300 font-mono font-bold leading-none">${elem.number}</span>
+          <span class="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">${elem.symbol}</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h3 class="text-base sm:text-lg font-black text-white tracking-tight">${name}</h3>
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">
+              ${categoryLabel}
+            </span>
+          </div>
+          <div class="text-[10px] sm:text-[11px] text-slate-300 font-mono flex items-center gap-2.5 mt-0.5 flex-wrap">
+            <span><strong>Z:</strong> ${elem.number}</span> &bull;
+            <span><strong>Masa:</strong> ${typeof elem.mass === 'number' ? elem.mass.toFixed(2) : elem.mass} u</span> &bull;
+            <span><strong>Periodo:</strong> ${elem.period}</span> &bull;
+            <span><strong>Grupo:</strong> ${elem.group}</span> &bull;
+            <span><strong>Bloque:</strong> ${elem.block}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5 self-end sm:self-center">
+        <button onclick="toggleMoellerGuide()" class="glass-button px-2.5 py-1 rounded-xl text-[11px] font-semibold text-cyan-300 hover:text-white flex items-center gap-1 border border-cyan-400/30">
+          <i class="fa-solid fa-route text-[10px]"></i>
+          <span>Regla de Aufbau (Moeller)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Guía Desplegable del Diagrama de Moeller -->
+    <div id="moellerGuidePanel" class="${quizState.showMoeller ? '' : 'hidden'} glass-panel p-3 rounded-2xl border border-cyan-400/30 text-xs space-y-2 animate-glass-in">
+      <div class="flex items-center justify-between font-bold text-cyan-300 border-b border-white/10 pb-1.5">
+        <span class="flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-trend-up text-cyan-400"></i>
+          <span>Orden de Llenado Energético (Principio de Aufbau / Regla de n + l)</span>
+        </span>
+        <button onclick="toggleMoellerGuide()" class="text-slate-400 hover:text-white text-xs"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-[11px] text-slate-300">
+        Los electrones ocupan los subniveles en orden ascendente de energía disponible:
+      </p>
+      <div class="p-2 rounded-xl bg-slate-950/70 border border-cyan-500/20 font-mono text-[11px] text-amber-200 leading-relaxed overflow-x-auto">
+        1s &rarr; 2s &rarr; 2p &rarr; 3s &rarr; 3p &rarr; 4s &rarr; 3d &rarr; 4p &rarr; 5s &rarr; 4d &rarr; 5p &rarr; 6s &rarr; 4f &rarr; 5d &rarr; 6p &rarr; 7s &rarr; 5f &rarr; 6d &rarr; 7p
+      </div>
+      <div class="text-[10px] text-slate-400 flex items-center gap-3 flex-wrap">
+        <span><strong>s:</strong> máx 2 e⁻</span>
+        <span><strong>p:</strong> máx 6 e⁻</span>
+        <span><strong>d:</strong> máx 10 e⁻</span>
+        <span><strong>f:</strong> máx 14 e⁻</span>
+        <span class="text-cyan-300">Gases Nobles: [He]=2, [Ne]=10, [Ar]=18, [Kr]=36, [Xe]=54, [Rn]=86</span>
+      </div>
+    </div>
+
+    <!-- CUADRÍCULA DE LOS DOS DESAFÍOS (A: Configuración | B: Números Cuánticos) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      
+      <!-- DESAFÍO A: CONFIGURACIÓN ELECTRÓNICA -->
+      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-white/10 space-y-3 shadow-lg flex flex-col justify-between">
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between border-b border-white/10 pb-2">
+            <h4 class="text-xs sm:text-sm font-extrabold text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-layer-group text-cyan-400 text-xs"></i>
+              <span>${t.challengeConfigTitle}</span>
+            </h4>
+            <span class="text-[10px] font-mono text-cyan-300">Z = ${elem.number}</span>
+          </div>
+
+          <p class="text-[11px] text-slate-300 leading-snug">
+            ${t.challengeConfigPrompt} <strong class="text-white">${name} (${elem.symbol})</strong>
+          </p>
+
+          <!-- Campo de Entrada y Previsualización -->
+          <div class="space-y-1.5">
+            <div class="relative">
+              <input 
+                type="text" 
+                id="quizConfigInput" 
+                placeholder="${t.placeholderConfig}" 
+                value="${quizState.configInput || ''}"
+                oninput="handleConfigInput(this.value)"
+                onkeydown="if(event.key === 'Enter') checkQuizElectronConfig()"
+                class="glass-input w-full rounded-xl px-3 py-2 text-xs font-mono font-bold text-white placeholder-slate-500 focus:border-cyan-400"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <!-- Previsualización dinámica de superíndices -->
+            <div class="flex items-center justify-between px-1">
+              <span id="quizConfigPreview" class="text-[10px] text-slate-400 font-mono italic">
+                Previsualización: (vacío)
+              </span>
+              <span class="text-[9.5px] text-slate-500 font-mono">ej: 1s2 o 1s²</span>
+            </div>
+          </div>
+
+          <!-- Teclado Virtual Químico de Subniveles & Superíndices -->
+          <div class="space-y-1.5 pt-1">
+            <span class="text-[9.5px] text-slate-400 font-semibold block uppercase tracking-wider">Teclado de Subniveles & Gases Nobles:</span>
+            
+            <!-- Fila 1: Gases Nobles Core -->
+            <div class="flex items-center gap-1 overflow-x-auto scrollbar-none pb-0.5">
+              ${['[He]', '[Ne]', '[Ar]', '[Kr]', '[Xe]', '[Rn]'].map(gas => `
+                <button type="button" onclick="appendToConfigInput('${gas} ')" class="chem-key-btn text-[11px] text-purple-300 border-purple-500/30 hover:border-purple-400">
+                  ${gas}
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Fila 2: Subniveles habituales -->
+            <div class="flex items-center gap-1 overflow-x-auto scrollbar-none pb-0.5">
+              ${['1s', '2s', '2p', '3s', '3p', '4s', '3d', '4p', '5s', '4d', '5p', '6s', '4f', '5d', '6p', '7s', '5f', '6d', '7p'].map(sub => `
+                <button type="button" onclick="appendToConfigInput('${sub}')" class="chem-key-btn text-[11px]">
+                  ${sub}
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Fila 3: Superíndices de electrones y acciones -->
+            <div class="flex items-center gap-1 overflow-x-auto scrollbar-none pb-0.5 flex-wrap">
+              ${['¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', '¹⁰', '¹¹', '¹²', '¹³', '¹⁴'].map(sup => `
+                <button type="button" onclick="appendToConfigInput('${sup} ')" class="chem-key-btn text-xs text-amber-300 font-bold px-1.5">
+                  ${sup}
+                </button>
+              `).join('')}
+              <button type="button" onclick="appendToConfigInput(' ')" class="chem-key-btn px-2 text-[10px] text-slate-300" title="Espacio">
+                ␣ Espacio
+              </button>
+              <button type="button" onclick="backspaceConfigInput()" class="chem-key-btn px-2 text-[10px] text-rose-300 border-rose-500/30 hover:border-rose-400" title="Borrar">
+                ⌫
+              </button>
+              <button type="button" onclick="clearConfigInput()" class="chem-key-btn px-2 text-[10px] text-slate-400" title="Limpiar todo">
+                Limpiar
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón de Comprobación -->
+          <button 
+            type="button" 
+            onclick="checkQuizElectronConfig()" 
+            class="w-full glass-button py-2 rounded-xl text-xs font-bold text-cyan-300 hover:text-white flex items-center justify-center gap-2 border border-cyan-400/40 shadow-md cursor-pointer hover:scale-[1.01] active:scale-[0.99] transition-all bg-cyan-500/10 hover:bg-cyan-500/20"
+          >
+            <i class="fa-solid fa-check-double text-xs"></i>
+            <span>${t.btnCheckConfig}</span>
+          </button>
+
+          <!-- Contenedor de Retroalimentación de la Configuración -->
+          <div id="quizConfigFeedback"></div>
+        </div>
+      </div>
+
+      <!-- DESAFÍO B: NÚMEROS CUÁNTICOS DEL ELECTRÓN DIFERENCIAL -->
+      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-white/10 space-y-3 shadow-lg flex flex-col justify-between">
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between border-b border-white/10 pb-2">
+            <h4 class="text-xs sm:text-sm font-extrabold text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-atom text-amber-400 text-xs"></i>
+              <span>${t.challengeQuantumTitle}</span>
+            </h4>
+            <span class="text-[10px] font-mono text-amber-300">e⁻ diferencial</span>
+          </div>
+
+          <p class="text-[11px] text-slate-300 leading-snug">
+            ${t.challengeQuantumPrompt}
+          </p>
+
+          <!-- 4 Selectores Cuánticos Visuales (n, l, ml, s) -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+            
+            <!-- Selector n (Principal) -->
+            <div class="glass-card p-2 rounded-xl space-y-1 border border-cyan-500/30">
+              <label class="text-[10px] text-cyan-300 font-bold block flex items-center justify-between">
+                <span>${t.labelN}</span>
+                <span class="text-[9px] text-slate-400 font-mono">1..7</span>
+              </label>
+              <select id="quizSelectN" class="glass-input w-full rounded-lg px-2 py-1 text-xs font-mono font-bold text-white text-center cursor-pointer">
+                ${[1, 2, 3, 4, 5, 6, 7].map(n => `<option value="${n}">${n}</option>`).join('')}
+              </select>
+            </div>
+
+            <!-- Selector l (Azimutal) -->
+            <div class="glass-card p-2 rounded-xl space-y-1 border border-emerald-500/30">
+              <label class="text-[10px] text-emerald-300 font-bold block flex items-center justify-between">
+                <span>${t.labelL}</span>
+                <span class="text-[9px] text-slate-400 font-mono">s,p,d,f</span>
+              </label>
+              <select id="quizSelectL" onchange="updateMlOptions(this.value)" class="glass-input w-full rounded-lg px-2 py-1 text-xs font-mono font-bold text-white text-center cursor-pointer">
+                <option value="0">0 (s)</option>
+                <option value="1">1 (p)</option>
+                <option value="2">2 (d)</option>
+                <option value="3">3 (f)</option>
+              </select>
+            </div>
+
+            <!-- Selector ml (Magnético) -->
+            <div class="glass-card p-2 rounded-xl space-y-1 border border-amber-500/30">
+              <label class="text-[10px] text-amber-300 font-bold block flex items-center justify-between">
+                <span>${t.labelMl}</span>
+                <span class="text-[9px] text-slate-400 font-mono">-l..+l</span>
+              </label>
+              <select id="quizSelectMl" class="glass-input w-full rounded-lg px-2 py-1 text-xs font-mono font-bold text-white text-center cursor-pointer">
+                <option value="0">0</option>
+              </select>
+            </div>
+
+            <!-- Selector s (Espín) -->
+            <div class="glass-card p-2 rounded-xl space-y-1 border border-rose-500/30">
+              <label class="text-[10px] text-rose-300 font-bold block flex items-center justify-between">
+                <span>${t.labelS}</span>
+                <span class="text-[9px] text-slate-400 font-mono">±½</span>
+              </label>
+              <select id="quizSelectS" class="glass-input w-full rounded-lg px-2 py-1 text-xs font-mono font-bold text-white text-center cursor-pointer">
+                <option value="0.5">+1/2 (↑)</option>
+                <option value="-0.5">-1/2 (↓)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Pista Didáctica Rápida -->
+          <div class="p-2 rounded-xl bg-slate-900/40 border border-white/5 text-[10px] text-slate-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-lightbulb text-amber-400 text-xs shrink-0"></i>
+            <span>El electrón diferencial entra en el subnivel según Aufbau y sigue la regla de máxima multiplicidad de Hund.</span>
+          </div>
+
+          <!-- Botón Comprobar Cuántica -->
+          <button 
+            type="button" 
+            onclick="checkQuizQuantumNumbers()" 
+            class="w-full glass-button py-2 rounded-xl text-xs font-bold text-amber-300 hover:text-white flex items-center justify-center gap-2 border border-amber-400/40 shadow-md cursor-pointer hover:scale-[1.01] active:scale-[0.99] transition-all bg-amber-500/10 hover:bg-amber-500/20"
+          >
+            <i class="fa-solid fa-microscope text-xs"></i>
+            <span>${t.btnCheckQuantum}</span>
+          </button>
+
+          <!-- Contenedor de Retroalimentación Cuántica -->
+          <div id="quizQuantumFeedback"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botón Inferior para Avanzar al Siguiente Desafío -->
+    <div class="flex items-center justify-between pt-2">
+      <div class="text-[11px] text-slate-400">
+        Elemento actual: <strong class="text-cyan-300">${name} (${elem.symbol})</strong> &bull; Periodo: ${elem.period} &bull; Grupo: ${elem.group}
+      </div>
+      <button 
+        type="button" 
+        onclick="nextQuizChallenge()" 
+        class="glass-button px-4 py-2 rounded-2xl text-xs font-extrabold text-amber-300 hover:text-white flex items-center gap-2 border border-amber-400/50 shadow-lg shadow-amber-500/20 hover:scale-105 active:scale-95 cursor-pointer transition-all"
+      >
+        <span>${t.nextChallengeBtn}</span>
+        <i class="fa-solid fa-arrow-right text-xs"></i>
+      </button>
+    </div>
+  `;
+
+  // Inicializar preview y opciones
+  updateConfigPreview();
+}
+
+function handleConfigInput(val) {
+  quizState.configInput = val;
+  updateConfigPreview();
+}
+
+function appendToConfigInput(val) {
+  const input = document.getElementById('quizConfigInput');
+  if (!input) return;
+  const start = input.selectionStart !== null ? input.selectionStart : input.value.length;
+  const end = input.selectionEnd !== null ? input.selectionEnd : input.value.length;
+  const oldVal = input.value;
+  input.value = oldVal.substring(0, start) + val + oldVal.substring(end);
+  quizState.configInput = input.value;
+  input.focus();
+  const nextPos = start + val.length;
+  input.setSelectionRange(nextPos, nextPos);
+  updateConfigPreview();
+  playQuizSound('click');
+}
+
+function backspaceConfigInput() {
+  const input = document.getElementById('quizConfigInput');
+  if (!input || !input.value) return;
+  const start = input.selectionStart !== null ? input.selectionStart : input.value.length;
+  const end = input.selectionEnd !== null ? input.selectionEnd : input.value.length;
+  const oldVal = input.value;
+  if (start === end && start > 0) {
+    input.value = oldVal.substring(0, start - 1) + oldVal.substring(end);
+    input.setSelectionRange(start - 1, start - 1);
+  } else if (start !== end) {
+    input.value = oldVal.substring(0, start) + oldVal.substring(end);
+    input.setSelectionRange(start, start);
+  }
+  quizState.configInput = input.value;
+  input.focus();
+  updateConfigPreview();
+  playQuizSound('click');
+}
+
+function clearConfigInput() {
+  const input = document.getElementById('quizConfigInput');
+  if (!input) return;
+  input.value = '';
+  quizState.configInput = '';
+  input.focus();
+  updateConfigPreview();
+  playQuizSound('click');
+}
+
+function updateConfigPreview() {
+  const input = document.getElementById('quizConfigInput');
+  const preview = document.getElementById('quizConfigPreview');
+  if (!input || !preview) return;
+  const val = input.value.trim();
+  if (!val) {
+    preview.textContent = currentLang === 'es' ? 'Previsualización: (vacío)' : 'Preview: (empty)';
+    preview.className = 'text-[10px] text-slate-400 font-mono italic';
+    return;
+  }
+  const formatted = val.replace(/([spdf])(\d+)/gi, (m, letter, num) => {
+    const superMap = { '0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹' };
+    const superNum = String(num).split('').map(d => superMap[d] || d).join('');
+    return letter + superNum;
+  });
+  preview.textContent = formatted;
+  preview.className = 'text-[11px] text-cyan-300 font-mono font-bold';
+}
+
+function toggleMoellerGuide() {
+  quizState.showMoeller = !quizState.showMoeller;
+  const panel = document.getElementById('moellerGuidePanel');
+  if (panel) {
+    panel.classList.toggle('hidden', !quizState.showMoeller);
+  }
+}
+
+function changeQuizDifficulty(newDiff) {
+  quizState.difficulty = newDiff;
+  quizState.currentElem = getRandomQuizElement(newDiff);
+  quizState.configInput = '';
+  renderQuantumQuizView();
+}
+
+function nextQuizChallenge() {
+  quizState.currentElem = getRandomQuizElement(quizState.difficulty);
+  quizState.configInput = '';
+  renderQuantumQuizView();
+  playQuizSound('click');
+}
+
+function updateMlOptions(lVal) {
+  const mlSelect = document.getElementById('quizSelectMl');
+  if (!mlSelect) return;
+  const l = parseInt(lVal, 10);
+  let optionsHtml = '';
+  for (let m = -l; m <= l; m++) {
+    const label = (m >= 0 ? '+' + m : String(m));
+    optionsHtml += `<option value="${m}" ${m === 0 ? 'selected' : ''}>${label}</option>`;
+  }
+  mlSelect.innerHTML = optionsHtml;
+}
+
+function verifyElectronConfig(userStr, elem) {
+  if (!userStr || !userStr.trim()) {
+    return {
+      valid: false,
+      isCorrect: false,
+      userTotalElectrons: 0,
+      capacityErrors: []
+    };
+  }
+
+  const rawUser = userStr.trim();
+  const normalizedUser = normalizeSuperscript(rawUser).toLowerCase().replace(/\s+/g, ' ');
+  const normalizedExpected = normalizeSuperscript(elem.electronConfig).toLowerCase().replace(/\s+/g, ' ');
+
+  const userParsed = parseSubshells(rawUser);
+  const expectedParsed = parseSubshells(elem.electronConfig);
+
+  const userTotalElectrons = (userParsed.full || []).reduce((sum, s) => sum + s.count, 0);
+
+  const capacityErrors = [];
+  const maxCapacities = { s: 2, p: 6, d: 10, f: 14 };
+  (userParsed.full || []).forEach(s => {
+    const max = maxCapacities[s.type] || 2;
+    if (s.count > max) {
+      capacityErrors.push(
+        currentLang === 'es'
+          ? `El subnivel ${s.key} tiene ${s.count} electrones (máximo para '${s.type}' es ${max}).`
+          : `Subshell ${s.key} has ${s.count} electrons (maximum for '${s.type}' is ${max}).`
+      );
+    }
+  });
+
+  const isDirectMatch = (normalizedUser === normalizedExpected);
+
+  const userFull = userParsed.full || [];
+  const expectedFull = expectedParsed.full || [];
+  let subshellsMatch = false;
+  if (userFull.length === expectedFull.length && userFull.length > 0) {
+    subshellsMatch = userFull.every((us, i) => {
+      const es = expectedFull[i];
+      return us && es && us.key === es.key && us.count === es.count;
+    });
+  }
+
+  const userValence = userParsed.valence || [];
+  const expectedValence = expectedParsed.valence || [];
+  let valenceMatch = false;
+  if (userParsed.coreName && userParsed.coreName.toLowerCase() === (expectedParsed.coreName || '').toLowerCase()) {
+    if (userValence.length === expectedValence.length) {
+      valenceMatch = userValence.every((us, i) => {
+        const es = expectedValence[i];
+        return us && es && us.key === es.key && us.count === es.count;
+      });
+    }
+  }
+
+  // Comparación independiente del orden (Aufbau vs orden de n cuántico)
+  const compareSubshellMultiset = (listA, listB) => {
+    if (!listA || !listB || listA.length !== listB.length) return false;
+    const mapA = {};
+    const mapB = {};
+    listA.forEach(s => { mapA[s.key] = (mapA[s.key] || 0) + s.count; });
+    listB.forEach(s => { mapB[s.key] = (mapB[s.key] || 0) + s.count; });
+    const keysA = Object.keys(mapA);
+    const keysB = Object.keys(mapB);
+    if (keysA.length !== keysB.length) return false;
+    return keysA.every(k => mapA[k] === mapB[k]);
+  };
+
+  const isFullMultisetMatch = compareSubshellMultiset(userFull, expectedFull);
+  const isValenceMultisetMatch = (userParsed.coreName && userParsed.coreName.toLowerCase() === (expectedParsed.coreName || '').toLowerCase())
+    && compareSubshellMultiset(userValence, expectedValence);
+
+  const isCorrect = isDirectMatch || subshellsMatch || valenceMatch || isFullMultisetMatch || isValenceMultisetMatch;
+
+  return {
+    valid: true,
+    isCorrect,
+    userTotalElectrons,
+    capacityErrors,
+    expectedOfficial: elem.electronConfig,
+    userRaw: rawUser
+  };
+}
+
+function checkQuizElectronConfig() {
+  const input = document.getElementById('quizConfigInput');
+  const feedbackEl = document.getElementById('quizConfigFeedback');
+  if (!input || !quizState.currentElem || !feedbackEl) return;
+
+  const userVal = input.value.trim();
+  quizState.totalAttempts++;
+  const result = verifyElectronConfig(userVal, quizState.currentElem);
+
+  if (result.isCorrect) {
+    quizState.streak++;
+    if (quizState.streak > quizState.bestStreak) {
+      quizState.bestStreak = quizState.streak;
+      localStorage.setItem('iupac_quiz_best_streak', quizState.bestStreak);
+    }
+    quizState.totalCorrect++;
+    playQuizSound('correct');
+    feedbackEl.innerHTML = `
+      <div class="p-3 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 space-y-1.5 animate-glass-in">
+        <div class="flex items-center gap-2 font-bold text-xs">
+          <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+          <span>${currentLang === 'es' ? '¡Excelente! Configuración Electrónica Correcta' : 'Excellent! Correct Electron Configuration'}</span>
+        </div>
+        <p class="text-[11px] text-slate-200">
+          ${currentLang === 'es' ? 'Notación oficial IUPAC:' : 'Official IUPAC notation:'} 
+          <strong class="font-mono text-emerald-200 font-bold text-xs">${quizState.currentElem.electronConfig}</strong>
+        </p>
+        <div class="text-[10px] text-emerald-200/90 font-mono flex items-center gap-2">
+          <span>Electrones totales: ${result.userTotalElectrons || quizState.currentElem.number}</span> &bull; 
+          <span>Capas: ${quizState.currentElem.electronsPerShell}</span>
+        </div>
+      </div>
+    `;
+  } else {
+    quizState.streak = 0;
+    playQuizSound('wrong');
+    let capacityMsg = '';
+    if (result.capacityErrors && result.capacityErrors.length > 0) {
+      capacityMsg = `<div class="text-amber-300 text-[10.5px] font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>${result.capacityErrors.join(' ')}</div>`;
+    }
+    let countMsg = '';
+    if (result.userTotalElectrons !== quizState.currentElem.number) {
+      countMsg = `<div class="text-[10.5px] text-slate-300">Sumaste <strong class="text-rose-300 font-mono">${result.userTotalElectrons}</strong> electrones, pero ${quizState.currentElem.name_es || quizState.currentElem.name_en} tiene <strong class="text-cyan-300 font-mono">${quizState.currentElem.number}</strong> (Z=${quizState.currentElem.number}).</div>`;
+    }
+
+    const diff = getDiffElectron(quizState.currentElem);
+    feedbackEl.innerHTML = `
+      <div class="p-3 rounded-2xl bg-rose-500/15 border border-rose-400/40 text-rose-300 space-y-2 animate-glass-in">
+        <div class="flex items-center gap-2 font-bold text-xs">
+          <i class="fa-solid fa-circle-xmark text-rose-400 text-sm"></i>
+          <span>${currentLang === 'es' ? 'No coincide del todo. ¡Revisa la regla de las diagonales!' : 'Not quite right. Review Aufbau diagonals!'}</span>
+        </div>
+        ${countMsg}
+        ${capacityMsg}
+        <div class="p-2 rounded-xl bg-slate-900/60 border border-white/10 text-[11px] space-y-1">
+          <div><span class="text-slate-400">${currentLang === 'es' ? 'Tu respuesta:' : 'Your input:'}</span> <span class="font-mono text-rose-200 line-through">${userVal || '(vacío)'}</span></div>
+          <div><span class="text-slate-400">${currentLang === 'es' ? 'Configuración esperada:' : 'Expected config:'}</span> <strong class="font-mono text-cyan-300 text-xs">${quizState.currentElem.electronConfig}</strong></div>
+        </div>
+        <div class="mt-2 pt-2 border-t border-white/10">
+          <span class="text-[10px] text-slate-400 font-semibold block mb-1">${currentLang === 'es' ? 'Diagrama de Cajas Orbitales del elemento:' : 'Element Orbital Boxes Diagram:'}</span>
+          ${renderOrbitalBoxesDiagram(quizState.currentElem, diff, false, true) || ''}
+        </div>
+      </div>
+    `;
+  }
+  updateQuizScoreBar();
+}
+
+function verifyQuantumNumbers(elem, nVal, lVal, mlVal, sVal) {
+  const diff = getDiffElectron(elem);
+  const nOk = parseInt(nVal, 10) === diff.n;
+  const lOk = parseInt(lVal, 10) === diff.l;
+  const mlOk = parseInt(mlVal, 10) === diff.m_l;
+  const sOk = Math.abs(parseFloat(sVal) - diff.s_val) < 0.01;
+
+  const isAllCorrect = nOk && lOk && mlOk && sOk;
+
+  return {
+    isAllCorrect,
+    diff,
+    nOk,
+    lOk,
+    mlOk,
+    sOk,
+    userValues: { n: nVal, l: lVal, ml: mlVal, s: sVal }
+  };
+}
+
+function checkQuizQuantumNumbers() {
+  const nSelect = document.getElementById('quizSelectN');
+  const lSelect = document.getElementById('quizSelectL');
+  const mlSelect = document.getElementById('quizSelectMl');
+  const sSelect = document.getElementById('quizSelectS');
+  const feedbackEl = document.getElementById('quizQuantumFeedback');
+  if (!nSelect || !lSelect || !mlSelect || !sSelect || !feedbackEl || !quizState.currentElem) return;
+
+  quizState.totalAttempts++;
+  const diff = getDiffElectron(quizState.currentElem);
+  const res = verifyQuantumNumbers(quizState.currentElem, nSelect.value, lSelect.value, mlSelect.value, sSelect.value);
+
+  if (res.isAllCorrect) {
+    quizState.streak++;
+    if (quizState.streak > quizState.bestStreak) {
+      quizState.bestStreak = quizState.streak;
+      localStorage.setItem('iupac_quiz_best_streak', quizState.bestStreak);
+    }
+    quizState.totalCorrect++;
+    playQuizSound('correct');
+
+    feedbackEl.innerHTML = `
+      <div class="p-3 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 space-y-2 animate-glass-in">
+        <div class="flex items-center gap-2 font-bold text-xs">
+          <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+          <span>${currentLang === 'es' ? '¡Exacto! Cuádrupla Cuántica Identificada' : 'Exact! Quantum Quadruple Identified'}</span>
+        </div>
+        <p class="text-[11px] text-slate-200">
+          ${currentLang === 'es' ? 'Electrón diferencial en el subnivel' : 'Differential electron in subshell'} 
+          <strong class="font-mono text-amber-300">${diff.subshellKey}</strong>: 
+          <strong class="font-mono text-emerald-200 text-xs">${diff.tupleString}</strong>
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] font-mono text-slate-200 pt-1">
+          <div class="p-1.5 rounded-lg bg-cyan-950/40 border border-cyan-500/25"><strong>n = ${diff.n}</strong> (Nivel)</div>
+          <div class="p-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/25"><strong>l = ${diff.l}</strong> (${diff.l_name})</div>
+          <div class="p-1.5 rounded-lg bg-amber-950/40 border border-amber-500/25"><strong>mₗ = ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</strong></div>
+          <div class="p-1.5 rounded-lg bg-rose-950/40 border border-rose-500/25"><strong>s = ${diff.s_str}</strong> (${diff.s_arrow})</div>
+        </div>
+      </div>
+    `;
+  } else {
+    quizState.streak = 0;
+    playQuizSound('wrong');
+
+    const nExpl = res.nOk
+      ? `<span class="text-emerald-400">✓ n = ${diff.n} (correcto)</span>`
+      : `<span class="text-rose-400">✗ n: Pusiste ${res.userValues.n}, pero es <strong>n = ${diff.n}</strong> (nivel principal del subnivel ${diff.subshellKey}).</span>`;
+
+    const lExpl = res.lOk
+      ? `<span class="text-emerald-400">✓ l = ${diff.l} (${diff.l_name}, correcto)</span>`
+      : `<span class="text-rose-400">✗ l: Pusiste ${res.userValues.l}, pero para '${diff.l_name}' es <strong>l = ${diff.l}</strong> (s=0, p=1, d=2, f=3).</span>`;
+
+    const mlExpl = res.mlOk
+      ? `<span class="text-emerald-400">✓ mₗ = ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l} (correcto)</span>`
+      : `<span class="text-rose-400">✗ mₗ: Pusiste ${res.userValues.ml}, pero por Hund es <strong>mₗ = ${diff.m_l >= 0 ? '+' + diff.m_l : diff.m_l}</strong> (casilla ocupada por el e⁻ #${diff.subshellCount}).</span>`;
+
+    const sExpl = res.sOk
+      ? `<span class="text-emerald-400">✓ s = ${diff.s_str} (correcto)</span>`
+      : `<span class="text-rose-400">✗ s: Pusiste ${res.userValues.s > 0 ? '+1/2' : '-1/2'}, pero es <strong>s = ${diff.s_str} (${diff.s_arrow})</strong> ${diff.s_val > 0 ? '(primer espín paralelo en la casilla)' : '(espín apareado opuesto por Pauli)'}.</span>`;
+
+    feedbackEl.innerHTML = `
+      <div class="p-3 rounded-2xl bg-rose-500/15 border border-rose-400/40 text-rose-300 space-y-2 animate-glass-in">
+        <div class="flex items-center gap-2 font-bold text-xs">
+          <i class="fa-solid fa-circle-xmark text-rose-400 text-sm"></i>
+          <span>${currentLang === 'es' ? 'Revisa la interpretación del electrón diferencial:' : 'Review differentiating electron parameters:'}</span>
+        </div>
+        <div class="space-y-1 text-[10.5px]">
+          <div>${nExpl}</div>
+          <div>${lExpl}</div>
+          <div>${mlExpl}</div>
+          <div>${sExpl}</div>
+        </div>
+        <div class="mt-2 pt-2 border-t border-white/10">
+          <span class="text-[10px] text-slate-400 font-semibold block mb-1">
+            ${currentLang === 'es' ? 'Diagrama de Cajas (Casilla diferencial señalada):' : 'Orbital Boxes (Highlighted differential box):'}
+          </span>
+          ${renderOrbitalBoxesDiagram(quizState.currentElem, diff, false, true) || ''}
+        </div>
+      </div>
+    `;
+  }
+  updateQuizScoreBar();
+}
+
+function updateQuizScoreBar() {
+  const container = document.getElementById('quizQuantumView');
+  if (!container) return;
+  // Re-render score stats without full reload
+  const streakEl = container.querySelector('.streak-flame + span + strong');
+  if (streakEl) streakEl.textContent = quizState.streak;
+  const bestEl = container.querySelector('.fa-trophy + span + strong');
+  if (bestEl) bestEl.textContent = quizState.bestStreak;
+  const accEl = container.querySelector('.fa-bullseye + span + strong');
+  if (accEl) {
+    const accuracyPct = quizState.totalAttempts > 0
+      ? Math.round((quizState.totalCorrect / quizState.totalAttempts) * 100)
+      : 0;
+    accEl.textContent = `${quizState.totalCorrect}/${quizState.totalAttempts} (${accuracyPct}%)`;
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODO 2: MEMORAMA DE ELEMENTOS (SÍMBOLO, VALENCIA, Z, CONFIG, ETC.)
+// --------------------------------------------------------------------------
+
+function formatMemoramaTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function generateMemoramaCards(pairCount, mode, category) {
+  let pool = ELEMENTS_DATA;
+  if (category === 'common') {
+    pool = ELEMENTS_DATA.filter(el => ESSENTIAL_ELEMENT_NUMBERS.includes(el.number));
+    if (pool.length < pairCount) pool = ELEMENTS_DATA;
+  }
+
+  const shuffledPool = [...pool].sort(() => Math.random() - 0.5);
+  const selectedElements = shuffledPool.slice(0, pairCount);
+
+  const cards = [];
+  selectedElements.forEach(elem => {
+    let effectiveMode = mode;
+    if (mode === 'mixed') {
+      const modes = ['symbol-name', 'symbol-z', 'symbol-valence', 'symbol-config'];
+      effectiveMode = modes[Math.floor(Math.random() * modes.length)];
+    }
+
+    // Tarjeta A: Símbolo Atómico
+    cards.push({
+      pairId: elem.number,
+      type: 'symbol',
+      elem,
+      matched: false,
+      symbol: elem.symbol,
+      number: elem.number,
+      category: elem.category
+    });
+
+    // Tarjeta B: Propiedad según modo
+    let bData = {};
+    if (effectiveMode === 'symbol-name') {
+      bData = {
+        badge: currentLang === 'es' ? 'Nombre' : 'Name',
+        icon: 'fa-signature',
+        value: currentLang === 'es' ? elem.name_es : elem.name_en,
+        sub: currentLang === 'es' ? (I18N.es[elem.category] || elem.category) : (I18N.en[elem.category] || elem.category)
+      };
+    } else if (effectiveMode === 'symbol-z') {
+      bData = {
+        badge: currentLang === 'es' ? 'Número Atómico' : 'Atomic Number',
+        icon: 'fa-hashtag',
+        value: `Z = ${elem.number}`,
+        sub: currentLang === 'es' ? elem.name_es : elem.name_en
+      };
+    } else if (effectiveMode === 'symbol-valence') {
+      bData = {
+        badge: currentLang === 'es' ? 'Valencias' : 'Valences',
+        icon: 'fa-bolt',
+        value: elem.valencia || (currentLang === 'es' ? 'Inerte (0)' : 'Inert (0)'),
+        sub: currentLang === 'es' ? 'Estados de oxidación' : 'Oxidation states'
+      };
+    } else if (effectiveMode === 'symbol-config') {
+      bData = {
+        badge: currentLang === 'es' ? 'Configuración' : 'Config.',
+        icon: 'fa-atom',
+        value: elem.electronConfig,
+        sub: currentLang === 'es' ? `Capa: ${elem.electronsPerShell}` : `Shells: ${elem.electronsPerShell}`
+      };
+    }
+
+    cards.push({
+      pairId: elem.number,
+      type: 'property',
+      elem,
+      matched: false,
+      bData
+    });
+  });
+
+  return cards.sort(() => Math.random() - 0.5);
+}
+
+function startMemoramaGame(pairCount, mode, category) {
+  stopMemoramaTimer();
+  memoramaState.pairCount = pairCount || memoramaState.pairCount || 6;
+  memoramaState.mode = mode || memoramaState.mode || 'symbol-name';
+  memoramaState.category = category || memoramaState.category || 'common';
+  memoramaState.cards = generateMemoramaCards(memoramaState.pairCount, memoramaState.mode, memoramaState.category);
+  memoramaState.flippedIndices = [];
+  memoramaState.matchedPairs = 0;
+  memoramaState.moves = 0;
+  memoramaState.elapsedSeconds = 0;
+  memoramaState.isBusy = false;
+  memoramaState.gameCompleted = false;
+
+  const recKey = `memo_rec_${memoramaState.mode}_${memoramaState.pairCount}`;
+  memoramaState.bestRecord = localStorage.getItem(recKey) || null;
+
+  renderMemoramaView();
+}
+
+function startMemoramaTimer() {
+  if (memoramaState.timerInterval) return;
+  memoramaState.timerInterval = setInterval(() => {
+    memoramaState.elapsedSeconds++;
+    updateMemoramaTimerUI();
+  }, 1000);
+}
+
+function stopMemoramaTimer() {
+  if (memoramaState.timerInterval) {
+    clearInterval(memoramaState.timerInterval);
+    memoramaState.timerInterval = null;
+  }
+}
+
+function updateMemoramaTimerUI() {
+  const el = document.getElementById('memoTimerDisplay');
+  if (el) el.textContent = formatMemoramaTime(memoramaState.elapsedSeconds);
+}
+
+function updateMemoramaMovesUI() {
+  const el = document.getElementById('memoMovesDisplay');
+  if (el) el.textContent = memoramaState.moves;
+}
+
+function updateMemoramaPairsUI() {
+  const el = document.getElementById('memoPairsDisplay');
+  if (el) el.textContent = `${memoramaState.matchedPairs}/${memoramaState.pairCount}`;
+}
+
+function renderMemoramaView() {
+  const container = document.getElementById('quizMemoramaView');
+  if (!container) return;
+
+  const t = I18N[currentLang] || I18N.es;
+  const isEs = currentLang === 'es';
+
+  const gridClass = memoramaState.pairCount === 4
+    ? 'memorama-grid-8'
+    : memoramaState.pairCount === 6
+      ? 'memorama-grid-12'
+      : 'memorama-grid-16';
+
+  container.innerHTML = `
+    <!-- Barra Superior de Controles del Memorama -->
+    <div class="glass-card p-3 rounded-2xl flex flex-wrap items-center justify-between gap-2.5 border border-white/10 text-xs">
+      <!-- Selector de Modo de Emparejamiento -->
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <label for="memoModeSelect" class="text-slate-400 text-[11px] font-semibold">${t.memoramaModeLabel}</label>
+        <select id="memoModeSelect" onchange="startMemoramaGame(memoramaState.pairCount, this.value, memoramaState.category)" class="glass-input rounded-xl px-2 py-1 text-xs text-amber-300 font-bold cursor-pointer">
+          <option value="symbol-name" ${memoramaState.mode === 'symbol-name' ? 'selected' : ''}>${t.memoSymbolName}</option>
+          <option value="symbol-z" ${memoramaState.mode === 'symbol-z' ? 'selected' : ''}>${t.memoSymbolZ}</option>
+          <option value="symbol-valence" ${memoramaState.mode === 'symbol-valence' ? 'selected' : ''}>${t.memoSymbolValence}</option>
+          <option value="symbol-config" ${memoramaState.mode === 'symbol-config' ? 'selected' : ''}>${t.memoSymbolConfig}</option>
+          <option value="mixed" ${memoramaState.mode === 'mixed' ? 'selected' : ''}>${t.memoMixed}</option>
+        </select>
+      </div>
+
+      <!-- Selector de Tamaño, Categoría y Reinicio -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <select id="memoSizeSelect" onchange="startMemoramaGame(parseInt(this.value, 10), memoramaState.mode, memoramaState.category)" class="glass-input rounded-xl px-2 py-1 text-xs text-slate-200 cursor-pointer">
+          <option value="4" ${memoramaState.pairCount === 4 ? 'selected' : ''}>${t.pairs4}</option>
+          <option value="6" ${memoramaState.pairCount === 6 ? 'selected' : ''}>${t.pairs6}</option>
+          <option value="8" ${memoramaState.pairCount === 8 ? 'selected' : ''}>${t.pairs8}</option>
+        </select>
+
+        <select id="memoCategorySelect" onchange="startMemoramaGame(memoramaState.pairCount, memoramaState.mode, this.value)" class="glass-input rounded-xl px-2 py-1 text-xs text-slate-200 cursor-pointer">
+          <option value="common" ${memoramaState.category === 'common' ? 'selected' : ''}>${t.catCommon}</option>
+          <option value="all" ${memoramaState.category === 'all' ? 'selected' : ''}>${t.catAll}</option>
+        </select>
+
+        <button onclick="startMemoramaGame(memoramaState.pairCount, memoramaState.mode, memoramaState.category)" class="glass-button px-2.5 py-1 rounded-xl text-xs font-bold text-amber-300 hover:text-white flex items-center gap-1 border border-amber-400/40 shadow-sm cursor-pointer hover:scale-105 active:scale-95 transition-all">
+          <i class="fa-solid fa-rotate-right text-xs"></i>
+          <span class="hidden sm:inline">${t.memoRestartBtn}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Barra de Puntuación & Cronómetro -->
+    <div class="glass-panel p-2.5 rounded-2xl flex items-center justify-between border border-white/10 text-xs shadow-md">
+      <div class="flex items-center gap-3 sm:gap-6">
+        <div class="flex items-center gap-1.5 text-cyan-300">
+          <i class="fa-solid fa-stopwatch text-xs"></i>
+          <span class="text-slate-400">${t.memoTime}</span>
+          <strong id="memoTimerDisplay" class="font-mono text-sm text-white">${formatMemoramaTime(memoramaState.elapsedSeconds)}</strong>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-amber-300">
+          <i class="fa-solid fa-arrows-rotate text-xs"></i>
+          <span class="text-slate-400">${t.memoMoves}</span>
+          <strong id="memoMovesDisplay" class="font-mono text-sm text-white">${memoramaState.moves}</strong>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-emerald-300">
+          <i class="fa-solid fa-clone text-xs"></i>
+          <span class="text-slate-400">${t.memoPairs}</span>
+          <strong id="memoPairsDisplay" class="font-mono text-sm text-white">${memoramaState.matchedPairs}/${memoramaState.pairCount}</strong>
+        </div>
+      </div>
+
+      <div class="text-[11px] text-slate-400 font-mono hidden sm:flex items-center gap-1">
+        <i class="fa-solid fa-medal text-amber-400"></i>
+        <span>${t.memoBest}</span>
+        <strong class="text-amber-200">${memoramaState.bestRecord || '—'}</strong>
+      </div>
+    </div>
+
+    <!-- Toast Didáctico para Pareja Encontrada -->
+    <div id="memoToastNotification" class="hidden glass-panel p-2.5 rounded-xl border border-emerald-400/40 bg-emerald-500/10 text-emerald-300 text-xs flex items-center justify-between gap-2 animate-glass-in">
+      <div id="memoToastContent" class="flex items-center gap-2"></div>
+      <button onclick="document.getElementById('memoToastNotification').classList.add('hidden')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- TABLERO DE TARJETAS 3D -->
+    <div class="memorama-grid ${gridClass}" id="memoramaCardsGrid">
+      ${memoramaState.cards.map((card, idx) => renderMemoramaCardHTML(card, idx)).join('')}
+    </div>
+
+    <!-- OVERLAY DE VICTORIA -->
+    <div id="memoVictoryOverlay" class="${memoramaState.gameCompleted ? '' : 'hidden'} glass-panel p-5 rounded-3xl border-2 border-amber-400/60 text-center space-y-3 shadow-2xl animate-glass-in">
+      <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center text-2xl shadow-lg shadow-amber-500/30">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+      <h3 class="text-lg font-black text-white">${t.memoVictoryTitle}</h3>
+      <div id="memoStarsRating" class="text-amber-400 text-xl tracking-widest">⭐⭐⭐</div>
+      <p id="memoVictorySummary" class="text-xs text-slate-300 font-mono"></p>
+      <div class="pt-2 flex items-center justify-center gap-3">
+        <button onclick="startMemoramaGame(memoramaState.pairCount, memoramaState.mode, memoramaState.category)" class="glass-button px-4 py-2 rounded-2xl text-xs font-bold text-amber-300 hover:text-white border border-amber-400/40 shadow-lg cursor-pointer">
+          <i class="fa-solid fa-rotate-right mr-1"></i> ${t.memoPlayAgain}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderMemoramaCardHTML(card, idx) {
+  const isFlipped = card.matched || memoramaState.flippedIndices.includes(idx);
+  const matchedClass = card.matched ? 'is-matched' : '';
+  const flippedClass = isFlipped ? 'is-flipped' : '';
+
+  let frontInner = '';
+  if (card.type === 'symbol') {
+    frontInner = `
+      <span class="text-[9px] text-cyan-300 font-mono font-bold leading-none">${card.number}</span>
+      <span class="text-2xl sm:text-3xl font-black text-white tracking-tight my-0.5">${card.symbol}</span>
+      <span class="text-[8px] font-bold px-1.5 py-0.2 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 truncate max-w-full">
+        ${card.elem.symbol}
+      </span>
+    `;
+  } else {
+    frontInner = `
+      <span class="text-[8.5px] font-bold text-amber-300 font-mono uppercase tracking-wider flex items-center gap-1 mb-1">
+        <i class="fa-solid ${card.bData.icon || 'fa-info'} text-[8px]"></i>
+        <span>${card.bData.badge}</span>
+      </span>
+      <strong class="text-xs sm:text-sm font-extrabold text-white text-center leading-snug break-words px-1">
+        ${card.bData.value}
+      </strong>
+      <span class="text-[8px] text-slate-400 font-mono truncate max-w-full mt-1">
+        ${card.bData.sub || ''}
+      </span>
+    `;
+  }
+
+  return `
+    <div 
+      class="memorama-card-container ${flippedClass} ${matchedClass}" 
+      id="memoCard-${idx}" 
+      onclick="handleMemoramaCardClick(${idx})"
+    >
+      <div class="memorama-card-inner">
+        <!-- Dorso (Reverso) -->
+        <div class="memorama-card-back">
+          <i class="fa-solid fa-atom text-2xl sm:text-3xl text-cyan-400/80 mb-1"></i>
+          <span class="text-[9px] font-bold font-mono tracking-widest text-slate-400 uppercase">IUPAC</span>
+        </div>
+
+        <!-- Frente (Anverso) -->
+        <div class="memorama-card-front">
+          ${frontInner}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function handleMemoramaCardClick(idx) {
+  if (memoramaState.isBusy || memoramaState.gameCompleted) return;
+  const card = memoramaState.cards[idx];
+  if (!card || card.matched || memoramaState.flippedIndices.includes(idx)) return;
+
+  startMemoramaTimer();
+  playQuizSound('flip');
+
+  memoramaState.flippedIndices.push(idx);
+  updateMemoramaCardVisual(idx, true);
+
+  if (memoramaState.flippedIndices.length === 2) {
+    memoramaState.moves++;
+    updateMemoramaMovesUI();
+    const [idx1, idx2] = memoramaState.flippedIndices;
+    const card1 = memoramaState.cards[idx1];
+    const card2 = memoramaState.cards[idx2];
+
+    if (card1.pairId === card2.pairId) {
+      // MATCH ENCONTRADO
+      card1.matched = true;
+      card2.matched = true;
+      memoramaState.matchedPairs++;
+      memoramaState.flippedIndices = [];
+      playQuizSound('match');
+      updateMemoramaCardMatched(idx1);
+      updateMemoramaCardMatched(idx2);
+      updateMemoramaPairsUI();
+
+      showMemoramaToast(card1.elem);
+
+      if (memoramaState.matchedPairs === memoramaState.pairCount) {
+        // VICTORIA
+        stopMemoramaTimer();
+        memoramaState.gameCompleted = true;
+        playQuizSound('win');
+
+        const recKey = `memo_rec_${memoramaState.mode}_${memoramaState.pairCount}`;
+        const timeStr = formatMemoramaTime(memoramaState.elapsedSeconds);
+        const currentRecordScore = memoramaState.moves * 100 + memoramaState.elapsedSeconds;
+        const prevScore = parseInt(localStorage.getItem(recKey + '_score') || '999999', 10);
+        if (currentRecordScore < prevScore) {
+          localStorage.setItem(recKey, `${memoramaState.moves} movs (${timeStr})`);
+          localStorage.setItem(recKey + '_score', currentRecordScore);
+          memoramaState.bestRecord = `${memoramaState.moves} movs (${timeStr})`;
+        }
+
+        setTimeout(() => {
+          showMemoramaVictoryModal();
+        }, 500);
+      }
+    } else {
+      // ERROR
+      memoramaState.isBusy = true;
+      playQuizSound('wrong');
+      markMemoramaCardsWrong([idx1, idx2]);
+      setTimeout(() => {
+        updateMemoramaCardVisual(idx1, false);
+        updateMemoramaCardVisual(idx2, false);
+        unmarkMemoramaCardsWrong([idx1, idx2]);
+        memoramaState.flippedIndices = [];
+        memoramaState.isBusy = false;
+      }, 850);
+    }
+  }
+}
+
+function updateMemoramaCardVisual(idx, isFlipped) {
+  const cardEl = document.getElementById(`memoCard-${idx}`);
+  if (cardEl) {
+    cardEl.classList.toggle('is-flipped', isFlipped);
+  }
+}
+
+function updateMemoramaCardMatched(idx) {
+  const cardEl = document.getElementById(`memoCard-${idx}`);
+  if (cardEl) {
+    cardEl.classList.add('is-matched');
+  }
+}
+
+function markMemoramaCardsWrong(indices) {
+  indices.forEach(idx => {
+    const cardEl = document.getElementById(`memoCard-${idx}`);
+    if (cardEl) cardEl.classList.add('is-wrong');
+  });
+}
+
+function unmarkMemoramaCardsWrong(indices) {
+  indices.forEach(idx => {
+    const cardEl = document.getElementById(`memoCard-${idx}`);
+    if (cardEl) cardEl.classList.remove('is-wrong');
+  });
+}
+
+function showMemoramaToast(elem) {
+  const toast = document.getElementById('memoToastNotification');
+  const content = document.getElementById('memoToastContent');
+  if (!toast || !content) return;
+
+  const isEs = currentLang === 'es';
+  const name = isEs ? elem.name_es : elem.name_en;
+  content.innerHTML = `
+    <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+    <span>
+      <strong>${name} (${elem.symbol})</strong> &bull; Z: ${elem.number} &bull; 
+      Valencias: <strong class="font-mono text-white">${elem.valencia || '0'}</strong> &bull; 
+      Config: <strong class="font-mono text-cyan-200">${elem.electronConfig}</strong>
+    </span>
+  `;
+  toast.classList.remove('hidden');
+}
+
+function showMemoramaVictoryModal() {
+  const overlay = document.getElementById('memoVictoryOverlay');
+  const ratingEl = document.getElementById('memoStarsRating');
+  const summaryEl = document.getElementById('memoVictorySummary');
+  if (!overlay) return;
+
+  const optimalMoves = memoramaState.pairCount;
+  let stars = '⭐⭐⭐';
+  if (memoramaState.moves > optimalMoves * 2.2) {
+    stars = '⭐';
+  } else if (memoramaState.moves > optimalMoves * 1.5) {
+    stars = '⭐⭐';
+  }
+
+  if (ratingEl) ratingEl.textContent = stars;
+  if (summaryEl) {
+    const timeStr = formatMemoramaTime(memoramaState.elapsedSeconds);
+    summaryEl.textContent = currentLang === 'es'
+      ? `Completaste ${memoramaState.pairCount} pares en ${memoramaState.moves} movimientos y ${timeStr}.`
+      : `Completed ${memoramaState.pairCount} pairs in ${memoramaState.moves} moves and ${timeStr}.`;
+  }
+
+  overlay.classList.remove('hidden');
+}
+
+function initQuizAndMemorama() {
+  const toggleQuizBtn = document.getElementById('toggleQuizBtn');
+  const closeQuizBtn = document.getElementById('closeQuizBtn');
+  const soundToggleBtn = document.getElementById('quizSoundToggleBtn');
+  const tabBtnQuantum = document.getElementById('quizTabBtnQuantum');
+  const tabBtnMemorama = document.getElementById('quizTabBtnMemorama');
+  const quizModal = document.getElementById('quizModal');
+
+  if (toggleQuizBtn) {
+    toggleQuizBtn.addEventListener('click', () => {
+      openQuizModal('quantum');
+    });
+  }
+
+  if (closeQuizBtn) {
+    closeQuizBtn.addEventListener('click', closeQuizModal);
+  }
+
+  if (soundToggleBtn) {
+    soundToggleBtn.addEventListener('click', toggleQuizSound);
+  }
+
+  if (tabBtnQuantum) {
+    tabBtnQuantum.addEventListener('click', () => switchQuizTab('quantum'));
+  }
+
+  if (tabBtnMemorama) {
+    tabBtnMemorama.addEventListener('click', () => switchQuizTab('memorama'));
+  }
+
+  if (quizModal) {
+    quizModal.addEventListener('click', (e) => {
+      if (e.target === quizModal) {
+        closeQuizModal();
+      }
+    });
+  }
+}
+
+// Bindings en window para máxima accesibilidad y pruebas
+window.initQuizAndMemorama = initQuizAndMemorama;
+window.handleMemoramaCardClick = handleMemoramaCardClick;
+window.startMemoramaGame = startMemoramaGame;
+window.checkQuizElectronConfig = checkQuizElectronConfig;
+window.checkQuizQuantumNumbers = checkQuizQuantumNumbers;
+window.appendToConfigInput = appendToConfigInput;
+window.backspaceConfigInput = backspaceConfigInput;
+window.clearConfigInput = clearConfigInput;
+window.updateConfigPreview = updateConfigPreview;
+window.handleConfigInput = handleConfigInput;
+window.changeQuizDifficulty = changeQuizDifficulty;
+window.nextQuizChallenge = nextQuizChallenge;
+window.updateMlOptions = updateMlOptions;
+window.toggleMoellerGuide = toggleMoellerGuide;
 
 // --- 13. INICIALIZACIÓN ---
 function initApp() {
@@ -3848,6 +5778,7 @@ function initApp() {
   renderPeriodicTable();
   renderCentralHub(selectedElement);
   initTrendsChart();
+  initQuizAndMemorama();
 
   const searchInput = document.getElementById('elementSearch');
   if (searchInput) {
@@ -3958,6 +5889,12 @@ function initApp() {
 
   // Navegación por teclado (Flechas Izq/Der y Esc)
   window.addEventListener('keydown', (e) => {
+    const qModal = document.getElementById('quizModal');
+    if (e.key === 'Escape' && qModal && !qModal.classList.contains('hidden')) {
+      closeQuizModal();
+      return;
+    }
+
     if (!iupacModal || iupacModal.classList.contains('hidden')) return;
 
     if (e.key === 'Escape') {
@@ -3970,6 +5907,13 @@ function initApp() {
       const nextNum = currentModalElement.number < 118 ? currentModalElement.number + 1 : 1;
       const nextElem = ELEMENTS_DATA.find((el) => el.number === nextNum) || ELEMENTS_DATA[nextNum - 1];
       if (nextElem) selectElement(nextElem);
+    }
+  });
+
+  // Cerrar tooltips interactivos cuánticos al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.quantum-tooltip-trigger')) {
+      document.querySelectorAll('.quantum-tooltip-trigger.active').forEach((el) => el.classList.remove('active'));
     }
   });
 

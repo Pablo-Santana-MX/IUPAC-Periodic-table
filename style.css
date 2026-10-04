@@ -1038,29 +1038,61 @@ html[data-theme="light"] #iupacModal > div {
   align-items: center;
   justify-content: space-between;
   padding: 5px 3px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   user-select: none;
   backdrop-filter: blur(8px);
+  cursor: pointer;
+  animation: orbitalBoxEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .orbital-box:hover {
   border-color: var(--accent-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), 0 0 14px var(--accent-glow);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), 0 0 16px var(--accent-glow);
+  background: var(--glass-hover);
+}
+
+.orbital-box:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.orbital-box:hover .electron-arrow-up {
+  transform: translateY(-2px) scale(1.14);
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.85));
+}
+
+.orbital-box:hover .electron-arrow-down {
+  transform: translateY(2px) scale(1.14);
+  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.85));
 }
 
 .orbital-box.diff-electron-box {
   border-color: #38bdf8;
   background: rgba(56, 189, 248, 0.16);
   box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.45), 0 0 18px rgba(56, 189, 248, 0.4);
-  animation: pulse-diff 2.5s infinite ease-in-out;
+  animation: orbitalBoxEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) both,
+             pulse-diff 2.5s infinite ease-in-out 0.35s;
 }
 
 html[data-theme="light"] .orbital-box.diff-electron-box {
   border-color: #0284c7;
   background: rgba(2, 132, 199, 0.14);
   box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.4), 0 0 16px rgba(2, 132, 199, 0.3);
+}
+
+@keyframes orbitalBoxEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes pulse-diff {
@@ -1088,16 +1120,20 @@ html[data-theme="light"] .orbital-box.diff-electron-box {
   width: 18px;
   height: 30px;
   position: relative;
+  overflow: visible;
 }
 
+/* Transición y Deslizamiento de Flechas de Espín (Fade & Slide) */
 .electron-arrow-up {
   color: #38bdf8;
   font-weight: 900;
   font-size: 19px;
   line-height: 1;
   filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.65));
-  transition: transform 0.15s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease;
   display: inline-block;
+  animation: spinArrowSlideUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
 }
 
 html[data-theme="light"] .electron-arrow-up {
@@ -1111,8 +1147,10 @@ html[data-theme="light"] .electron-arrow-up {
   font-size: 19px;
   line-height: 1;
   filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.65));
-  transition: transform 0.15s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease;
   display: inline-block;
+  animation: spinArrowSlideDown 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
 }
 
 html[data-theme="light"] .electron-arrow-down {
@@ -1120,10 +1158,59 @@ html[data-theme="light"] .electron-arrow-down {
   filter: drop-shadow(0 0 3px rgba(225, 29, 72, 0.5));
 }
 
+@keyframes spinArrowSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.6);
+    filter: blur(1px) drop-shadow(0 0 0 transparent);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translateY(-2px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.65));
+  }
+}
+
+@keyframes spinArrowSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.6);
+    filter: blur(1px) drop-shadow(0 0 0 transparent);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translateY(2px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.65));
+  }
+}
+
 .electron-empty {
   color: rgba(148, 163, 184, 0.3);
   font-size: 14px;
   line-height: 1;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.orbital-box:hover .electron-empty {
+  opacity: 0.6;
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbital-box,
+  .electron-arrow-up,
+  .electron-arrow-down {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .orbital-box-mini {
@@ -1187,4 +1274,284 @@ html[data-theme="light"] .quantum-hero-card {
     font-size: 15px;
   }
 }
+
+/* --- Tooltips Educativos e Interactivos para Química Cuántica --- */
+.quantum-tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantum-tooltip-popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  max-width: 85vw;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.2);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+  color: #f1f5f9;
+}
+
+.quantum-tooltip-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.96) transparent transparent transparent;
+}
+
+.quantum-tooltip-trigger:hover .quantum-tooltip-popover,
+.quantum-tooltip-trigger:focus-within .quantum-tooltip-popover,
+.quantum-tooltip-trigger.active .quantum-tooltip-popover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+html[data-theme="light"] .quantum-tooltip-popover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15), 0 0 12px rgba(2, 132, 199, 0.15);
+  color: #0f172a;
+}
+
+html[data-theme="light"] .quantum-tooltip-popover::after {
+  border-color: rgba(255, 255, 255, 0.98) transparent transparent transparent;
+}
+
+.student-guide-panel {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.35), 0 0 20px rgba(245, 158, 11, 0.15);
+  animation: glassFloat 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html[data-theme="light"] .student-guide-panel {
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.75) 0%, rgba(255, 255, 255, 0.98) 100%);
+  border-color: rgba(217, 119, 6, 0.35);
+  box-shadow: 0 12px 30px -5px rgba(217, 119, 6, 0.12);
+}
+
+/* ==========================================================================
+   ESTILOS DEDICADOS: MODO QUIZ CUÁNTICO & MEMORAMA DE ELEMENTOS
+   ========================================================================== */
+
+/* Animación de entrada suave del Quiz */
+.quiz-fade-in {
+  animation: quizFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes quizFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Teclado Virtual Químico de Subniveles */
+.chem-key-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.15s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.chem-key-btn:hover {
+  background: rgba(56, 189, 248, 0.25);
+  border-color: rgba(56, 189, 248, 0.6);
+  color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+.chem-key-btn:active {
+  transform: translateY(1px) scale(0.96);
+}
+
+html[data-theme="light"] .chem-key-btn {
+  background: rgba(241, 245, 249, 0.9);
+  border-color: rgba(14, 116, 144, 0.25);
+  color: #0f172a;
+}
+
+html[data-theme="light"] .chem-key-btn:hover {
+  background: rgba(2, 132, 199, 0.15);
+  border-color: rgba(2, 132, 199, 0.6);
+  color: #0284c7;
+}
+
+/* Memorama: Tablero 3D y Tarjetas Volteables */
+.memorama-grid {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.memorama-grid-8 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.memorama-grid-12 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.memorama-grid-16 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 640px) {
+  .memorama-grid-8,
+  .memorama-grid-12,
+  .memorama-grid-16 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+}
+
+.memorama-card-container {
+  perspective: 1000px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+  user-select: none;
+}
+
+.memorama-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
+  border-radius: 14px;
+}
+
+.memorama-card-container.is-flipped .memorama-card-inner,
+.memorama-card-container.is-matched .memorama-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memorama-card-front,
+.memorama-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+/* Dorso de la Tarjeta (Reverso) */
+.memorama-card-back {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  color: #38bdf8;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.memorama-card-container:hover .memorama-card-back {
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+}
+
+html[data-theme="light"] .memorama-card-back {
+  background: linear-gradient(145deg, rgba(240, 249, 255, 0.95), rgba(224, 242, 254, 0.9));
+  border-color: rgba(2, 132, 199, 0.3);
+  color: #0284c7;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .memorama-card-container:hover .memorama-card-back {
+  border-color: rgba(2, 132, 199, 0.7);
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.25);
+}
+
+/* Frente de la Tarjeta (Anverso revelado) */
+.memorama-card-front {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="light"] .memorama-card-front {
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
+}
+
+/* Tarjeta Emparejada con Éxito */
+.memorama-card-container.is-matched .memorama-card-front {
+  border-color: rgba(16, 185, 129, 0.8) !important;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.4) !important;
+  animation: cardMatchPulse 0.5s ease-out;
+}
+
+@keyframes cardMatchPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* Tarjeta Incorrecta (Sacudida / Shake) */
+.memorama-card-container.is-wrong {
+  animation: wrongShake 0.4s ease-in-out;
+}
+
+@keyframes wrongShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* Indicador de Racha (Streak Flame) */
+.streak-flame {
+  display: inline-block;
+  animation: flameBounce 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes flameBounce {
+  from { transform: scale(1) translateY(0); filter: drop-shadow(0 0 2px #f59e0b); }
+  to { transform: scale(1.15) translateY(-2px); filter: drop-shadow(0 0 8px #ef4444); }
+}
+
 
